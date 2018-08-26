@@ -1,20 +1,426 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div>
+  <h3 class="font-weight-bold">Тяга: 75кг</h3>
+  <h3 class="font-weight-bold">Жим: 105кг</h3>
+  <h3 class="font-weight-bold">Присяд: ...</h3>
 
+  <div class="form-group">
+    <label>Присяд: <input type="text" name="squats" [(ngModel)]="squats" class="form-control"></label>
+    <label>Жим: <input type="text" name="press" [(ngModel)]="press" class="form-control"></label>
+    <label>Станова тяга: <input type="text" name="deadlift" [(ngModel)]="deadlift" class="form-control"></label>
+  </div>
+
+  <table class="table table-bordered" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <thead>
+      <tr class="font-weight-bold">
+        <th>#</th>
+        <th>Вправа</th>
+        <th>Підходи</th>
+        <th>Вага</th>
+        <th>Повторення</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+    <tr>
+      <th colspan="5" >Тренування 1</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>Жим лежачи</td>
+      <td>
+        <div>1</div>
+        <div>2</div>
+        <div>2</div>
+        <div>4</div>
+        <div>1 <span style="color: green;">[эн, мез]</span></div>
+      </td>
+      <td>
+        <div>{{P(0.5)}}</div>
+        <div>{{P(0.6)}}</div>
+        <div>{{P(0.7)}}</div>
+        <div>{{P(0.75)}}</div>
+        <div>{{P(0.75)}}</div>
+      </td>
+      <td>
+        <div>5</div>
+        <div>4</div>
+        <div>3</div>
+        <div>3</div>
+        <div>3</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>Приседания</td>
+      <td>1<br>2<br>5</td>
+      <td>{{S(0.5)}}<br>{{S(0.6)}}<br>{{S(0.7)}}</td>
+      <td>5<br>5<br>5</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>2<br>4</td>
+      <td  >{{P(0.5)}}<br>{{P(0.6)}}<br>{{P(0.65)}}</td>
+      <td  >6<br>6<br>6</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Разведение рук с гантелями лежа</td>
+      <td  >3 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >5</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 2</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Становая тяга</td>
+      <td  >1<br>2<br>2<br>4</td>
+      <td  >{{D(0.5)}}<br>{{D(0.6)}}<br>{{D(0.7)}}<br>{{D(0.75)}}</td>
+      <td  >5<br>5<br>4<br>3</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим лежа под углом</td>
+      <td  >4, 6 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >4</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Отжимание на брусьях с весом</td>
+      <td  >4, 5 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >5</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Тяга с плинтов<br><br><br><br></td>
+      <td  >1<br>2<br>2<br>3<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{D(0.5)}}<br>{{D(0.6)}}<br>{{D(0.7)}}<br>{{D(0.8)}}<br>{{D(0.8)}}</td>
+      <td  >5<br>5<br>4<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >5</td>
+      <td >Скручивания на пресс в висе</td>
+      <td  >3</td>
+      <td >&nbsp;</td>
+      <td  >макс.</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 3</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1<br>1<br>1<br>2<br>2<br>2 <span style="color: green;">[эн, мез]</span><br>1<br>1<br>1 <span style="color: green;">[эн, мез]</span><br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{P(0.5)}}<br>{{P(0.55)}}<br>{{P(0.6)}}<br>{{P(0.65)}}<br>{{P(0.7)}}<br>{{P(0.75)}}<br>{{P(0.7)}}<br>{{P(0.65)}}<br>{{P(0.6)}}<br>{{P(0.55)}}<br>{{P(0.5)}}</td>
+      <td  >7<br>6<br>5<br>4<br>3<br>2 <br>3<br>4<br>6<br>8<br>10</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Разведение рук с гантелями лежа</td>
+      <td  >3 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >10</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Приседания</td>
+      <td  >1<br>2<br>2<br>3<br>2 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.5)}}<br>{{S(0.6)}}<br>{{S(0.7)}}<br>{{S(0.75)}}<br>{{S(0.75)}}</td>
+      <td  >5<br>4<br>3<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Трицепс на блоке</td>
+      <td  >2<br>2 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >10<br>10</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 4</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Приседания</td>
+      <td  >1<br>2<br>2<br>4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.5)}}<br>{{S(0.6)}}<br>{{S(0.7)}}<br>{{S(0.8)}}<br>{{S(0.8)}}</td>
+      <td  >5<br>4<br>3<br>2<br>2</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа<br></td>
+      <td  >1<br>1<br>2<br>5<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{P(0.5)}}<br>{{P(0.6)}} <br>{{P(0.7)}} <br>{{P(0.8)}}<br>{{P(0.8)}}</td>
+      <td  >5<br>4<br>3<br>2<br>2</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Отжимание от пола</td>
+      <td  >5</td>
+      <td >&nbsp;</td>
+      <td  >макс</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Приседания</td>
+      <td  >1<br>1<br>4</td>
+      <td  >{{S(0.55)}}<br>{{S(0.65)}}<br>{{S(0.75)}}</td>
+      <td  >3<br>3<br>3</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 5</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Тяга до колен</td>
+      <td  >1<br>2<br>4</td>
+      <td  >{{S(0.50)}}<br>{{S(0.6)}}<br>{{S(0.70)}}</td>
+      <td  >4<br>4<br>4</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>2<br>5</td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.70)}}</td>
+      <td  >5<br>5<br>4</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Тренажер бабочка</td>
+      <td  >3 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >10</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Становая тяга</td>
+      <td  >1<br>1<br>2<br>4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.75)}}<br>{{S(0.75)}}</td>
+      <td  >4<br>4<br>3<br>3<br>3</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 6</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Приседания</td>
+      <td  >1<br>1<br>2<br>6</td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.75)}}</td>
+      <td  >4<br>4<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1 <br>2<br>2<br>2 <br>1<br>1 <span style="color: green;">[эн, мез]</span><br>1<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.70)}}<br>{{P(0.75)}}<br>{{P(0.80)}}<br>{{P(0.75)}}<br>{{P(0.70)}}<br>{{P(0.60)}}<br>{{P(0.50)}}</td>
+      <td  >6 <br>5<br>4<br>3<br>2<br>4 <br>5 <br>6 <br>7</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Разведение рук с гантелями в наклоне</td>
+      <td  >3<br>2 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >10<br>10</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Трицепсы на блоке</td>
+      <td  >3<br>2 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >10<br>10</td>
+    </tr>
+    <tr>
+      <td  >5</td>
+      <td >Приседания</td>
+      <td  >1<br>1<br>4</td>
+      <td  >{{S(0.55)}}<br>{{S(0.65)}}<br>{{S(0.75)}}</td>
+      <td  >3<br>3<br>2</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 7</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Приседания</td>
+      <td  >1<br>2<br>2<br>4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.80)}}<br>{{S(0.80)}}</td>
+      <td  >5<br>4<br>3<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1<br>2<br>5</td>
+      <td  >{{P(0.50)}} <br>{{P(0.60)}} <br>{{P(0.70)}} <br>{{P(0.80)}}</td>
+      <td  >5<br>4<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Отжимание от пола</td>
+      <td  >5</td>
+      <td >&nbsp;</td>
+      <td  >макс.</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Приседания</td>
+      <td  >1<br>1<br>4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}} <br>{{S(0.70)}}<br>{{S(0.70)}}</td>
+      <td  >5<br>5<br>5<br>5</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 8</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Тяга штанги до колен</td>
+      <td  >1<br>1<br>2<br>4</td>
+      <td  >{{S(0.50)}} <br>{{S(0.60)}} <br>{{S(0.70)}} <br>{{S(0.75)}}</td>
+      <td  >4<br>4<br>4<br>4</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1 <br>2<br>2<br>2<br>2 <br>1<br>1 <span style="color: green;">[эн, мез]</span><br>1<br>1 <span style="color: green;">[эн, мез]</span><br>1</td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.70)}}<br>{{P(0.75)}}<br>{{P(0.80)}}<br>{{P(0.75)}}<br>{{P(0.70)}}<br>{{P(0.65)}}<br>{{P(0.60)}}<br>{{P(0.55)}}<br>{{P(0.50)}}</td>
+      <td  >6<br>5<br>4<br>3<br>2 <br>3<br>4<br>5 <br>6<br>7<br>8</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Жим гантелей лежа</td>
+      <td  >3<br>2 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >10<br>10</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Тяга штанги с плинтов</td>
+      <td  >1<br>2<br>3<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.80)}}<br>{{S(0.80)}}</td>
+      <td  >5<br>5<br>4<br>4</td>
+    </tr>
+    <tr>
+      <td  >5</td>
+      <td >Скручивания на пресс в висе</td>
+      <td  >3</td>
+      <td >&nbsp;</td>
+      <td  >макс.</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 9</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1<br>2<br>4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{P(0.50)}} <br>{{P(0.60)}} <br>{{P(0.70)}}<br>{{P(0.80)}}<br>{{P(0.80)}}</td>
+      <td  >5<br>4<br>3<br>2<br>2</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Приседания</td>
+      <td  >1<br>1<br>2<br>5</td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.75)}}</td>
+      <td  >5<br>5<br>5<br>4</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>2<br>4</td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.65)}}</td>
+      <td  >6<br>6<br>6</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 10</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Приседания</td>
+      <td  >1<br>1<br>2<br>2<br>2<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}} <br>{{S(0.80)}} <br>{{S(0.85)}}<br>{{S(0.85)}}</td>
+      <td  >5<br>4<br>3<br>3<br>2<br>2</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа <br><br></td>
+      <td  >1<br>1<br>2<br>4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.70)}}<br>{{P(0.80)}}<br>{{P(0.80)}}</td>
+      <td  >5<br>4<br>3<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Отжимание на брусьях</td>
+      <td  >5</td>
+      <td >&nbsp;</td>
+      <td  >8</td>
+    </tr>
+    <tr>
+      <td  >5</td>
+      <td >Приседания<br><br></td>
+      <td  >1<br>1<br>2<br>3<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{S(0.50)}} <br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.80)}}<br>{{S(0.80)}}</td>
+      <td  >5<br>4<br>3<br>2<br>2</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 11</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1<br>2<br>2<br>2<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.70)}}<br>{{P(0.80)}}<br>{{P(0.85)}}<br>{{P(0.85)}}</td>
+      <td  >5<br>4<br>3<br>3<br>2<br>2</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Становая тяга<br><br></td>
+      <td  >1<br>1<br>2<br>2<br>3</td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.80)}}<br>{{S(0.85)}}</td>
+      <td  >4<br>4<br>3<br>3<br>2</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Жим штанги лежа</td>
+      <td  >1<br>1<br>4</td>
+      <td  >{{P(0.55)}}<br>{{P(0.65)}}<br>{{P(0.75)}}</td>
+      <td  >5<br>5<br>4</td>
+    </tr>
+    <tr>
+      <th style="text-align: left;" colspan="5" >Тренировка 12</th>
+    </tr>
+    <tr>
+      <td  >1</td>
+      <td >Приседания<br><br></td>
+      <td  >1<br>1<br>2<br>6</td>
+      <td  >{{S(0.50)}}<br>{{S(0.60)}}<br>{{S(0.70)}}<br>{{S(0.80)}}</td>
+      <td  >5<br>4<br>3<br>3</td>
+    </tr>
+    <tr>
+      <td  >2</td>
+      <td >Жим штанги лежа<br><br></td>
+      <td  >1<br>1<br>5</td>
+      <td  >{{P(0.50)}}<br>{{P(0.60)}}<br>{{P(0.70)}}</td>
+      <td  >5<br>5<br>5</td>
+    </tr>
+    <tr>
+      <td  >3</td>
+      <td >Отжимание на брусьях</td>
+      <td  >4<br>1 <span style="color: green;">[эн, мез]</span></td>
+      <td >&nbsp;</td>
+      <td  >8<br>8</td>
+    </tr>
+    <tr>
+      <td  >4</td>
+      <td >Скручивания на пресс в висе</td>
+      <td  >3</td>
+      <td >&nbsp;</td>
+      <td  >макс.</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
