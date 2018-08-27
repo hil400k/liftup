@@ -1,0 +1,25 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.weight-controls {
+  label {
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  tbody {
+    font-size: 12px;
+    tr td:nth-child(2) p {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      margin-left: 0;
+    }
+  }
+
+  table tr td:nth-child(1),
+  table tr th:nth-child(1) {
+    padding-left: 8px;
+    padding-right: 4px;
+  }
+}
+

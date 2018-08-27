@@ -1,9 +1,9 @@
 <div>
-  <h3 class="font-weight-bold">Тяга: 75кг</h3>
-  <h3 class="font-weight-bold">Жим: 105кг</h3>
-  <h3 class="font-weight-bold">Присяд: ...</h3>
+  <h5 class="font-weight-bold">Тяга: 75кг</h5>
+  <h5 class="font-weight-bold">Жим: 105кг</h5>
+  <h5 class="font-weight-bold">Присяд: ...</h5>
 
-  <div class="form-group">
+  <div class="form-group weight-controls">
     <label>Присяд: <input type="text" name="squats" [(ngModel)]="squats" class="form-control"></label>
     <label>Жим: <input type="text" name="press" [(ngModel)]="press" class="form-control"></label>
     <label>Станова тяга: <input type="text" name="deadlift" [(ngModel)]="deadlift" class="form-control"></label>
@@ -11,24 +11,26 @@
 
   <table class="table table-bordered" border="0" cellspacing="0" cellpadding="0" width="100%">
     <thead>
-      <tr class="font-weight-bold">
-        <th>#</th>
-        <th>Вправа</th>
-        <th>Підходи</th>
-        <th>Вага</th>
-        <th>Повторення</th>
-      </tr>
+    <tr class="font-weight-bold">
+      <th>#</th>
+      <th>Exercise</th>
+      <th>Sets</th>
+      <th>Weight</th>
+      <th>Reps</th>
+    </tr>
     </thead>
 
     <tbody>
 
     <tr>
-      <th colspan="5" >Тренування 1</th>
+      <th colspan="5">Тренування 1</th>
     </tr>
 
     <tr>
       <td>1</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -54,7 +56,9 @@
 
     <tr>
       <td>2</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -73,7 +77,9 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -92,7 +98,9 @@
     </tr>
     <tr>
       <td>4</td>
-      <td>Розведення рук з гантелями лежачи</td>
+      <td>
+        <p>Розведення рук з гантелями лежачи</p>
+      </td>
       <td>3 [ен, мез]</td>
       <td>макс.</td>
       <td>5</td>
@@ -102,7 +110,9 @@
     </tr>
     <tr>
       <td>1</td>
-      <td>Станова тяга</td>
+      <td>
+        <p>Станова тяга</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -124,21 +134,27 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи під кутом</td>
+      <td>
+        <p>Жим лежачи під кутом</p>
+      </td>
       <td>4, 6 [ен, мез]</td>
-      <td> </td>
+      <td></td>
       <td>4</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>Підтягування на брусах з вагою</td>
+      <td>
+        <p>Підтягування на брусах з вагою</p>
+      </td>
       <td>4, 5 [ен, мез]</td>
       <td></td>
       <td>5</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Тяга з плінтів</td>
+      <td>
+        <p>Тяга з плінтів</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -163,17 +179,21 @@
     </tr>
     <tr>
       <td>5</td>
-      <td>Скручування на прес висячи</td>
+      <td>
+        <p>Скручування на прес висячи</p>
+      </td>
       <td>3</td>
       <td></td>
       <td>макс.</td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 3</th>
+      <th colspan="5">Тренування 3</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -216,14 +236,18 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Розведення рук з гантелями лежачи</td>
+      <td>
+        <p>Розведення рук з гантелями лежачи</p>
+      </td>
       <td>3 [ен, мез]</td>
-      <td> </td>
+      <td></td>
       <td>10</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -248,7 +272,9 @@
     </tr>
     <tr>
       <td>4</td>
-      <td>Тріцепс на блоці</td>
+      <td>
+        <p>Тріцепс на блоці</p>
+      </td>
       <td>
         <div>2</div>
         <div>2 [ен, мез]</div>
@@ -260,11 +286,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 4</th>
+      <th colspan="5">Тренування 4</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -289,7 +317,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -314,14 +344,18 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Відтискання від підлоги</td>
+      <td>
+        <p>Відтискання від підлоги</p>
+      </td>
       <td>5</td>
       <td></td>
       <td>макс</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -339,11 +373,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 5</th>
+      <th colspan="5">Тренування 5</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Тяга до колін</td>
+      <td>
+        <p>Тяга до колін</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -362,7 +398,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -381,14 +419,18 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Тренажер бабочка</td>
+      <td>
+        <p>Тренажер бабочка</p>
+      </td>
       <td>3 [ен, мез]</td>
-      <td> </td>
+      <td></td>
       <td>10</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Станова тяга</td>
+      <td>
+        <p>Станова тяга</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -412,11 +454,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 6</th>
+      <th colspan="5">Тренування 6</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -438,7 +482,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -475,12 +521,14 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Разведення рук з гантелями під кутом</td>
+      <td>
+        <p>Разведення рук з гантелями під кутом</p>
+      </td>
       <td>
         <div>3</div>
         <div>2 [ен, мез]</div>
       </td>
-      <td> </td>
+      <td></td>
       <td>
         <div>10</div>
         <div>10</div>
@@ -488,7 +536,9 @@
     </tr>
     <tr>
       <td>4</td>
-      <td>Тріцепс на блоці</td>
+      <td>
+        <p>Тріцепс на блоці</p>
+      </td>
       <td>
         <div>3</div>
         <div>2 [ен, мез]</div>
@@ -501,7 +551,9 @@
     </tr>
     <tr>
       <td>5</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -519,11 +571,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 7</th>
+      <th colspan="5">Тренування 7</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -548,7 +602,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -570,14 +626,18 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Відтискання від підлоги</td>
+      <td>
+        <p>Відтискання від підлоги</p>
+      </td>
       <td>5</td>
       <td></td>
       <td>макс.</td>
     </tr>
     <tr>
       <td>4</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -598,11 +658,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 8</th>
+      <th colspan="5">Тренування 8</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Тяга штанги до колін</td>
+      <td>
+        <p>Тяга штанги до колін</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -624,7 +686,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -667,7 +731,9 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Жим гантелей лежачи</td>
+      <td>
+        <p>Жим гантелей лежачи</p>
+      </td>
       <td>
         <div>3</div>
         <div>2 [ен, мез]</div>
@@ -680,7 +746,9 @@
     </tr>
     <tr>
       <td>4</td>
-      <td>Тяга штанги з плінтів</td>
+      <td>
+        <p>Тяга штанги з плінтів</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -702,17 +770,21 @@
     </tr>
     <tr>
       <td>5</td>
-      <td>Скручування на прес висячи</td>
+      <td>
+        <p>Скручування на прес висячи</p>
+      </td>
       <td>3</td>
-      <td> </td>
+      <td></td>
       <td>макс.</td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 9</th>
+      <th colspan="5">Тренування 9</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -737,7 +809,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -759,7 +833,9 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>2</div>
@@ -777,11 +853,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 10</th>
+      <th colspan="5">Тренування 10</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -809,7 +887,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -834,14 +914,18 @@
     </tr>
     <tr>
       <td>4</td>
-      <td>Підтягування на брусах</td>
+      <td>
+        <p>Підтягування на брусах</p>
+      </td>
       <td>5</td>
-      <td> </td>
+      <td></td>
       <td>8</td>
     </tr>
     <tr>
       <td>5</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -865,11 +949,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 11</th>
+      <th colspan="5">Тренування 11</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -897,7 +983,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Станова тяга</td>
+      <td>
+        <p>Станова тяга</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -922,7 +1010,9 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -940,11 +1030,13 @@
       </td>
     </tr>
     <tr>
-      <th colspan="5" >Тренування 12</th>
+      <th colspan="5">Тренування 12</th>
     </tr>
     <tr>
       <td>1</td>
-      <td>Присідання</td>
+      <td>
+        <p>Присідання</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -966,7 +1058,9 @@
     </tr>
     <tr>
       <td>2</td>
-      <td>Жим лежачи</td>
+      <td>
+        <p>Жим лежачи</p>
+      </td>
       <td>
         <div>1</div>
         <div>1</div>
@@ -985,7 +1079,9 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Підтягування на брусах</td>
+      <td>
+        <p>Підтягування на брусах</p>
+      </td>
       <td>
         <div>4</div>
         <div>1 [ен, мез]</div>
@@ -998,7 +1094,9 @@
     </tr>
     <tr>
       <td>4</td>
-      <td>Скручування на прес висячи</td>
+      <td>
+        <p>Скручування на прес висячи</p>
+      </td>
       <td>3</td>
       <td></td>
       <td>макс.</td>
