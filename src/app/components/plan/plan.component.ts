@@ -20,9 +20,11 @@ export class PlanComponent implements OnInit {
   ngOnInit() {
     this.planService.getPlan()
       .subscribe((plan: any) => {
-        this.press = plan.press;
-        this.squats = plan.squats;
-        this.deadlift = plan.deadlift;
+        if (plan) {
+          this.press = plan.press;
+          this.squats = plan.squats;
+          this.deadlift = plan.deadlift;
+        }
       });
   }
 

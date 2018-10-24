@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,18 @@ export class PlanService {
 
   getPlan() {
     return this.authService.user$.pipe(
-      switchMap(user => this.db.object(`/plans/${user.uid}`).valueChanges()),
+      switchMap(user => {
+        return user ? this.db.object(`/plans/${user.uid}`).valueChanges() : of({});
+      }),
       map(plan => this.plan = plan)
     );
   }
 
   updateScores(scores) {
     return this.authService.user$.pipe(
-      switchMap(user => this.db.object(`/plans/${user.uid}`).update(scores)),
+      switchMap(user => {
+        return user ? this.db.object(`/plans/${user.uid}`).update(scores) : of();
+      }),
     );
   }
 }
