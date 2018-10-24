@@ -23,7 +23,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'plan', component: PlanComponent }
     ]),
