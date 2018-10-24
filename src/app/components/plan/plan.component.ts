@@ -7,9 +7,9 @@ import { PlanService } from '../../services/plan.service';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit {
-  press;
-  squats;
-  deadlift;
+  press = 0;
+  squats = 0;
+  deadlift = 0;
 
   constructor(
     private planService: PlanService,
