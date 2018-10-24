@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlanService } from '../../services/plan.service';
 
 @Component({
   selector: 'app-plan',
@@ -6,17 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit {
-  title = 'liftup';
-  squats = 100;
-  press = 115;
-  deadlift = 75;
+  press;
+  squats;
+  deadlift;
 
-  constructor() {
+  constructor(
+    private planService: PlanService,
+  ) {
 
   }
 
   ngOnInit() {
+    this.planService.getPlan()
+      .subscribe((plan: any) => {
+        this.press = plan.press;
+        this.squats = plan.squats;
+        this.deadlift = plan.deadlift;
+      });
+  }
 
+  update(values) {
+    this.planService.updateScores(values)
+      .subscribe();
   }
 
   P(percentage) {

@@ -1,11 +1,21 @@
-<form>
+<a routerLink="/">Home</a>
+<a routerLink="/plan">Plan</a>
+
+<form #form="ngForm">
   <div class="form-group">
-    <input type="text" placeholder="Email: " >
+    <input ngModel name="email" type="email" placeholder="Email: " >
   </div>
 
   <div class="form-group">
-    <input type="text" placeholder="Password: " >
+    <input ngModel name="password" type="password" placeholder="Password: " >
   </div>
 
-  <button class="btn btn-primary">Login</button>
+  <button type="button" (click)="login(form.value)" class="btn btn-primary">Log In</button>
+  <button type="button" (click)="signup(form.value)" class="btn btn-primary">Sign up</button>
 </form>
+
+<p *ngIf="user">
+  Username: <span>{{user.email}}</span>
+</p>
+
+<button (click)="logout()">Log out</button>

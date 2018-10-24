@@ -1,12 +1,18 @@
+<a routerLink="/login">Login</a>
+<a routerLink="/">Home</a>
 <div>
-  <h5 class="font-weight-bold">Тяга: 75кг</h5>
-  <h5 class="font-weight-bold">Жим: 105кг</h5>
-  <h5 class="font-weight-bold">Присяд: ...</h5>
+  <h5 class="font-weight-bold">Тяга: {{deadlift}}кг</h5>
+  <h5 class="font-weight-bold">Жим: {{press}}кг</h5>
+  <h5 class="font-weight-bold">Присяд: {{squats}}кг</h5>
 
   <div class="form-group weight-controls">
-    <label>Присяд: <input type="text" name="squats" [(ngModel)]="squats" class="form-control"></label>
-    <label>Жим: <input type="text" name="press" [(ngModel)]="press" class="form-control"></label>
-    <label>Станова тяга: <input type="text" name="deadlift" [(ngModel)]="deadlift" class="form-control"></label>
+    <form #form="ngForm" (submit)="update(form.value)">
+      <label>Присяд: <input [(ngModel)]="squats" type="text" name="squats"  class="form-control"></label>
+      <label>Жим: <input [(ngModel)]="press" type="text" name="press"  class="form-control"></label>
+      <label>Станова тяга: <input [(ngModel)]="deadlift" type="text" name="deadlift"  class="form-control"></label>
+
+      <button class="btn btn-primary">Update</button>
+    </form>
   </div>
 
   <table class="table table-bordered" border="0" cellspacing="0" cellpadding="0" width="100%">

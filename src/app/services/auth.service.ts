@@ -11,7 +11,9 @@ export class AuthService {
 
   constructor(
     private fbAuth: AngularFireAuth
-  ) { }
+  ) {
+    this.user$ = fbAuth.authState;
+  }
 
   signup(email: string, password: string) {
     this.fbAuth
@@ -30,7 +32,7 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Nice, it worked!');
+        console.log('Nice, it worked!', value);
       })
       .catch(err => {
         console.log('Something went wrong:', err.message);
@@ -40,6 +42,9 @@ export class AuthService {
   logout() {
     this.fbAuth
       .auth
-      .signOut();
+      .signOut()
+      .then(() => {
+        console.info('Succesfully loged out');
+      });
   }
 }
