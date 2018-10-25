@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanService } from '../../services/plan.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-plan',
@@ -10,21 +11,23 @@ export class PlanComponent implements OnInit {
   press = 0;
   squats = 0;
   deadlift = 0;
+  user$;
 
   constructor(
     private planService: PlanService,
+    private authService: AuthService
   ) {
 
   }
 
   ngOnInit() {
+    this.user$ = this.authService.user$;
+
     this.planService.getPlan()
       .subscribe((plan: any) => {
-        if (plan) {
-          this.press = plan.press;
-          this.squats = plan.squats;
-          this.deadlift = plan.deadlift;
-        }
+        this.press = plan.press;
+        this.squats = plan.squats;
+        this.deadlift = plan.deadlift;
       });
   }
 
@@ -33,16 +36,16 @@ export class PlanComponent implements OnInit {
       .subscribe();
   }
 
-  P(percentage) {
-    return (percentage * this.press).toFixed(2) + ' = ' + percentage;
+  calculatePress(percentage) {
+    return this.press ? ((percentage * this.press).toFixed(2) + ' = ' + percentage) : '';
   }
 
-  S(percentage) {
-    return (percentage * this.squats).toFixed(2) + ' = ' + percentage;
+  calculateSquats(percentage) {
+    return this.squats ? ((percentage * this.squats).toFixed(2) + ' = ' + percentage) : '';
   }
 
-  D(percentage) {
-    return (percentage * this.deadlift).toFixed(2) + ' = ' + percentage;
+  calculateDeadlift(percentage) {
+    return this.deadlift ? ((percentage * this.deadlift).toFixed(2) + ' = ' + percentage) : '';
   }
 
 }
