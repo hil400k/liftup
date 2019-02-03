@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   user;
+  userLoaded;
 
   constructor(
     private auth: AuthService
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user$.subscribe(user => {
+      this.userLoaded = true;
       this.user = user;
     });
   }
@@ -30,5 +32,4 @@ export class LoginComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
-
 }
