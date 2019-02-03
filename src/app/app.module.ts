@@ -15,6 +15,7 @@ import { PlanComponent } from './components/plan/plan.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { CustomPlanComponent } from './components/custom-plan/custom-plan.component';
 import { CustomPlanItemComponent } from './components/custom-plan-item/custom-plan-item.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,9 @@ import { CustomPlanItemComponent } from './components/custom-plan-item/custom-pl
       { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'plan', component: PlanComponent },
-      { path: 'custom-plan/:name', component: CustomPlanItemComponent },
-      { path: 'custom-plan', component: CustomPlanComponent }
+      { path: 'plan', component: PlanComponent, canActivate: [AuthGuard]  },
+      { path: 'custom-plan/:name', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
+      { path: 'custom-plan', component: CustomPlanComponent, canActivate: [AuthGuard] }
     ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -42,7 +43,8 @@ import { CustomPlanItemComponent } from './components/custom-plan-item/custom-pl
     FormsModule,
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

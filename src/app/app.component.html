@@ -6,7 +6,9 @@
       <nav class="nav nav-masthead">
         <a class="nav-link" routerLink="/">Home</a>
         <a class="nav-link" routerLink="/plan">Plan</a>
-        <a class="nav-link" routerLink="/custom-plan">Custom Plan</a>
+        <ng-container *ngIf="auth.user$ | async">
+          <a class="nav-link" routerLink="/custom-plan">Custom Plan</a>
+        </ng-container>
         <a class="nav-link" routerLink="/login">Login</a>
       </nav>
     </div>
