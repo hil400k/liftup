@@ -34,4 +34,8 @@ export class CustomPlanComponent implements OnInit {
       });
   }
 
+  removePlan(plan) {
+    this.customPlanService.removeCustomPlan(plan).subscribe();
+  }
+
 }

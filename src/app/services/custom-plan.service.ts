@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './auth.service';
-import { switchMap, take } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 
 @Injectable({
@@ -33,6 +33,14 @@ export class CustomPlanService {
     );
   }
 
+  removeCustomPlan(plan) {
+    return this.auth.user$.pipe(
+      switchMap(user => {
+        return this.db.list(`/custom-plans/${user.uid}`).remove(plan.key);
+      })
+    );
+  }
+
   getCustomPlan(name) {
     return this.auth.user$.pipe(
       switchMap((user) => {
@@ -46,7 +54,11 @@ export class CustomPlanService {
     return this.auth.user$.pipe(
       take(1),
       switchMap((user) => {
-        return this.db.list(`/custom-plans/${user.uid}`).valueChanges();
+        return this.db.list(`/custom-plans/${user.uid}`).snapshotChanges().pipe(
+          map(changes => {
+            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+          })
+        );
       })
     );
   }
