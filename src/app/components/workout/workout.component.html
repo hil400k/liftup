@@ -2,7 +2,9 @@
   <li *ngFor="let exercise of exercises" class="list-group-item justify-content-between align-items-center">
     <div class="text-center">
       {{exercise.name}}
-      <span class="badge badge-danger badge-pill" (click)="removeExercise(exercise.key)">Remove</span>
+      <span class="badge badge-danger badge-pill" (click)="removeExercise(exercise.key)">
+        x
+      </span>
     </div>
     <span *ngFor="let set of exercise.parsedSets">
       <span class="badge badge-primary badge-pill">{{set.weight}} kg</span>
@@ -11,12 +13,14 @@
   </li>
 </ul>
 <div class="input-group mb-3">
-  <input type="text" class="form-control"
+  <input *ngIf="!addExerciseState" type="text" class="form-control"
          placeholder="{{inputCaption}}"
-         [(ngModel)]="inputValue"
-         (keyup.enter)="exerciseButtonHandler()"
-         aria-label="Recipient's username"
-         aria-describedby="button-addon2">
+         [(ngModel)]="nameValue"
+         (keyup.enter)="exerciseButtonHandler()">
+  <input *ngIf="addExerciseState" type="text" class="form-control" pattern="/d*"
+         placeholder="{{inputCaption}}"
+         [(ngModel)]="setsValue"
+         (keyup.enter)="exerciseButtonHandler()">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary"
             type="button"

@@ -6,25 +6,25 @@
 
 <ng-template #logoutTemplate>
   <h2 class="cover-heading" >
-    <span class="text-uppercase"> username: </span>
+    <span class="text-uppercase"> користувач: </span>
     <span>{{user.email}}</span>
-    <button (click)="logout()" class="btn btn-outline-danger">Log out</button>
+    <button (click)="logout()" class="btn btn-outline-danger">Вийти</button>
   </h2>
 </ng-template>
 
 <ng-template #loginTemplate>
   <form #form="ngForm" class="form-signin">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="email" class="sr-only">Email address</label>
+    <h1 class="h3 mb-3 font-weight-normal">Будь-ласка зареєструйтесь</h1>
+    <label for="email" class="sr-only">Email</label>
     <input ngModel name="email" id="email" class="form-control" type="email" placeholder="Email: " required autofocus>
     <label for="password" class="sr-only">Password</label>
     <input ngModel name="password" id="password" class="form-control" type="password" placeholder="Password: " required>
     <div class="row buttons-row">
       <div class="col">
-        <button type="button" (click)="login(form.value)" class="btn btn-lg btn-primary btn-block">Log In</button>
+        <button type="button" (click)="login(form.value)" class="btn btn-lg btn-primary btn-block">Увійти</button>
       </div>
       <div class="col">
-        <button type="button" (click)="signup(form.value)" class="btn btn-lg btn-primary btn-block">Sign up</button>
+        <button type="button" (click)="signup(form.value)" class="btn btn-lg btn-primary btn-block">Зареєструватись</button>
       </div>
     </div>
   </form>

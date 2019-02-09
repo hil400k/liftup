@@ -9,7 +9,7 @@
       <label>Жим: <input [(ngModel)]="press" type="text" name="press"  class="form-control"></label>
       <label>Станова тяга: <input [(ngModel)]="deadlift" type="text" name="deadlift"  class="form-control"></label>
 
-      <button class="btn btn-primary" *ngIf="user$ | async">Update</button>
+      <button class="btn btn-primary" *ngIf="user$ | async">Зберегти</button>
     </form>
   </div>
 
@@ -17,10 +17,10 @@
     <thead>
     <tr class="font-weight-bold">
       <th>#</th>
-      <th>Exercise</th>
-      <th>Sets</th>
-      <th>Weight</th>
-      <th>Reps</th>
+      <th>Вправи</th>
+      <th>Підходи</th>
+      <th>Ваги</th>
+      <th>Повт.</th>
     </tr>
     </thead>
 

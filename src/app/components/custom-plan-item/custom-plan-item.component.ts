@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./custom-plan-item.component.scss']
 })
 export class CustomPlanItemComponent implements OnInit {
-  nextWorkoutName = 'Next';
+  nextWorkoutName = 'Наступне тренування';
   workouts;
   planName;
 
@@ -22,7 +22,6 @@ export class CustomPlanItemComponent implements OnInit {
       this.planName = params.get('plan');
       this.workoutService.getWorkouts({ planName: params.get('plan') })
         .subscribe(items => {
-          console.info(items);
           this.workouts = items;
         });
     });

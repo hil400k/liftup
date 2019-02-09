@@ -31,7 +31,7 @@ export class WorkoutService {
         return this.db.list(`/custom-plans/${user.uid}/${params.planName}/workouts`)
           .valueChanges();
       }),
-      map(item => {
+      map((item: any) => {
         item.map(i => {
           i.isOpen = true;
           return i;

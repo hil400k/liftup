@@ -4,12 +4,12 @@
     <div class="inner">
       <h3 class="masthead-brand text-uppercase">Liftup</h3>
       <nav class="nav nav-masthead">
-        <a class="nav-link" routerLink="/">Home</a>
-        <a class="nav-link" routerLink="/plan">Plan</a>
+        <a class="nav-link" routerLink="/">Головна</a>
+        <a class="nav-link" routerLink="/plan">Програма</a>
         <ng-container *ngIf="auth.user$ | async">
-          <a class="nav-link" routerLink="/custom-plan">Custom Plan</a>
+          <a class="nav-link" routerLink="/custom-plan">Мої програми</a>
         </ng-container>
-        <a class="nav-link" routerLink="/login">Login</a>
+        <a class="nav-link" routerLink="/login">Логін</a>
       </nav>
     </div>
   </header>

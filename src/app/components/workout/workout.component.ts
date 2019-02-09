@@ -12,9 +12,10 @@ export class WorkoutComponent implements OnInit {
 
   exercises;
   addExerciseState = false;
-  buttonCaption = 'Add exercise';
-  inputCaption = 'Exercise Name';
-  inputValue = '';
+  buttonCaption = 'Додати вправу';
+  inputCaption = 'Назва вправи';
+  nameValue = '';
+  setsValue = '';
   exerciseToCreate = {
     name: '',
     sets: ''
@@ -31,30 +32,38 @@ export class WorkoutComponent implements OnInit {
     }).subscribe(exercises => {
       this.exerciseService.parse(exercises);
       this.exercises = exercises;
-
     });
   }
 
   exerciseButtonHandler() {
     if (!this.addExerciseState) {
-      this.buttonCaption = 'Create exercise';
-      this.inputCaption = 'Type Sets';
-      this.exerciseToCreate.name = this.inputValue;
-      this.inputValue = '';
+      this.setExerciseName();
     } else {
-      this.buttonCaption = 'Add exercise';
-      this.inputCaption = 'Exercise Name';
-      this.exerciseToCreate.sets = this.inputValue;
-      this.inputValue = '';
-      this.exerciseService.addExercise({
-        ...this.exerciseToCreate,
-        workoutName: this.workoutName,
-        planName: this.planName
-      }).subscribe(() => {
-        this.resetExerciseToCreate();
-      });
+      this.addExercise();
     }
+
     this.addExerciseState = !this.addExerciseState;
+  }
+
+  setExerciseName() {
+    this.buttonCaption = 'Створити впрву';
+    this.inputCaption = 'Введіть повторення';
+    this.exerciseToCreate.name = this.nameValue;
+    this.nameValue = '';
+  }
+
+  addExercise() {
+    this.buttonCaption = 'Додати вправу';
+    this.inputCaption = 'Назва вправи';
+    this.exerciseToCreate.sets = this.setsValue;
+    this.setsValue = '';
+    this.exerciseService.addExercise({
+      ...this.exerciseToCreate,
+      workoutName: this.workoutName,
+      planName: this.planName
+    }).subscribe(() => {
+      this.resetExerciseToCreate();
+    });
   }
 
   removeExercise(key) {
