@@ -1,0 +1,28 @@
+<ul class="list-group">
+  <li *ngFor="let exercise of exercises" class="list-group-item justify-content-between align-items-center">
+    <div class="text-center">
+      {{exercise.name}}
+      <span class="badge badge-danger badge-pill" (click)="removeExercise(exercise.key)">Remove</span>
+    </div>
+    <span *ngFor="let set of exercise.parsedSets">
+      <span class="badge badge-primary badge-pill">{{set.weight}} kg</span>
+      <span class="badge badge-dark badge-pill">{{set.iterations}}</span>
+    </span>
+  </li>
+</ul>
+<div class="input-group mb-3">
+  <input type="text" class="form-control"
+         placeholder="{{inputCaption}}"
+         [(ngModel)]="inputValue"
+         (keyup.enter)="exerciseButtonHandler()"
+         aria-label="Recipient's username"
+         aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary"
+            type="button"
+            (click)="exerciseButtonHandler()"
+            id="button-addon2">
+      {{buttonCaption}}
+    </button>
+  </div>
+</div>
