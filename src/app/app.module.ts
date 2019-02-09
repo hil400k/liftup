@@ -16,6 +16,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { CustomPlanComponent } from './components/custom-plan/custom-plan.component';
 import { CustomPlanItemComponent } from './components/custom-plan-item/custom-plan-item.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { WorkoutService } from './services/workout.service';
+import { CustomPlanService } from './services/custom-plan.service';
+import { WorkoutComponent } from './components/workout/workout.component';
+import { ExerciseService } from './services/exercise.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { AuthGuard } from './services/auth-guard.service';
     LoginComponent,
     PlanComponent,
     CustomPlanComponent,
-    CustomPlanItemComponent
+    CustomPlanItemComponent,
+    WorkoutComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,7 @@ import { AuthGuard } from './services/auth-guard.service';
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'plan', component: PlanComponent, canActivate: [AuthGuard]  },
-      { path: 'custom-plan/:name', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
+      { path: 'custom-plan/:username/:plan', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
       { path: 'custom-plan', component: CustomPlanComponent, canActivate: [AuthGuard] }
     ]),
     AngularFireModule.initializeApp(environment.firebase),
@@ -44,7 +49,10 @@ import { AuthGuard } from './services/auth-guard.service';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    WorkoutService,
+    CustomPlanService,
+    ExerciseService
   ],
   bootstrap: [AppComponent]
 })

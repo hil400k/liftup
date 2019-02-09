@@ -8,6 +8,7 @@ import { of, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class CustomPlanService {
+  username;
 
   constructor(
     private db: AngularFireDatabase,
@@ -23,7 +24,7 @@ export class CustomPlanService {
         if (!plan.length) {
           return this.auth.user$.pipe(
             switchMap((user) => {
-              return this.db.list(`/custom-plans/${user.uid}`).push({name});
+              return this.db.object(`/custom-plans/${user.uid}/${name}`).set({name});
             })
           );
         } else {
@@ -54,6 +55,7 @@ export class CustomPlanService {
     return this.auth.user$.pipe(
       take(1),
       switchMap((user) => {
+        this.username = user.email.match(/^([^@]*)@/)[1];
         return this.db.list(`/custom-plans/${user.uid}`).snapshotChanges().pipe(
           map(changes => {
             return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));

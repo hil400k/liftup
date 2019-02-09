@@ -1,28 +1,30 @@
-<ngb-accordion #acc="ngbAccordion">
-  <ngb-panel title="First panel">
-    <ng-template ngbPanelContent>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-      aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-      sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-      craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-      occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-      labore sustainable VHS.
+<div *ngFor="let item of workouts" class="workout">
+  <p>
+    <button type="button" class="btn btn-outline-primary" (click)="item.isOpen = !item.isOpen"
+            [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
+      {{ item.name }}
+    </button>
+    <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.name)">
+      x
+    </button>
+  </p>
+  <div id="collapseExample" [ngbCollapse]="!item.isOpen">
+    <div class="card">
+      <div class="card-body">
+        <workout [workoutName]="item.name" [planName]="planName"></workout>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <input type="number" min="0" inputmode="numeric" title="Non-negative integral number">
-      <button class="btn btn-primary btn-block">Add exercise</button>
-    </ng-template>
-  </ngb-panel>
-  <ngb-panel title="Second">
-    <ng-template ngbPanelContent>
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-      aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-      sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-      craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-      occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-      labore sustainable VHS.
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>
-
-<button class="btn btn-primary btn-block">Add day</button>
+<div class="input-group mb-3">
+  <input type="text"
+         class="form-control"
+         aria-label="Recipient's username"
+         aria-describedby="basic-addon2"
+         [(ngModel)]="nextWorkoutName">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" (click)="addWorkout()">Add Workout</button>
+  </div>
+</div>
 

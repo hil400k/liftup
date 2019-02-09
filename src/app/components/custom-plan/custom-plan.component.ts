@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomPlanService } from '../../services/custom-plan.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-custom-plan',
@@ -10,15 +11,20 @@ import { Router } from '@angular/router';
 export class CustomPlanComponent implements OnInit {
   error: string;
   plans;
+  username;
 
   constructor(
     private customPlanService: CustomPlanService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
     this.customPlanService.getAllCustomPlans()
-      .subscribe(plans => this.plans = plans);
+      .subscribe(plans => {
+        this.plans = plans;
+        this.username = this.customPlanService.username;
+      });
   }
 
   clearError() {
@@ -28,7 +34,7 @@ export class CustomPlanComponent implements OnInit {
   createPlan(name) {
     this.customPlanService.createCustomPlan(name)
       .subscribe(data => {
-        this.router.navigate(['custom-plan', name]);
+        this.router.navigate(['custom-plan', this.username, name]);
       }, error => {
         this.error = error;
       });
