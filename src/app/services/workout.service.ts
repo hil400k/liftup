@@ -19,7 +19,7 @@ export class WorkoutService {
         return this.db.object(`/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}`)
           .update({
             name: params.workoutName,
-            date: new Date().getTime();
+            date: new Date().getTime()
           });
       })
     );
