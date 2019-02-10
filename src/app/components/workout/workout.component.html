@@ -2,8 +2,8 @@
   <li *ngFor="let exercise of exercises" class="list-group-item justify-content-between align-items-center">
     <div class="text-center">
       {{exercise.name}}
-      <span class="badge badge-danger badge-pill" (click)="removeExercise(exercise.key)">
-        x
+      <span (click)="removeExercise(exercise.key)">
+        <svg-icon name="close"></svg-icon>
       </span>
     </div>
     <span *ngFor="let set of exercise.parsedSets">

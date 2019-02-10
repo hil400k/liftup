@@ -5,7 +5,7 @@
       {{ item.name }}
     </button>
     <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.name)">
-      x
+      <svg-icon name="close"></svg-icon>
     </button>
   </p>
   <div id="collapseExample" [ngbCollapse]="!item.isOpen">
@@ -20,6 +20,8 @@
 <div class="input-group mb-3">
   <input type="text"
          class="form-control"
+         placeholder="Назва тренування"
+         (keyup.enter)="addWorkout()"
          [(ngModel)]="nextWorkoutName">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary" type="button" (click)="addWorkout()">Додати тренування</button>

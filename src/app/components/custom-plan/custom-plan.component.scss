@@ -1,0 +1,10 @@
+.close-icon {
+  fill: #fff;
+  /deep/ svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+.list-group-item {
+  line-height: 2;
+}

@@ -3,13 +3,14 @@
   </div>
 </ng-container>
 
-
 <ng-template #logoutTemplate>
-  <h2 class="cover-heading" >
-    <span class="text-uppercase"> користувач: </span>
+  <h4 class="cover-heading text-center">
+    <span> Користувач: </span>
     <span>{{user.email}}</span>
-    <button (click)="logout()" class="btn btn-outline-danger">Вийти</button>
-  </h2>
+  </h4>
+  <div>
+    <button (click)="logout()" class="btn btn-outline-danger btn-block">Вийти</button>
+  </div>
 </ng-template>
 
 <ng-template #loginTemplate>

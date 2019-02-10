@@ -4,4 +4,10 @@
 .workout {
   margin-top: 10px;
 }
-
+svg-icon {
+  fill: #dc3545;
+  /deep/ svg {
+    width: 15px;
+    height: 15px;
+  }
+}

@@ -20,6 +20,8 @@ import { WorkoutService } from './services/workout.service';
 import { CustomPlanService } from './services/custom-plan.service';
 import { WorkoutComponent } from './components/workout/workout.component';
 import { ExerciseService } from './services/exercise.service';
+import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
+import { SvgDefinitionsComponent } from './components/svg-definitions/svg-definitions.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ExerciseService } from './services/exercise.service';
     PlanComponent,
     CustomPlanComponent,
     CustomPlanItemComponent,
-    WorkoutComponent
+    WorkoutComponent,
+    SvgIconComponent,
+    SvgDefinitionsComponent
   ],
   imports: [
     BrowserModule,

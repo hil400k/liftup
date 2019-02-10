@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./custom-plan-item.component.scss']
 })
 export class CustomPlanItemComponent implements OnInit {
-  nextWorkoutName = 'Наступне тренування';
+  nextWorkoutName = '';
   workouts;
   planName;
 
@@ -32,7 +32,9 @@ export class CustomPlanItemComponent implements OnInit {
       this.workoutService.createWorkout({
         workoutName: this.nextWorkoutName,
         planName: params.get('plan')
-      }).subscribe();
+      }).subscribe(() => {
+        this.nextWorkoutName = '';
+      });
     });
   }
 

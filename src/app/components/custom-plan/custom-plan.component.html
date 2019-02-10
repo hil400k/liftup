@@ -16,7 +16,9 @@
       [routerLink]="['/custom-plan', username, plan.name]"
       [textContent]="plan.name">
     </a>
-    <button class="btn btn-danger float-right" (click)="removePlan(plan)">x</button>
+    <button class="btn btn-danger btn-sm float-right" (click)="removePlan(plan)">
+      <svg-icon name="close" class="close-icon"></svg-icon>
+    </button>
   </div>
 </div>
 
