@@ -14,8 +14,7 @@ export class WorkoutComponent implements OnInit {
   addExerciseState = false;
   buttonCaption = 'Додати вправу';
   inputCaption = 'Назва вправи';
-  nameValue = '';
-  setsValue = '';
+  inputValue = '';
   exerciseToCreate = {
     name: '',
     sets: ''
@@ -48,15 +47,16 @@ export class WorkoutComponent implements OnInit {
   setExerciseName() {
     this.buttonCaption = 'Створити впрву';
     this.inputCaption = 'Введіть повторення';
-    this.exerciseToCreate.name = this.nameValue;
-    this.nameValue = '';
+    this.exerciseToCreate.name = this.inputValue;
+    this.inputValue = '';
   }
 
   addExercise() {
     this.buttonCaption = 'Додати вправу';
     this.inputCaption = 'Назва вправи';
-    this.exerciseToCreate.sets = this.setsValue;
-    this.setsValue = '';
+    this.exerciseToCreate.sets = this.inputValue;
+    this.inputValue = '';
+
     this.exerciseService.addExercise({
       ...this.exerciseToCreate,
       workoutName: this.workoutName,

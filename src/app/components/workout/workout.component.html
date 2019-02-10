@@ -13,14 +13,11 @@
   </li>
 </ul>
 <div class="input-group mb-3">
-  <input *ngIf="!addExerciseState" type="text" class="form-control"
+  <input type="text" class="form-control"
          placeholder="{{inputCaption}}"
-         [(ngModel)]="nameValue"
+         [(ngModel)]="inputValue"
          (keyup.enter)="exerciseButtonHandler()">
-  <input *ngIf="addExerciseState" type="text" class="form-control" pattern="/d*"
-         placeholder="{{inputCaption}}"
-         [(ngModel)]="setsValue"
-         (keyup.enter)="exerciseButtonHandler()">
+
   <div class="input-group-append">
     <button class="btn btn-outline-secondary"
             type="button"
