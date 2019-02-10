@@ -1,15 +1,55 @@
 <div>
-  <h5 class="font-weight-bold">Тяга: {{deadlift}}кг</h5>
-  <h5 class="font-weight-bold">Жим: {{press}}кг</h5>
-  <h5 class="font-weight-bold">Присяд: {{squats}}кг</h5>
+
+  <div class="scores">
+    <span class="h6">Присяд:
+      <span class="badge">{{squats}}кг</span>
+    </span>
+      <span class="h6">Жим:
+      <span class="badge">{{press}}кг</span>
+    </span>
+      <span class="h6">Тяга:
+      <span class="badge">{{deadlift}}кг</span>
+    </span>
+  </div>
+
+
 
   <div class="form-group weight-controls">
     <form #form="ngForm" (submit)="update(form.value)">
-      <label>Присяд: <input [(ngModel)]="squats" type="text" name="squats"  class="form-control"></label>
-      <label>Жим: <input [(ngModel)]="press" type="text" name="press"  class="form-control"></label>
-      <label>Станова тяга: <input [(ngModel)]="deadlift" type="text" name="deadlift"  class="form-control"></label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Присяд: </span>
+        </div>
+        <input type="text"
+               name="squats"
+               [(ngModel)]="squats"
+               class="form-control"
+               aria-describedby="basic-addon1">
+      </div>
 
-      <button class="btn btn-primary" *ngIf="user$ | async">Зберегти</button>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon2">Жим: </span>
+        </div>
+        <input type="text"
+               name="press"
+               [(ngModel)]="press"
+               class="form-control"
+               aria-describedby="basic-addon2">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Станова тяга: </span>
+        </div>
+        <input type="text"
+               name="deadlift"
+               [(ngModel)]="deadlift"
+               class="form-control"
+               aria-describedby="basic-addon3">
+      </div>
+
+      <button class="btn btn-outline-primary btn-block" *ngIf="user$ | async">Зберегти</button>
     </form>
   </div>
 
