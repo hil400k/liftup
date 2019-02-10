@@ -47,19 +47,30 @@ export class ExerciseService {
     );
   }
 
+  parseWeightSets(sets) {
+    const parsedSets = [];
+    sets.forEach((item, index) => {
+      if (!(index % 2) || index === 0) {
+        parsedSets.push({ weight: item });
+      } else {
+        const i = Math.ceil(index / 2) - 1;
+        parsedSets[i].iterations = item;
+      }
+    });
+    return parsedSets;
+  }
+
   parse(exercises) {
     return exercises.map(item => {
-      const sets = item.sets.split('-');
-      const parsedSets = [];
-      sets.forEach((item, index) => {
-        if (!(index % 2) || index === 0) {
-          parsedSets.push({ weight: item });
-        } else {
-          const i = Math.ceil(index / 2) - 1;
-          parsedSets[i].iterations = item;
-        }
-      });
-      item.parsedSets = parsedSets;
+      const weightSets = item.sets.split('-');
+      const sets = item.sets.split('/');
+      if (weightSets.length > 1) {
+        item.parseType = 'WEIGHT_SETS';
+        item.parsedSets = this.parseWeightSets(weightSets);
+      } else if (sets.length) {
+        item.parseType = 'SETS';
+        item.parsedSets = sets;
+      }
 
       return item;
     });
