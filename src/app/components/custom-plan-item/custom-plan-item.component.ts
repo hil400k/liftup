@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WorkoutService } from '../../services/workout.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./custom-plan-item.component.scss']
 })
 export class CustomPlanItemComponent implements OnInit {
+  @ViewChild('workoutNameEl') workoutNameEl: ElementRef;
   nextWorkoutName = '';
   workouts;
   planName;
@@ -27,13 +28,15 @@ export class CustomPlanItemComponent implements OnInit {
     });
   }
 
-  addWorkout() {
+  addWorkout(textInput) {
     this.route.paramMap.subscribe(params => {
       this.workoutService.createWorkout({
         workoutName: this.nextWorkoutName,
         planName: params.get('plan')
       }).subscribe(() => {
         this.nextWorkoutName = '';
+        this.workoutNameEl.nativeElement.blur();
+        textInput.reset();
       });
     });
   }

@@ -21,23 +21,23 @@
   <input type="text"
          name="workoutName"
          minlength="3"
-         ngModel
+         required
+         #workoutNameEl
          #workoutName="ngModel"
          class="form-control"
          placeholder="Назва тренування"
-         (keyup.enter)="addWorkout()"
+         (keyup.enter)="addWorkout(workoutName)"
          [(ngModel)]="nextWorkoutName">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary"
             type="button"
             [disabled]="workoutName.invalid"
-            (click)="addWorkout()">
+            (click)="addWorkout(workoutName)">
       Додати тренування
     </button>
-    --{{workoutName.invalid}}--
   </div>
   <div *ngIf="workoutName.touched && workoutName.invalid" class="alert alert-danger" role="alert">
-    Назва програми має включати більше 3 символів
+    Назва програми має включати хоча б 1 символ
   </div>
 </div>
 
