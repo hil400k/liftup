@@ -19,12 +19,25 @@
 
 <div class="input-group mb-3">
   <input type="text"
+         name="workoutName"
+         minlength="3"
+         ngModel
+         #workoutName="ngModel"
          class="form-control"
          placeholder="Назва тренування"
          (keyup.enter)="addWorkout()"
          [(ngModel)]="nextWorkoutName">
   <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" (click)="addWorkout()">Додати тренування</button>
+    <button class="btn btn-outline-secondary"
+            type="button"
+            [disabled]="workoutName.invalid"
+            (click)="addWorkout()">
+      Додати тренування
+    </button>
+    --{{workoutName.invalid}}--
+  </div>
+  <div *ngIf="workoutName.touched && workoutName.invalid" class="alert alert-danger" role="alert">
+    Назва програми має включати більше 3 символів
   </div>
 </div>
 
