@@ -49,12 +49,34 @@ export class ExerciseService {
 
   parseWeightSets(sets) {
     const parsedSets = [];
+    const temp = {
+      weight: '',
+      iterations: ''
+    };
+    let duplications = 1;
+
     sets.forEach((item, index) => {
       if (!(index % 2) || index === 0) {
-        parsedSets.push({ weight: item });
+        const w = { weight: item };
+
+        parsedSets.push(w);
+
+        if (temp.weight !== w.weight) {
+          temp.iterations = '';
+          temp.weight = w.weight;
+        }
       } else {
         const i = Math.ceil(index / 2) - 1;
         parsedSets[i].iterations = item;
+
+        if (temp.iterations === parsedSets[i].iterations && temp.weight === parsedSets[i].weight) {
+          duplications++;
+        } else {
+          duplications = 1;
+          temp.iterations = parsedSets[i].iterations;
+        }
+
+        parsedSets[i].numb = duplications;
       }
     });
     return parsedSets;
