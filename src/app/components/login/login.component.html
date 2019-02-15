@@ -17,15 +17,32 @@
   <form #form="ngForm" class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Будь-ласка зареєструйтесь</h1>
     <label for="email" class="sr-only">Email</label>
-    <input ngModel name="email" id="email" class="form-control" type="email" placeholder="Email: " required autofocus>
+    <input ngModel #em="ngModel" name="email" id="email" class="form-control" type="email" placeholder="Email: " required autofocus>
     <label for="password" class="sr-only">Password</label>
-    <input ngModel name="password" id="password" class="form-control" type="password" placeholder="Password: " required>
+    <input ngModel #pass="ngModel" name="password" id="password" class="form-control" type="password" placeholder="Password: " required>
+
+    <div>
+      <div *ngIf="em.touched && em.invalid" class="error-massages alert alert-danger" role="alert"> - Емейл є обов'язковим і має бути коректним </div>
+      <div *ngIf="pass.touched && pass.invalid" class="error-massages alert alert-danger" role="alert"> - Пароль є обов'язковим і має включати більше 6 символів </div>
+      <div *ngIf="serverErr" class="error-massages alert alert-danger" role="alert" [textContent]="serverErr"></div>
+    </div>
+
     <div class="row buttons-row">
       <div class="col">
-        <button type="button" (click)="login(form.value)" class="btn btn-lg btn-primary btn-block">Увійти</button>
+        <button type="button"
+                (click)="login(form.value)"
+                class="btn btn-lg btn-primary btn-block"
+                [disabled]="em.invalid || pass.invalid">
+          Увійти
+        </button>
       </div>
       <div class="col">
-        <button type="button" (click)="signup(form.value)" class="btn btn-lg btn-primary btn-block">Зареєструватись</button>
+        <button type="button"
+                (click)="signup(form.value)"
+                [disabled]="em.invalid || pass.invalid"
+                class="btn btn-lg btn-primary btn-block">
+          Зареєструватись
+        </button>
       </div>
     </div>
   </form>
