@@ -25,9 +25,6 @@ export class AuthService {
         console.log('Success!', value);
         this.router.navigate(['plan']);
       })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-      });
   }
 
   login(email: string, password: string) {
@@ -38,9 +35,6 @@ export class AuthService {
         console.log('Nice, it worked!', value);
         this.router.navigate(['plan']);
       })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-      });
   }
 
   logout() {
