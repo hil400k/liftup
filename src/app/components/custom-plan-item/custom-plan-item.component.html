@@ -1,6 +1,6 @@
 <div *ngFor="let item of workouts" class="workout">
   <p>
-    <button type="button" class="btn btn-outline-primary" (click)="item.isOpen = !item.isOpen"
+    <button type="button" class="btn btn-outline-primary" (click)="toggleWorkout(item)"
             [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
       {{ item.name }}
     </button>

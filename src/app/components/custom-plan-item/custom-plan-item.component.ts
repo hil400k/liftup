@@ -49,4 +49,18 @@ export class CustomPlanItemComponent implements OnInit {
       }).subscribe();
     });
   }
+
+  toggleWorkout(item) {
+    item.isOpen = !item.isOpen;
+
+    const params = {
+      planName: this.planName,
+      workoutName: item.name,
+      update: {
+        isOpen: item.isOpen
+      }
+    };
+
+    this.workoutService.updateWorkout(params).subscribe();
+  }
 }

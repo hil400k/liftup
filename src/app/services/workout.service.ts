@@ -19,7 +19,8 @@ export class WorkoutService {
         return this.db.object(`/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}`)
           .update({
             name: params.workoutName,
-            date: new Date().getTime()
+            date: new Date().getTime(),
+            isOpen: true
           });
       })
     );
@@ -29,17 +30,25 @@ export class WorkoutService {
     return this.authService.user$.pipe(
       switchMap(user => {
         return this.db.list(`/custom-plans/${user.uid}/${params.planName}/workouts`)
-          .valueChanges();
+          .snapshotChanges().pipe(
+            map(changes => {
+              return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+            })
+          );
       }),
       map((item: any) => {
-        item.map(i => {
-          i.isOpen = true;
-          return i;
-        });
-
         return item.sort(function (a, b) {
           return a.date - b.date;
         });
+      })
+    );
+  }
+
+  updateWorkout(params) {
+    return this.authService.user$.pipe(
+      switchMap(user => {
+        return this.db.object(`/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}`)
+          .update(params.update);
       })
     );
   }
