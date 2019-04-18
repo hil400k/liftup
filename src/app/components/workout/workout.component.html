@@ -1,7 +1,19 @@
 <ul class="list-group">
   <li *ngFor="let exercise of exercises" class="list-group-item justify-content-between align-items-center">
     <div class="text-center">
-      {{exercise.name}}
+
+      <div class="form-check form-check-inline">
+        <input class="form-check-input"
+               type="checkbox"
+               id="inlineCheckbox1"
+               (change)="setDone(exercise)"
+               [(ngModel)]="exercise.isDone"
+               value="option1">
+        <label class="form-check-label"
+               for="inlineCheckbox1">
+          {{exercise.name}}</label>
+      </div>
+
       <span (click)="removeExercise(exercise.key)">
         <svg-icon name="close"></svg-icon>
       </span>

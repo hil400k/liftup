@@ -36,6 +36,13 @@
       Додати тренування
     </button>
   </div>
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary"
+            type="button"
+            (click)="addDefaultWorkout(workoutName)">
+      +
+    </button>
+  </div>
   <div *ngIf="workoutName.touched && workoutName.invalid" class="alert alert-danger" role="alert">
     Назва програми має включати хоча б 1 символ
   </div>

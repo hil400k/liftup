@@ -17,7 +17,8 @@ export class WorkoutComponent implements OnInit {
   inputValue = '';
   exerciseToCreate = {
     name: '',
-    sets: ''
+    sets: '',
+    isDone: false
   };
 
   constructor(
@@ -32,6 +33,16 @@ export class WorkoutComponent implements OnInit {
       this.exerciseService.parse(exercises);
       this.exercises = exercises;
     });
+  }
+
+  setDone(exercise) {
+    this.exerciseService.updateExercise(
+      {
+        ...exercise,
+        workoutName: this.workoutName,
+        planName: this.planName
+      }
+    ).subscribe();
   }
 
   exerciseButtonHandler() {
@@ -77,7 +88,8 @@ export class WorkoutComponent implements OnInit {
   resetExerciseToCreate() {
     this.exerciseToCreate = {
       name: '',
-      sets: ''
+      sets: '',
+      isDone: false
     };
   }
 

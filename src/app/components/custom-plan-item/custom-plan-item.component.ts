@@ -28,10 +28,10 @@ export class CustomPlanItemComponent implements OnInit {
     });
   }
 
-  addWorkout(textInput) {
+  addWorkout(textInput, val) {
     this.route.paramMap.subscribe(params => {
       this.workoutService.createWorkout({
-        workoutName: this.nextWorkoutName,
+        workoutName: val || this.nextWorkoutName,
         planName: params.get('plan')
       }).subscribe(() => {
         this.nextWorkoutName = '';
@@ -39,6 +39,19 @@ export class CustomPlanItemComponent implements OnInit {
         textInput.reset();
       });
     });
+  }
+
+  addDefaultWorkout(textInput) {
+    const defaultName = 'workout';
+    const defaultNamedWorkouts = this.workouts.filter(i => i.key.indexOf(defaultName) >= 0);
+    const maxVal = defaultNamedWorkouts.map(i => i.key)
+      .reduce((acc, i) => {
+        if (Number(acc) < Number(i.split(' ')[1])) {
+          acc = Number(i.split(' ')[1]) ;
+        }
+        return acc;
+      }, '');
+    this.addWorkout(textInput, `workout ${Number(maxVal) + 1}`);
   }
 
   removeWorkout(workoutName) {

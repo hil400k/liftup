@@ -25,6 +25,15 @@ export class ExerciseService {
     );
   }
 
+  updateExercise(exercise) {
+    return this.auth.user$.pipe(
+      map(user => {
+        return this.db.list(`/custom-plans/${user.uid}/${exercise.planName}/workouts/${exercise.workoutName}/exercises`)
+          .update(exercise.key, { isDone: exercise.isDone });
+      })
+    );
+  }
+
   getExercises(params) {
     return this.auth.user$.pipe(
       switchMap(user => {
