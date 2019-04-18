@@ -26,13 +26,13 @@
          #workoutName="ngModel"
          class="form-control"
          placeholder="Назва тренування"
-         (keyup.enter)="addWorkout(workoutName)"
+         (keyup.enter)="addWorkout(workoutName, null)"
          [(ngModel)]="nextWorkoutName">
   <div class="input-group-append">
     <button class="btn btn-outline-secondary"
             type="button"
             [disabled]="workoutName.invalid"
-            (click)="addWorkout(workoutName)">
+            (click)="addWorkout(workoutName, null)">
       Додати тренування
     </button>
   </div>
