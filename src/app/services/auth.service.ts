@@ -24,7 +24,7 @@ export class AuthService {
       .then(value => {
         console.log('Success!', value);
         this.router.navigate(['plan']);
-      })
+      });
   }
 
   login(email: string, password: string) {
@@ -34,7 +34,7 @@ export class AuthService {
       .then(value => {
         console.log('Nice, it worked!', value);
         this.router.navigate(['plan']);
-      })
+      });
   }
 
   logout() {

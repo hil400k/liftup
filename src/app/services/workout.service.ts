@@ -16,8 +16,8 @@ export class WorkoutService {
   createWorkout(params) {
     return this.authService.user$.pipe(
       switchMap(user => {
-        return this.db.object(`/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}`)
-          .update({
+        return this.db.list(this.getRequestString(user, params))
+          .update(params.workoutName, {
             name: params.workoutName,
             date: new Date().getTime(),
             isOpen: true
@@ -29,7 +29,7 @@ export class WorkoutService {
   getWorkouts(params) {
     return this.authService.user$.pipe(
       switchMap(user => {
-        return this.db.list(`/custom-plans/${user.uid}/${params.planName}/workouts`)
+        return this.db.list(this.getRequestString(user, params))
           .snapshotChanges().pipe(
             map(changes => {
               return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -47,8 +47,8 @@ export class WorkoutService {
   updateWorkout(params) {
     return this.authService.user$.pipe(
       switchMap(user => {
-        return this.db.object(`/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}`)
-          .update(params.update);
+        return this.db.list(this.getRequestString(user, params))
+          .update(params.workoutName, params.update);
       })
     );
   }
@@ -56,9 +56,13 @@ export class WorkoutService {
   removeWorkout(params) {
     return this.authService.user$.pipe(
       switchMap(user => {
-        return this.db.list(`/custom-plans/${user.uid}/${params.planName}/workouts`)
+        return this.db.list(this.getRequestString(user, params))
           .remove(params.workoutName);
       })
     );
+  }
+
+  private getRequestString(user, params) {
+    return `/custom-plans/${user.uid}/${params.planName}/workouts`;
   }
 }
