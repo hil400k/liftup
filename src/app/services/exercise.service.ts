@@ -16,7 +16,7 @@ export class ExerciseService {
   addExercise(exercise) {
     return this.auth.user$.pipe(
       switchMap(user => {
-        return this.db.list(`/custom-plans/${user.uid}/${exercise.planName}/workouts/${exercise.workoutName}/exercises`)
+        return this.db.list(this.getRequestString(user, exercise))
           .push({
             name: exercise.name,
             sets: exercise.sets,
@@ -28,7 +28,7 @@ export class ExerciseService {
   updateExercise(exercise) {
     return this.auth.user$.pipe(
       map(user => {
-        return this.db.list(`/custom-plans/${user.uid}/${exercise.planName}/workouts/${exercise.workoutName}/exercises`)
+        return this.db.list(this.getRequestString(user, exercise))
           .update(exercise.key, { isDone: exercise.isDone });
       })
     );
@@ -37,7 +37,7 @@ export class ExerciseService {
   getExercises(params) {
     return this.auth.user$.pipe(
       switchMap(user => {
-        return this.db.list(`/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}/exercises`)
+        return this.db.list(this.getRequestString(user, params))
           .snapshotChanges().pipe(
             map(changes => {
               return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -50,8 +50,7 @@ export class ExerciseService {
   removeExercise(params) {
     return this.auth.user$.pipe(
       switchMap(user => {
-        const path = `/custom-plans/${user.uid}/${params.planName}/workouts/${params.workoutName}/exercises`;
-        return this.db.list(path).remove(params.key);
+        return this.db.list(this.getRequestString(user, params)).remove(params.key);
       })
     );
   }
@@ -60,34 +59,49 @@ export class ExerciseService {
     const parsedSets = [];
     const temp = {
       weight: '',
-      iterations: ''
+      reps: ''
     };
     let duplications = 1;
 
     sets.forEach((item, index) => {
-      if (!(index % 2) || index === 0) {
+      if (!isOdd(index) || index === 0) {
         const w = { weight: item };
 
         parsedSets.push(w);
 
         if (temp.weight !== w.weight) {
-          temp.iterations = '';
+          temp.reps = '';
           temp.weight = w.weight;
         }
       } else {
-        const i = Math.ceil(index / 2) - 1;
-        parsedSets[i].iterations = item;
-
-        if (temp.iterations === parsedSets[i].iterations && temp.weight === parsedSets[i].weight) {
-          duplications++;
-        } else {
-          duplications = 1;
-          temp.iterations = parsedSets[i].iterations;
-        }
-
-        parsedSets[i].numb = duplications;
+        calculateSetNumber(index, item);
       }
     });
+
+    // непарний
+    function isOdd(i) {
+      return i % 2;
+    }
+
+    // it calculates sets Number (increments sets if they have the same number)
+    function calculateSetNumber(index, item) {
+      const i = getIndexOfSet(index);
+      parsedSets[i].reps = item;
+
+      if (temp.reps === parsedSets[i].reps && temp.weight === parsedSets[i].weight) {
+        duplications++;
+      } else {
+        duplications = 1;
+        temp.reps = parsedSets[i].reps;
+      }
+
+      parsedSets[i].numb = duplications;
+    }
+
+    function getIndexOfSet(index) {
+      return Math.ceil(index / 2) - 1;
+    }
+
     return parsedSets;
   }
 
@@ -105,5 +119,9 @@ export class ExerciseService {
 
       return item;
     });
+  }
+
+  private  getRequestString(user, exercise) {
+    return `/custom-plans/${user.uid}/${exercise.planName}/workouts/${exercise.workoutName}/exercises`;
   }
 }
