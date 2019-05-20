@@ -16,23 +16,25 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.auth.user$.subscribe(user => {
+    this.auth.currentUser.subscribe(resp => {
       this.userLoaded = true;
-      this.user = user;
+      this.user = resp.user;
     });
   }
 
   login(data) {
-    this.auth.login(data.email, data.password)
-      .catch(err => {
-        this.serverErr = err.message;
-        console.log('Something went wrong:', err.message);
-      });
+    this.auth.login(data.email, data.password).subscribe(resp => {
+
+    }, error => {
+      console.info(error);
+    });
   }
 
   signup(data) {
     this.auth.signup(data.email, data.password)
-      .catch(err => {
+      .subscribe(resp => {
+
+      }, err => {
         this.serverErr = err.message;
         console.log('Something went wrong:', err.message);
       });

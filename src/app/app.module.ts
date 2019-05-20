@@ -22,6 +22,8 @@ import { WorkoutComponent } from './components/workout/workout.component';
 import { ExerciseService } from './services/exercise.service';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { SvgDefinitionsComponent } from './components/svg-definitions/svg-definitions.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RequestsUtilService } from './services/requests-util.service';
 
 @NgModule({
   declarations: [
@@ -50,13 +52,15 @@ import { SvgDefinitionsComponent } from './components/svg-definitions/svg-defini
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     WorkoutService,
     CustomPlanService,
-    ExerciseService
+    ExerciseService,
+    RequestsUtilService
   ],
   bootstrap: [AppComponent]
 })

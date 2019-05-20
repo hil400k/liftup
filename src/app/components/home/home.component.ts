@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestsUtilService } from '../../services/requests-util.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  news;
 
-  constructor() { }
+  constructor(
+    private requestsUtil: RequestsUtilService
+  ) { }
 
   ngOnInit() {
+    this.requestsUtil.getRequest('news')
+      .subscribe(data => {
+        this.news = data;
+      });
   }
-
 }

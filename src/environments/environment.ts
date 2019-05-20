@@ -11,7 +11,8 @@ export const environment = {
     projectId: 'liftup-e0a03',
     storageBucket: 'liftup-e0a03.appspot.com',
     messagingSenderId: '822529297896'
-  }
+  },
+  apiUrl: 'http://localhost:1337'
 };
 
 /*
