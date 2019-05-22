@@ -3,6 +3,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { RequestsUtilService } from './requests-util.service';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +14,27 @@ export class PlanService {
 
   constructor(
     private db: AngularFireDatabase,
-    private authService: AuthService
+    private auth: AuthService,
+    private requestsUtil: RequestsUtilService
   ) {
 
   }
 
   getPlan() {
-    return this.authService.user$.pipe(
-      switchMap(user => {
-        return user ? this.db.object(`/plans/${user.uid}`).valueChanges() : of({});
+    return this.auth.currentUser.pipe(
+      switchMap(resp => {
+        const planId: string = resp && resp.user.plan;
+        const params = new HttpParams();
+
+        params.append('id', planId);
+        return this.requestsUtil.getRequest('plans', { params });
       }),
-      map(plan => this.plan = plan)
+      map(plans => this.plan = plans[0])
     );
   }
 
   updateScores(scores) {
-    return this.authService.user$.pipe(
+    return this.auth.user$.pipe(
       switchMap(user => {
         return user ? this.db.object(`/plans/${user.uid}`).update(scores) : of();
       }),
