@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.auth.currentUser.subscribe(resp => {
       this.userLoaded = true;
-      this.user = resp.user;
+      this.user = resp && resp.user;
     });
   }
 
