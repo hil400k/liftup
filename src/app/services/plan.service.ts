@@ -24,20 +24,21 @@ export class PlanService {
     return this.auth.currentUser.pipe(
       switchMap(resp => {
         const planId: string = resp && resp.user.plan;
-        const params = new HttpParams();
 
-        params.append('id', planId);
-        return this.requestsUtil.getRequest('plans', { params });
+        if (planId) return this.requestsUtil.getRequest(`plans/${planId}`);
+        else return of([{}]);
       }),
       map(plans => this.plan = plans[0])
     );
   }
 
   updateScores(scores) {
-    return this.auth.user$.pipe(
-      switchMap(user => {
-        return user ? this.db.object(`/plans/${user.uid}`).update(scores) : of();
-      }),
-    );
+    const planId = this.auth.currentUserValue.user.plan;
+
+    return this.requestsUtil.putRequest(`plans/${planId}`, scores);
+  }
+
+  createScores(scores) {
+    return this.requestsUtil.postRequest(`plans`, scores);
   }
 }

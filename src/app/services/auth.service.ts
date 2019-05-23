@@ -28,8 +28,13 @@ export class AuthService {
     this.apiUrl = `${environment.apiUrl}/auth/local`;
   }
 
+  public get currentUserValue() {
+    return this.currentUserSubject.value;
+  }
+
   signup(email: string, password: string) {
     return this.http.post(`${this.apiUrl}/register`, {
+      username: email.split('@')[0],
       email,
       password
     }).pipe(

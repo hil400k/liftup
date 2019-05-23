@@ -22,8 +22,9 @@ import { WorkoutComponent } from './components/workout/workout.component';
 import { ExerciseService } from './services/exercise.service';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { SvgDefinitionsComponent } from './components/svg-definitions/svg-definitions.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestsUtilService } from './services/requests-util.service';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -55,12 +56,13 @@ import { RequestsUtilService } from './services/requests-util.service';
     HttpClientModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     AuthService,
     AuthGuard,
     WorkoutService,
     CustomPlanService,
     ExerciseService,
-    RequestsUtilService
+    RequestsUtilService,
   ],
   bootstrap: [AppComponent]
 })

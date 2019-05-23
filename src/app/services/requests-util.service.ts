@@ -16,4 +16,12 @@ export class RequestsUtilService {
   getRequest(path, params?) {
     return this.http.get(`${environment.apiUrl}/${path}`, params);
   }
+
+  postRequest(path, params) {
+    return this.http.post(`${environment.apiUrl}/${path}`, params);
+  }
+
+  putRequest(path, params) {
+    return this.http.put(`${environment.apiUrl}/${path}`, params);
+  }
 }
