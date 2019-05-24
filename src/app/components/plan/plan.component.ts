@@ -11,20 +11,19 @@ export class PlanComponent implements OnInit {
   press = 0;
   squats = 0;
   deadlift = 0;
-  user$;
+  user: any;
 
   constructor(
     private planService: PlanService,
-    private authService: AuthService
+    private auth: AuthService
   ) {
 
   }
 
   ngOnInit() {
-    this.user$ = this.authService.user$;
-
     this.planService.getPlan()
       .subscribe((plan: any) => {
+        this.user = this.auth.currentUserValue;
         this.press = plan.press;
         this.squats = plan.squats;
         this.deadlift = plan.deadlift;
@@ -32,8 +31,15 @@ export class PlanComponent implements OnInit {
   }
 
   update(values) {
-    this.planService.updateScores(values)
-      .subscribe();
+    if (this.auth.currentUserValue && this.auth.currentUserValue.plan) {
+      this.planService.updateScores(values)
+        .subscribe();
+    } else {
+      this.planService.createScores(values)
+        .subscribe(values => {
+
+        });
+    }
   }
 
   calculatePress(percentage) {

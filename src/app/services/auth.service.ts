@@ -28,8 +28,12 @@ export class AuthService {
     this.apiUrl = `${environment.apiUrl}/auth/local`;
   }
 
-  public get currentUserValue() {
+  public get currentUserDBValue() {
     return this.currentUserSubject.value;
+  }
+
+  public get currentUserValue() {
+    return this.currentUserSubject.value && this.currentUserSubject.value.user;
   }
 
   signup(email: string, password: string) {
@@ -50,16 +54,6 @@ export class AuthService {
     );
   }
 
-  signupFB(email: string, password: string) {
-    return this.fbAuth
-      .auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Success!', value);
-        this.router.navigate(['plan']);
-      });
-  }
-
   login(email: string, password: string) {
     return this.http.post(this.apiUrl, {
       identifier: email,
@@ -77,28 +71,9 @@ export class AuthService {
     );
   }
 
-  loginFB(email: string, password: string) {
-    return this.fbAuth
-      .auth
-      .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Nice, it worked!', value);
-        this.router.navigate(['plan']);
-      });
-  }
-
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-  }
-
-  logoutFB() {
-    this.fbAuth
-      .auth
-      .signOut()
-      .then(() => {
-        console.info('Succesfully loged out');
-      });
   }
 }

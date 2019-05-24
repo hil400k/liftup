@@ -45,7 +45,7 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
       { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'plan', component: PlanComponent, canActivate: [AuthGuard]  },
+      { path: 'plan', component: PlanComponent },
       { path: 'custom-plan/:username/:plan', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
       { path: 'custom-plan', component: CustomPlanComponent, canActivate: [AuthGuard] }
     ]),

@@ -10,7 +10,7 @@ import { HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PlanService {
-  plan;
+  planId: string;
 
   constructor(
     private db: AngularFireDatabase,
@@ -23,22 +23,35 @@ export class PlanService {
   getPlan() {
     return this.auth.currentUser.pipe(
       switchMap(resp => {
-        const planId: string = resp && resp.user.plan;
-
-        if (planId) return this.requestsUtil.getRequest(`plans/${planId}`);
-        else return of([{}]);
-      }),
-      map(plans => this.plan = plans[0])
+        if (resp && resp.user.planId) {
+          this.planId = resp.user.planId;
+          return this.requestsUtil.getRequest(`plans/${resp.user.planId}`);
+        } else {
+          return of({});
+        }
+      })
     );
   }
 
   updateScores(scores) {
-    const planId = this.auth.currentUserValue.user.plan;
-
-    return this.requestsUtil.putRequest(`plans/${planId}`, scores);
+    return this.requestsUtil.putRequest(`plans/${this.planId}`, scores);
   }
 
   createScores(scores) {
-    return this.requestsUtil.postRequest(`plans`, scores);
+    const userId = this.auth.currentUserValue && this.auth.currentUserValue._id;
+
+    if (userId) {
+      return this.requestsUtil.postRequest(`plans`, scores).pipe(
+        map(plan => {
+          this.requestsUtil.putRequest(`users/${userId}`, { planId: plan.id })
+            .subscribe();
+          this.planId = plan.id;
+
+          return plan;
+        })
+      );
+    } else {
+      return of(null);
+    }
   }
 }
