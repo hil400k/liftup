@@ -20,6 +20,10 @@ export class CustomPlanComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPlans();
+  }
+
+  getPlans() {
     this.customPlanService.getAllCustomPlans()
       .subscribe(plans => {
         this.plans = plans;
@@ -33,15 +37,17 @@ export class CustomPlanComponent implements OnInit {
 
   createPlan(name) {
     this.customPlanService.createCustomPlan(name)
-      .subscribe(data => {
-        this.router.navigate(['custom-plan', this.username, name]);
+      .subscribe(plan => {
+        this.router.navigate(['custom-plan', plan.id]);
       }, error => {
         this.error = error;
       });
   }
 
   removePlan(plan) {
-    this.customPlanService.removeCustomPlan(plan).subscribe();
+    this.customPlanService.removeCustomPlan(plan).subscribe(() => {
+      this.getPlans();
+    });
   }
 
 }

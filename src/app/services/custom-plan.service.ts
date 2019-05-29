@@ -3,6 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './auth.service';
 import { map, switchMap, take } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
+import { RequestsUtilService } from './requests-util.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,34 +13,21 @@ export class CustomPlanService {
 
   constructor(
     private db: AngularFireDatabase,
-    private auth: AuthService
+    private auth: AuthService,
+    private requestsUtil: RequestsUtilService
   ) {
 
   }
 
   createCustomPlan(name) {
-    return this.getCustomPlan(name).pipe(
-      take(1),
-      switchMap((plan) => {
-        if (!plan.length) {
-          return this.auth.user$.pipe(
-            switchMap((user) => {
-              return this.db.object(`/custom-plans/${user.uid}/${name}`).set({name});
-            })
-          );
-        } else {
-          return throwError('You already have one plan with such name');
-        }
-      })
-    );
+    return this.requestsUtil.postRequest('customplans', {
+      name,
+      creator: this.auth.currentUserValue.id
+    });
   }
 
   removeCustomPlan(plan) {
-    return this.auth.user$.pipe(
-      switchMap(user => {
-        return this.db.list(`/custom-plans/${user.uid}`).remove(plan.key);
-      })
-    );
+    return this.requestsUtil.deleteRequest(`customplans/${plan.id}`);
   }
 
   getCustomPlan(name) {
@@ -52,15 +40,9 @@ export class CustomPlanService {
   }
 
   getAllCustomPlans() {
-    return this.auth.user$.pipe(
-      take(1),
-      switchMap((user) => {
-        this.username = user.email.match(/^([^@]*)@/)[1];
-        return this.db.list(`/custom-plans/${user.uid}`).snapshotChanges().pipe(
-          map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-          })
-        );
+    return this.auth.currentUser$.pipe(
+      switchMap((resp) => {
+        return this.requestsUtil.getRequest(`customplans?creator=${resp.user.id}`);
       })
     );
   }

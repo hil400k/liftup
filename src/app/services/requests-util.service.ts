@@ -24,4 +24,8 @@ export class RequestsUtilService {
   putRequest(path, params) {
     return this.http.put(`${environment.apiUrl}/${path}`, params);
   }
+
+  deleteRequest(path) {
+    return this.http.delete(`${environment.apiUrl}/${path}`);
+  }
 }

@@ -15,7 +15,7 @@ export class AuthService {
   user$:  Observable<firebase.User>;
   apiUrl: string;
   currentUserSubject: BehaviorSubject<any>;
-  currentUser: Observable<any>;
+  currentUser$: Observable<any>;
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class AuthService {
   ) {
     this.user$ = fbAuth.authState;
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUser$ = this.currentUserSubject.asObservable();
     this.apiUrl = `${environment.apiUrl}/auth/local`;
   }
 

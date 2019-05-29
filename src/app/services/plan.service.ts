@@ -21,7 +21,7 @@ export class PlanService {
   }
 
   getPlan() {
-    return this.auth.currentUser.pipe(
+    return this.auth.currentUser$.pipe(
       switchMap(resp => {
         if (resp && resp.user.planId) {
           this.planId = resp.user.planId;
@@ -42,7 +42,7 @@ export class PlanService {
 
     if (userId) {
       return this.requestsUtil.postRequest(`plans`, scores).pipe(
-        map(plan => {
+        map((plan: any) => {
           this.requestsUtil.putRequest(`users/${userId}`, { planId: plan.id })
             .subscribe();
           this.planId = plan.id;

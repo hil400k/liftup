@@ -6,7 +6,7 @@
       <nav class="nav nav-masthead">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Головна</a>
         <a class="nav-link" routerLink="/plan" routerLinkActive="active">Програма</a>
-        <ng-container *ngIf="auth.user$ | async">
+        <ng-container *ngIf="auth.currentUserValue">
           <a class="nav-link" routerLink="/custom-plan" routerLinkActive="active">Мої програми</a>
         </ng-container>
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Логін</a>
