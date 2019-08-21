@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './auth.service';
-import { map, switchMap, take } from 'rxjs/operators';
-import { of, throwError } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { RequestsUtilService } from './requests-util.service';
 
 @Injectable({
@@ -10,6 +9,7 @@ import { RequestsUtilService } from './requests-util.service';
 })
 export class CustomPlanService {
   username;
+  plans;
 
   constructor(
     private db: AngularFireDatabase,
@@ -42,7 +42,14 @@ export class CustomPlanService {
   getAllCustomPlans() {
     return this.auth.currentUser$.pipe(
       switchMap((resp) => {
-        return this.requestsUtil.getRequest(`customplans?creator=${resp.user.id}`);
+
+        return this.requestsUtil.getRequest(`customplans?creator=${resp.user.id}`).pipe(
+          map(plans => {
+            this.plans = plans;
+
+            return plans;
+          })
+        );
       })
     );
   }

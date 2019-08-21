@@ -46,7 +46,7 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'plan', component: PlanComponent },
-      { path: 'custom-plan/:username/:plan', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
+      { path: 'custom-plan/:planId', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
       { path: 'custom-plan', component: CustomPlanComponent, canActivate: [AuthGuard] }
     ]),
     AngularFireModule.initializeApp(environment.firebase),
