@@ -9,8 +9,8 @@ import { ExerciseService } from '../../services/exercise.service';
 export class WorkoutComponent implements OnInit {
   @Input() workoutName: string;
   @Input() planName: string;
+  @Input() exercises: any[];
 
-  exercises;
   addExerciseState = false;
   buttonCaption = 'Додати вправу';
   inputCaption = 'Назва вправи';
@@ -26,13 +26,7 @@ export class WorkoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.exerciseService.getExercises({
-      workoutName: this.workoutName,
-      planName: this.planName
-    }).subscribe(exercises => {
-      this.exerciseService.parse(exercises);
-      this.exercises = exercises;
-    });
+    this.exercises = this.exerciseService.parse(this.exercises);
   }
 
   setDone(exercise) {

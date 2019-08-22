@@ -4,14 +4,14 @@
             [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
       {{ item.name }}
     </button>
-    <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.name)">
+    <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.id)">
       <svg-icon name="close"></svg-icon>
     </button>
   </p>
   <div id="collapseExample" [ngbCollapse]="!item.isOpen">
     <div class="card">
       <div class="card-body">
-        <workout [workoutName]="item.name" [planName]="planName"></workout>
+        <workout [workoutName]="item.name" [planName]="planId" [exercises]="item.exercises"></workout>
       </div>
     </div>
   </div>

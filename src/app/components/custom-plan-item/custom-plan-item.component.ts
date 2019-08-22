@@ -11,7 +11,7 @@ export class CustomPlanItemComponent implements OnInit {
   @ViewChild('workoutNameEl') workoutNameEl: ElementRef;
   nextWorkoutName = '';
   workouts;
-  planName;
+  planId;
 
   constructor(
     private workoutService: WorkoutService,
@@ -20,24 +20,27 @@ export class CustomPlanItemComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.planName = params.get('plan');
-      this.workoutService.getWorkouts({ planName: params.get('plan') })
-        .subscribe(items => {
-          this.workouts = items;
-        });
+      this.planId = params.get('planId');
+      this.getWorkouts(this.planId);
     });
   }
 
-  addWorkout(textInput, val) {
-    this.route.paramMap.subscribe(params => {
-      this.workoutService.createWorkout({
-        workoutName: val || this.nextWorkoutName,
-        planName: params.get('plan')
-      }).subscribe(() => {
-        this.nextWorkoutName = '';
-        this.workoutNameEl.nativeElement.blur();
-        textInput.reset();
+  getWorkouts(planId) {
+    this.workoutService.getWorkouts({ planId })
+      .subscribe(items => {
+        this.workouts = items;
       });
+  }
+
+  addWorkout(textInput, val) {
+    this.workoutService.createWorkout({
+      name: val || this.nextWorkoutName,
+      customPlan: this.planId
+    }).subscribe((resp) => {
+      this.nextWorkoutName = '';
+      this.workoutNameEl.nativeElement.blur();
+      textInput.reset();
+      this.getWorkouts(this.planId);
     });
   }
 
@@ -54,12 +57,9 @@ export class CustomPlanItemComponent implements OnInit {
     this.addWorkout(textInput, `workout ${Number(maxVal) + 1}`);
   }
 
-  removeWorkout(workoutName) {
-    this.route.paramMap.subscribe(params => {
-      this.workoutService.removeWorkout({
-        planName: params.get('plan'),
-        workoutName
-      }).subscribe();
+  removeWorkout(id) {
+    this.workoutService.removeWorkout(id).subscribe((resp) => {
+      this.getWorkouts(this.planId);
     });
   }
 
@@ -67,9 +67,8 @@ export class CustomPlanItemComponent implements OnInit {
     item.isOpen = !item.isOpen;
 
     const params = {
-      planName: this.planName,
-      workoutName: item.name,
-      update: {
+      id: item.id,
+      data: {
         isOpen: item.isOpen
       }
     };

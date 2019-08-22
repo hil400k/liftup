@@ -31,14 +31,12 @@ export class PlanComponent implements OnInit {
   }
 
   update(values) {
-    if (this.auth.currentUserValue && this.auth.currentUserValue.plan) {
+    if (this.auth.currentUserValue && this.auth.currentUserValue.planId) {
       this.planService.updateScores(values)
         .subscribe();
     } else {
       this.planService.createScores(values)
-        .subscribe(values => {
-
-        });
+        .subscribe();
     }
   }
 

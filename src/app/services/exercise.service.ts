@@ -35,7 +35,7 @@ export class ExerciseService {
   }
 
   getExercises(params) {
-    return this.auth.user$.pipe(
+    return this.auth.currentUser$.pipe(
       switchMap(user => {
         return this.db.list(this.getRequestString(user, params))
           .snapshotChanges().pipe(

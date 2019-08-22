@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { RequestsUtilService } from './requests-util.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,35 +10,23 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class WorkoutService {
 
   constructor(
-    private authService: AuthService,
+    private auth: AuthService,
     private db: AngularFireDatabase,
+    private requestsUtil: RequestsUtilService
   ) { }
 
   createWorkout(params) {
-    return this.authService.user$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, params))
-          .update(params.workoutName, {
-            name: params.workoutName,
-            date: new Date().getTime(),
-            isOpen: true
-          });
-      })
-    );
+    return this.requestsUtil.postRequest(`workouts`, {
+      date: new Date().getTime(),
+      isOpen: true,
+      ...params
+    });
   }
 
   getWorkouts(params) {
-    return this.authService.user$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, params))
-          .snapshotChanges().pipe(
-            map(changes => {
-              return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-            })
-          );
-      }),
-      map((item: any) => {
-        return item.sort(function (a, b) {
+    return this.requestsUtil.getRequest(`workouts?customPlan=${params.planId}`).pipe(
+      map((workouts: any) => {
+        return workouts.sort(function (a, b) {
           return a.date - b.date;
         });
       })
@@ -45,21 +34,11 @@ export class WorkoutService {
   }
 
   updateWorkout(params) {
-    return this.authService.user$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, params))
-          .update(params.workoutName, params.update);
-      })
-    );
+    return this.requestsUtil.putRequest(`workouts/${params.id}`, params.data);
   }
 
-  removeWorkout(params) {
-    return this.authService.user$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, params))
-          .remove(params.workoutName);
-      })
-    );
+  removeWorkout(id) {
+    return this.requestsUtil.deleteRequest(`workouts/${id}`);
   }
 
   private getRequestString(user, params) {
