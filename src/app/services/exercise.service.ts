@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { map, switchMap } from 'rxjs/operators';
 import { RequestsUtilService } from './requests-util.service';
 
 @Injectable({
@@ -11,7 +9,6 @@ export class ExerciseService {
 
   constructor(
     private auth: AuthService,
-    private db: AngularFireDatabase,
     private requestsUtil: RequestsUtilService
   ) { }
 

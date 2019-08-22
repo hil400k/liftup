@@ -8,7 +8,6 @@ import { ExerciseService } from '../../services/exercise.service';
 })
 export class WorkoutComponent implements OnInit {
   @Input() workoutId: string;
-  @Input() planName: string;
   @Input() exercises: any[];
 
   addExerciseState = false;
@@ -37,13 +36,7 @@ export class WorkoutComponent implements OnInit {
   }
 
   setDone(exercise) {
-    this.exerciseService.updateExercise(
-      {
-        ...exercise,
-        workoutName: this.workoutId,
-        planName: this.planName
-      }
-    ).subscribe();
+    this.exerciseService.updateExercise(exercise).subscribe();
   }
 
   exerciseButtonHandler() {

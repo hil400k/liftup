@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
 import { RequestsUtilService } from './requests-util.service';
@@ -12,7 +11,6 @@ export class CustomPlanService {
   plans;
 
   constructor(
-    private db: AngularFireDatabase,
     private auth: AuthService,
     private requestsUtil: RequestsUtilService
   ) {
@@ -31,12 +29,12 @@ export class CustomPlanService {
   }
 
   getCustomPlan(name) {
-    return this.auth.user$.pipe(
-      switchMap((user) => {
-        return this.db.list(`/custom-plans/${user.uid}`,
-            ref => ref.orderByChild('name').equalTo(name)).valueChanges();
-      })
-    );
+    // return this.auth.user$.pipe(
+    //   switchMap((user) => {
+    //     return this.db.list(`/custom-plans/${user.uid}`,
+    //         ref => ref.orderByChild('name').equalTo(name)).valueChanges();
+    //   })
+    // );
   }
 
   getAllCustomPlans() {
