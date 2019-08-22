@@ -24,11 +24,13 @@ export class CustomPlanComponent implements OnInit {
   }
 
   getPlans() {
-    this.customPlanService.getAllCustomPlans()
-      .subscribe(plans => {
-        this.plans = plans;
-        this.username = this.customPlanService.username;
-      });
+    this.auth.currentUser$.subscribe(resp => {
+      this.customPlanService.getAllCustomPlans()
+        .subscribe(plans => {
+          this.plans = plans;
+          this.username = this.customPlanService.username;
+        });
+    });
   }
 
   clearError() {
