@@ -7,7 +7,7 @@ import { ExerciseService } from '../../services/exercise.service';
   styleUrls: ['./workout.component.scss']
 })
 export class WorkoutComponent implements OnInit {
-  @Input() workoutName: string;
+  @Input() workoutId: string;
   @Input() planName: string;
   @Input() exercises: any[];
 
@@ -29,11 +29,18 @@ export class WorkoutComponent implements OnInit {
     this.exercises = this.exerciseService.parse(this.exercises);
   }
 
+  getExercises() {
+    this.exerciseService.getExercises(this.workoutId)
+      .subscribe(exercises => {
+        this.exercises = this.exerciseService.parse(exercises);
+      });
+  }
+
   setDone(exercise) {
     this.exerciseService.updateExercise(
       {
         ...exercise,
-        workoutName: this.workoutName,
+        workoutName: this.workoutId,
         planName: this.planName
       }
     ).subscribe();
@@ -64,19 +71,17 @@ export class WorkoutComponent implements OnInit {
 
     this.exerciseService.addExercise({
       ...this.exerciseToCreate,
-      workoutName: this.workoutName,
-      planName: this.planName
+      workoutId: this.workoutId
     }).subscribe(() => {
       this.resetExerciseToCreate();
+      this.getExercises();
     });
   }
 
-  removeExercise(key) {
-    this.exerciseService.removeExercise({
-      workoutName: this.workoutName,
-      planName: this.planName,
-      key
-    }).subscribe();
+  removeExercise(id) {
+    this.exerciseService.removeExercise(id).subscribe(() => {
+      this.getExercises();
+    });
   }
 
   resetExerciseToCreate() {

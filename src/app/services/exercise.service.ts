@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map, switchMap } from 'rxjs/operators';
+import { RequestsUtilService } from './requests-util.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,48 +12,28 @@ export class ExerciseService {
   constructor(
     private auth: AuthService,
     private db: AngularFireDatabase,
+    private requestsUtil: RequestsUtilService
   ) { }
 
   addExercise(exercise) {
-    return this.auth.user$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, exercise))
-          .push({
-            name: exercise.name,
-            sets: exercise.sets,
-          });
-      })
-    );
+    return this.requestsUtil.postRequest(`exercises`, {
+      name: exercise.name,
+      sets: exercise.sets,
+      workout: exercise.workoutId
+    });
   }
 
   updateExercise(exercise) {
-    return this.auth.user$.pipe(
-      map(user => {
-        return this.db.list(this.getRequestString(user, exercise))
-          .update(exercise.key, { isDone: exercise.isDone });
-      })
-    );
+    return this.requestsUtil.putRequest(`exercises/${exercise.id}`,
+      { isDone: exercise.isDone });
   }
 
-  getExercises(params) {
-    return this.auth.currentUser$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, params))
-          .snapshotChanges().pipe(
-            map(changes => {
-              return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-            })
-          );
-      })
-    );
+  getExercises(workoutId) {
+    return this.requestsUtil.getRequest(`exercises?workout=${workoutId}`);
   }
 
-  removeExercise(params) {
-    return this.auth.user$.pipe(
-      switchMap(user => {
-        return this.db.list(this.getRequestString(user, params)).remove(params.key);
-      })
-    );
+  removeExercise(id) {
+    return this.requestsUtil.deleteRequest(`exercises/${id}`);
   }
 
   parseWeightSets(sets) {

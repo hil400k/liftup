@@ -40,8 +40,4 @@ export class WorkoutService {
   removeWorkout(id) {
     return this.requestsUtil.deleteRequest(`workouts/${id}`);
   }
-
-  private getRequestString(user, params) {
-    return `/custom-plans/${user.uid}/${params.planName}/workouts`;
-  }
 }
