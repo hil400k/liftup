@@ -29,5 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 mongod --config /usr/local/etc/mongod.conf
 to run mongo
 
-cd ../liftup-backend/cms/
 strapi start

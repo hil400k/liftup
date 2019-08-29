@@ -40,8 +40,7 @@ export class CustomPlanService {
   getAllCustomPlans() {
     return this.auth.currentUser$.pipe(
       switchMap((resp) => {
-
-        return this.requestsUtil.getRequest(`customplans?creator=${resp.user.id}`).pipe(
+        return this.requestsUtil.getRequest(`customplans?creator=${resp.user._id}`).pipe(
           map(plans => {
             this.plans = plans;
 
