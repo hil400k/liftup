@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod --base-href='https://hil400k.github.io/liftup/' && sudo npx ngh --dir=dist/liftup"
+    "deploy": "ng build --prod --base-href='https://hil400k.github.io/liftup/' && sudo npx ngh --dir=dist/liftup",
+    "strapi-start": "cd ../liftup-backend && strapi start"
   },
   "private": true,
   "dependencies": {

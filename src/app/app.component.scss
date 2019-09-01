@@ -1,3 +1,23 @@
 .nav {
   margin-bottom: 20px;
 }
+.mobi-nav {
+  border-bottom: 5px solid rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  .nav-link {
+    &.active {
+      background: rgba(0,0,0,0.1);
+    }
+  }
+
+  .masthead-brand {
+    border-bottom: 5px solid rgba(0,0,0,0.2);
+  }
+
+  .nav-button {
+    border: none;
+    background: #343a40;
+    outline: none;
+  }
+}
+

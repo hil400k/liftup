@@ -1,7 +1,34 @@
 <svg-definitions></svg-definitions>
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="masthead mb-auto">
-    <div class="inner">
+
+    <div class="mobi-nav d-md-none">
+      <!-- Hide on screens wider than sm -->
+      <nav class="navbar navbar-dark bg-dark">
+        <button (click)="isCollapsed = !isCollapsed"
+                type="button"
+                class="nav-button"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                [attr.aria-expanded]="!isCollapsed">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <h3 class="masthead-brand">Liftup</h3>
+      </nav>
+      <div class="collapse" id="navbarToggleExternalContent" [ngbCollapse]="isCollapsed">
+        <div class="bg-dark p-16">
+          <nav>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Головна</a>
+            <a class="nav-link" routerLink="/plan" routerLinkActive="active">Програма</a>
+            <ng-container *ngIf="auth.currentUserValue">
+              <a class="nav-link" routerLink="/custom-plan" routerLinkActive="active">Мої програми</a>
+            </ng-container>
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Логін</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner d-none d-md-block">
       <h3 class="masthead-brand text-uppercase">Liftup</h3>
       <nav class="nav nav-masthead">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Головна</a>

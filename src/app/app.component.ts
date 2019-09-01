@@ -7,6 +7,8 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isCollapsed: boolean = true;
+
   constructor(
     public auth: AuthService
   ) { }
