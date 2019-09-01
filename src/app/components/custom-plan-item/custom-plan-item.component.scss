@@ -3,6 +3,15 @@
 }
 .workout {
   margin-top: 10px;
+  padding: 4px;
+  border-radius: 4px;
+  background: #ffffffcf;
+  & > p {
+    margin-bottom: 0;
+  }
+  .card {
+    margin-top: 10px;
+  }
 }
 svg-icon {
   fill: #dc3545;
