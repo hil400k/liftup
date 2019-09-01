@@ -12,6 +12,7 @@ export class PlanComponent implements OnInit {
   squats = 0;
   deadlift = 0;
   user: any;
+  planId: string;
 
   constructor(
     private planService: PlanService,
@@ -23,6 +24,7 @@ export class PlanComponent implements OnInit {
   ngOnInit() {
     this.planService.getPlan()
       .subscribe((plan: any) => {
+        this.planId = plan.id;
         this.user = this.auth.currentUserValue;
         this.press = plan.press;
         this.squats = plan.squats;
@@ -31,7 +33,7 @@ export class PlanComponent implements OnInit {
   }
 
   update(values) {
-    if (this.auth.currentUserValue && this.auth.currentUserValue.planId) {
+    if (this.planId) {
       this.planService.updateScores(values)
         .subscribe();
     } else {
