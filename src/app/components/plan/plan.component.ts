@@ -24,11 +24,14 @@ export class PlanComponent implements OnInit {
   ngOnInit() {
     this.planService.getPlan()
       .subscribe((plan: any) => {
-        this.planId = plan.id;
+        if (plan) {
+          this.planId = plan.id;
+          this.press = plan.press;
+          this.squats = plan.squats;
+          this.deadlift = plan.deadlift;
+        }
+
         this.user = this.auth.currentUserValue;
-        this.press = plan.press;
-        this.squats = plan.squats;
-        this.deadlift = plan.deadlift;
       });
   }
 
