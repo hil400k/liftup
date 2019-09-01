@@ -20,7 +20,7 @@ export class CustomPlanService {
   createCustomPlan(name) {
     return this.requestsUtil.postRequest('customplans', {
       name,
-      creator: this.auth.currentUserValue.id
+      creator: this.auth.currentUserValue._id
     });
   }
 
