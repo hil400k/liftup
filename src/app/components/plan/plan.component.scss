@@ -12,6 +12,15 @@
       transform: rotate(180deg);
       margin-left: 0;
     }
+    //tr td div {
+    //  border-bottom: 1px solid #fff;
+    //}
+  }
+
+  thead {
+    th {
+      font-size: 12px;
+    }
   }
 
   table tr td:nth-child(1),

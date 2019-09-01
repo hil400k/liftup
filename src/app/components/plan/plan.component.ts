@@ -43,15 +43,15 @@ export class PlanComponent implements OnInit {
   }
 
   calculatePress(percentage) {
-    return this.press ? ((percentage * this.press).toFixed(2) + ' = ' + percentage) : '';
+    return this.press ? (percentage * this.press).toFixed(1) : '';
   }
 
   calculateSquats(percentage) {
-    return this.squats ? ((percentage * this.squats).toFixed(2) + ' = ' + percentage) : '';
+    return this.squats ? (percentage * this.squats).toFixed(1) : '';
   }
 
   calculateDeadlift(percentage) {
-    return this.deadlift ? ((percentage * this.deadlift).toFixed(2) + ' = ' + percentage) : '';
+    return this.deadlift ? (percentage * this.deadlift).toFixed(1) : '';
   }
 
 }
