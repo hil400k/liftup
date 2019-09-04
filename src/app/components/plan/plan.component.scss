@@ -4,12 +4,41 @@
   }
 }
 
+table {
+  thead {
+    tr {
+      th {
+        border-top: none;
+        border-color: #dee2e621;
+      }
+    }
+  }
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: #1b385847;
+      }
+      &.no-border {
+        background-color: transparent;
+        border: none;
+      }
+      border-bottom: 1px solid #dee2e621;
+      th {
+        background-color: rgba(0,0,0,0.15);
+      }
+      td, th {
+        border: none;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 800px) {
   tbody {
     font-size: 12px;
     tr td:nth-child(2) p {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
+      //writing-mode: vertical-rl;
+      //transform: rotate(180deg);
       margin-left: 0;
     }
     //tr td div {

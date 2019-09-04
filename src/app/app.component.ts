@@ -12,4 +12,8 @@ export class AppComponent {
   constructor(
     public auth: AuthService
   ) { }
+
+  collapseNav() {
+    this.isCollapsed = true;
+  }
 }

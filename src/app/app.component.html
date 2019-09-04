@@ -17,12 +17,12 @@
       <div class="collapse" id="navbarToggleExternalContent" [ngbCollapse]="isCollapsed">
         <div class="bg-dark p-16">
           <nav>
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Головна</a>
-            <a class="nav-link" routerLink="/plan" routerLinkActive="active">Програма</a>
+            <a class="nav-link" (click)="collapseNav()" routerLink="/home" routerLinkActive="active">Головна</a>
+            <a class="nav-link" (click)="collapseNav()" routerLink="/plan" routerLinkActive="active">Програма</a>
             <ng-container *ngIf="auth.currentUserValue">
-              <a class="nav-link" routerLink="/custom-plan" routerLinkActive="active">Мої програми</a>
+              <a class="nav-link" (click)="collapseNav()" routerLink="/custom-plan" routerLinkActive="active">Мої програми</a>
             </ng-container>
-            <a class="nav-link" routerLink="/login" routerLinkActive="active">Логін</a>
+            <a class="nav-link" (click)="collapseNav()" routerLink="/login" routerLinkActive="active">Логін</a>
           </nav>
         </div>
       </div>
