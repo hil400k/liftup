@@ -21,6 +21,7 @@
   </div>
 </form>
 
+<h5>Список програм <loader-icon *ngIf="!plans"></loader-icon></h5>
 <div class="list-group">
   <div *ngFor="let plan of plans" class="list-group-item list-group-item-action">
     <a

@@ -1,22 +1,3 @@
-<div *ngFor="let item of workouts" class="workout">
-  <p>
-    <button type="button" class="btn btn-outline-primary" (click)="toggleWorkout(item)"
-            [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
-      {{ item.name }}
-    </button>
-    <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.id)">
-      <svg-icon name="close"></svg-icon>
-    </button>
-  </p>
-  <div id="collapseExample" [ngbCollapse]="!item.isOpen">
-    <div class="card">
-      <div class="card-body">
-        <workout [workoutId]="item.id" [exercises]="item.exercises"></workout>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="input-group mb-3">
   <input type="text"
          name="workoutName"
@@ -48,3 +29,23 @@
   </div>
 </div>
 
+<h5>Список тренувань</h5>
+
+<div *ngFor="let item of workouts" class="workout">
+  <p>
+    <button type="button" class="btn btn-outline-primary" (click)="toggleWorkout(item)"
+            [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
+      {{ item.name }}
+    </button>
+    <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.id)">
+      <svg-icon name="close"></svg-icon>
+    </button>
+  </p>
+  <div id="collapseExample" [ngbCollapse]="!item.isOpen">
+    <div class="card">
+      <div class="card-body">
+        <workout [workoutId]="item.id" [exercises]="item.exercises"></workout>
+      </div>
+    </div>
+  </div>
+</div>

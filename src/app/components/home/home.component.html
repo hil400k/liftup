@@ -1,5 +1,5 @@
 <div>
-  <h3>Новини</h3>
+  <h3>Новини<loader-icon *ngIf="!news"></loader-icon></h3>
 
   <div *ngFor="let newsItem of news" class="card text-white bg-dark mb-3">
     <div class="card-header">{{newsItem.title}}</div>

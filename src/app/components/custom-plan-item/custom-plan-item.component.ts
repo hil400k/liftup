@@ -46,8 +46,8 @@ export class CustomPlanItemComponent implements OnInit {
 
   addDefaultWorkout(textInput) {
     const defaultName = 'workout';
-    const defaultNamedWorkouts = this.workouts.filter(i => i.key.indexOf(defaultName) >= 0);
-    const maxVal = defaultNamedWorkouts.map(i => i.key)
+    const defaultNamedWorkouts = this.workouts.filter(i => i.name.indexOf(defaultName) >= 0);
+    const maxVal = defaultNamedWorkouts.map(i => i.name)
       .reduce((acc, i) => {
         if (Number(acc) < Number(i.split(' ')[1])) {
           acc = Number(i.split(' ')[1]) ;
