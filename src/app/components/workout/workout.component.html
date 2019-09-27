@@ -1,6 +1,6 @@
 <h3 [textContent]="exerciseName"></h3>
 <ul class="list-group">
-  <ng-container *ngIf="type === '' then defaultExercise; else oepExercise"></ng-container>
+  <ng-container *ngIf="type === 'oneExercisePlan' then oepExercise; else defaultExercise"></ng-container>
   <ng-template #defaultExercise>
     <exercise
       *ngFor="let exercise of exercises; let i = index"
