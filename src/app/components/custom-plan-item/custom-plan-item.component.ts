@@ -31,7 +31,7 @@ export class CustomPlanItemComponent implements OnInit {
     this.workoutService.getWorkouts({ planId })
       .subscribe(items => {
         this.workouts = items;
-        this.type = items[0].customPlan.type;
+        this.type = (items[0] && items[0].customPlan.type) || '';
 
         if (this.type) {
           this.oneExercisePlanData = this.workouts[0];

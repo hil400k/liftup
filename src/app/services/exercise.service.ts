@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { RequestsUtilService } from './requests-util.service';
+import { map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExerciseService {
+  exercises: any;
 
   constructor(
     private auth: AuthService,
@@ -26,7 +29,10 @@ export class ExerciseService {
   }
 
   getExercises(workoutId) {
-    return this.requestsUtil.getRequest(`exercises?workout=${workoutId}`);
+    return this.requestsUtil.getRequest(`exercises?workout=${workoutId}`)
+      .pipe(
+        map(es => { this.exercises = es; this.exercises.super = 'puper'; return this.exercises; })
+      );
   }
 
   removeExercise(id) {

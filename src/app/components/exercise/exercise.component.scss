@@ -1,0 +1,16 @@
+.badge-pill {
+  margin-right: 5px;
+}
+svg-icon {
+  fill: #dc3545;
+  float: right;
+  /deep/ svg {
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+  }
+}
+
+.list-group-item {
+  padding: 10px 12px;
+}

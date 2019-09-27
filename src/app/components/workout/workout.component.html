@@ -1,43 +1,13 @@
 <h3 [textContent]="exerciseName"></h3>
 <ul class="list-group">
-  <li *ngFor="let exercise of exercises; let i = index" class="list-group-item justify-content-between align-items-center">
-    <div class="text-center">
+  <exercise
+    *ngFor="let exercise of exercises; let i = index"
+    (onSetDone)="setDone($event)"
+    (onRemoveExercise)="removeExercise($event)"
+    [exercise]="exercise"
+    [exerciseIndex]="i">
 
-      <div class="form-check form-check-inline">
-        <input class="form-check-input"
-               type="checkbox"
-               [id]="'inlineCheckbox' + i"
-               (change)="setDone(exercise)"
-               [(ngModel)]="exercise.isDone"
-               value="option1">
-        <label class="form-check-label"
-               [for]="'inlineCheckbox' + i">
-          {{exercise.name}}</label>
-      </div>
-
-      <span (click)="removeExercise(exercise.id)">
-        <svg-icon name="close"></svg-icon>
-      </span>
-    </div>
-    <ng-container *ngIf="exercise.parseType === 'WEIGHT_SETS'; then weightSets; else sets;">
-    </ng-container>
-    <ng-template #weightSets>
-      <span *ngFor="let set of exercise.parsedSets; let i = index">
-        <span class="badge badge-primary badge-pill">
-          <span>
-            {{set.numb}} -
-          </span>
-          {{set.weight}} kg
-        </span>
-        <span class="badge badge-dark badge-pill">{{set.reps}}</span>
-      </span>
-    </ng-template>
-    <ng-template #sets>
-      <span *ngFor="let set of exercise.parsedSets">
-        <span class="badge badge-dark badge-pill">{{set}}</span>
-      </span>
-    </ng-template>
-  </li>
+  </exercise>
 </ul>
 <div class="input-group mb-3">
   <input type="text" class="form-control"

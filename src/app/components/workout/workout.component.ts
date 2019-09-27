@@ -36,13 +36,9 @@ export class WorkoutComponent implements OnInit {
 
   getExercises() {
     this.exerciseService.getExercises(this.workoutId)
-      .subscribe(exercises => {
+      .subscribe(exercises => { console.info(exercises, 'sfsdfsdf');
         this.exercises = this.exerciseService.parse(exercises);
       });
-  }
-
-  setDone(exercise) {
-    this.exerciseService.updateExercise(exercise).subscribe();
   }
 
   exerciseButtonHandler() {
@@ -93,4 +89,7 @@ export class WorkoutComponent implements OnInit {
     };
   }
 
+  setDone(exercise) {
+    this.exerciseService.updateExercise(exercise).subscribe();
+  }
 }

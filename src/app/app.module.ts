@@ -22,6 +22,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RequestsUtilService } from './services/requests-util.service';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { LoaderIconComponent } from './components/loader-icon/loader-icon.component';
+import { ExerciseComponent } from './components/exercise/exercise.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LoaderIconComponent } from './components/loader-icon/loader-icon.compon
     WorkoutComponent,
     SvgIconComponent,
     SvgDefinitionsComponent,
-    LoaderIconComponent
+    LoaderIconComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,
