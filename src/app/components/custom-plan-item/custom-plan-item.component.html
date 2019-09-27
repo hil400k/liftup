@@ -1,52 +1,66 @@
-<div class="input-group mb-3">
-  <input type="text"
-         name="workoutName"
-         minlength="3"
-         required
-         #workoutNameEl
-         #workoutName="ngModel"
-         class="form-control"
-         placeholder="Назва тренування"
-         (keyup.enter)="addWorkout(workoutName, null)"
-         [(ngModel)]="nextWorkoutName">
-  <div class="input-group-append">
+<ng-container *ngIf="type === ''; then defaultPlan; else oneExercisePlan">
+</ng-container>
+
+<ng-template #defaultPlan>
+  <div class="input-group mb-3">
+    <input type="text"
+           name="workoutName"
+           minlength="3"
+           required
+           #workoutNameEl
+           #workoutName="ngModel"
+           class="form-control"
+           placeholder="Назва тренування"
+           (keyup.enter)="addWorkout(workoutName, null)"
+           [(ngModel)]="nextWorkoutName">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary"
+              type="button"
+              [disabled]="workoutName.invalid"
+              (click)="addWorkout(workoutName, null)">
+        Додати
+      </button>
+    </div>
+    <div *ngIf="workoutName.touched && workoutName.invalid" class="alert alert-danger" role="alert">
+      Назва програми має включати хоча б 1 символ
+    </div>
+  </div>
+
+  <div class="text-center">
     <button class="btn btn-outline-secondary"
             type="button"
-            [disabled]="workoutName.invalid"
-            (click)="addWorkout(workoutName, null)">
-      Додати
+            (click)="addDefaultWorkout(workoutName)">
+      Додати з стандартною назвою
     </button>
   </div>
-  <div *ngIf="workoutName.touched && workoutName.invalid" class="alert alert-danger" role="alert">
-    Назва програми має включати хоча б 1 символ
-  </div>
-</div>
 
-<div class="text-center">
-  <button class="btn btn-outline-secondary"
-          type="button"
-          (click)="addDefaultWorkout(workoutName)">
-    Додати з стандартною назвою
-  </button>
-</div>
-
-<h5>Список тренувань</h5>
-
-<div *ngFor="let item of workouts" class="workout">
-  <p>
-    <button type="button" class="btn btn-outline-primary" (click)="toggleWorkout(item)"
-            [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
-      {{ item.name }}
-    </button>
-    <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.id)">
-      <svg-icon name="close"></svg-icon>
-    </button>
-  </p>
-  <div id="collapseExample" [ngbCollapse]="!item.isOpen">
-    <div class="card">
-      <div class="card-body">
-        <workout [workoutId]="item.id" [exercises]="item.exercises"></workout>
+  <h5>Список тренувань</h5>
+  <div *ngFor="let item of workouts" class="workout">
+    <p>
+      <button type="button" class="btn btn-outline-primary" (click)="toggleWorkout(item)"
+              [attr.aria-expanded]="item.isOpen" aria-controls="collapseExample">
+        {{ item.name }}
+      </button>
+      <button type="button" class="btn btn-outline-danger float-right" (click)="removeWorkout(item.id)">
+        <svg-icon name="close"></svg-icon>
+      </button>
+    </p>
+    <div id="collapseExample" [ngbCollapse]="!item.isOpen">
+      <div class="card">
+        <div class="card-body">
+          <workout [workoutId]="item.id" [exercises]="item.exercises"></workout>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+
+<ng-template #oneExercisePlan>
+  <workout *ngIf="oneExercisePlanData"
+           type="oneExercisePlan"
+           [exerciseName]="oneExercisePlanData.customPlan.name"
+           [workoutId]="oneExercisePlanData.id"
+           [exercises]="oneExercisePlanData.exercises">
+
+  </workout>
+</ng-template>

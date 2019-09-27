@@ -12,6 +12,8 @@ export class CustomPlanItemComponent implements OnInit {
   nextWorkoutName = '';
   workouts;
   planId;
+  type: string;
+  oneExercisePlanData;
 
   constructor(
     private workoutService: WorkoutService,
@@ -29,6 +31,11 @@ export class CustomPlanItemComponent implements OnInit {
     this.workoutService.getWorkouts({ planId })
       .subscribe(items => {
         this.workouts = items;
+        this.type = items[0].customPlan.type;
+
+        if (this.type) {
+          this.oneExercisePlanData = this.workouts[0];
+        }
       });
   }
 

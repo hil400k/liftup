@@ -9,9 +9,11 @@ import { ExerciseService } from '../../services/exercise.service';
 export class WorkoutComponent implements OnInit {
   @Input() workoutId: string;
   @Input() exercises: any[];
+  @Input() type: string;
+  @Input() exerciseName: string;
 
   addExerciseState = false;
-  inputCaption = 'Назва вправи';
+  inputCaption = '';
   inputValue = '';
   exerciseToCreate = {
     name: '',
@@ -24,6 +26,11 @@ export class WorkoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.type === 'oneExercisePlan') {
+      this.inputCaption = 'Введіть повторення';
+    } else {
+      this.inputCaption = 'Назва вправи';
+    }
     this.exercises = this.exerciseService.parse(this.exercises);
   }
 
@@ -39,13 +46,17 @@ export class WorkoutComponent implements OnInit {
   }
 
   exerciseButtonHandler() {
-    if (!this.addExerciseState) {
-      this.setExerciseName();
-    } else {
+    if (this.type === 'oneExercisePlan') {
       this.addExercise();
-    }
+    } else {
+      if (!this.addExerciseState) {
+        this.setExerciseName();
+      } else {
+        this.addExercise();
+      }
 
-    this.addExerciseState = !this.addExerciseState;
+      this.addExerciseState = !this.addExerciseState;
+    }
   }
 
   setExerciseName() {
@@ -55,7 +66,7 @@ export class WorkoutComponent implements OnInit {
   }
 
   addExercise() {
-    this.inputCaption = 'Назва вправи';
+    if (!this.type) this.inputCaption = 'Назва вправи';
     this.exerciseToCreate.sets = this.inputValue;
     this.inputValue = '';
 

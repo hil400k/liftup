@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
 import { RequestsUtilService } from './requests-util.service';
+import { WorkoutService } from './workout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +13,33 @@ export class CustomPlanService {
 
   constructor(
     private auth: AuthService,
-    private requestsUtil: RequestsUtilService
+    private requestsUtil: RequestsUtilService,
+    private workoutService: WorkoutService
   ) {
 
   }
 
-  createCustomPlan(name) {
-    return this.requestsUtil.postRequest('customplans', {
-      name,
+  createCustomPlan(values) {
+    const planParams = {
+      name: values.planName,
+      type: values.planType,
       creator: this.auth.currentUserValue._id
-    });
+    };
+
+    if (values.planType) {
+      return this.requestsUtil.postRequest('customplans', planParams)
+        .pipe(
+          switchMap((plan: any) => {
+            const workoutParams = {
+              name: 'oneExercisePlan-workoutName',
+              customPlan: plan.id
+            };
+            return this.workoutService.createWorkout(workoutParams);
+          })
+        );
+    } else {
+      return this.requestsUtil.postRequest('customplans', planParams);
+    }
   }
 
   removeCustomPlan(plan) {

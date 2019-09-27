@@ -37,10 +37,10 @@ export class CustomPlanComponent implements OnInit {
     this.error = '';
   }
 
-  createPlan(name) {
-    this.customPlanService.createCustomPlan(name)
-      .subscribe((plan: any) => {
-        this.router.navigate(['custom-plan', plan.id]);
+  createPlan(values) {
+    this.customPlanService.createCustomPlan(values)
+      .subscribe((resp: any) => {
+        this.router.navigate(['custom-plan', resp.customPlan ? resp.customPlan.id : resp.id]);
       }, error => {
         this.error = error;
       });
