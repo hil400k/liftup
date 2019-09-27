@@ -1,0 +1,15 @@
+.oep-exercise {
+  margin: 10px 0;
+}
+.badge-pill {
+  margin-right: 5px;
+}
+svg-icon {
+  fill: #dc3545;
+  float: right;
+  /deep/ svg {
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+  }
+}

@@ -36,7 +36,7 @@ export class WorkoutComponent implements OnInit {
 
   getExercises() {
     this.exerciseService.getExercises(this.workoutId)
-      .subscribe(exercises => { console.info(exercises, 'sfsdfsdf');
+      .subscribe(exercises => {
         this.exercises = this.exerciseService.parse(exercises);
       });
   }

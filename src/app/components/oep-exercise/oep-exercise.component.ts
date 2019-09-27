@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ExerciseService } from '../../services/exercise.service';
 
 @Component({
-  selector: 'exercise',
-  templateUrl: './exercise.component.html',
-  styleUrls: ['./exercise.component.scss']
+  selector: 'oep-exercise',
+  templateUrl: './oep-exercise.component.html',
+  styleUrls: ['./oep-exercise.component.scss']
 })
-export class ExerciseComponent implements OnInit {
+export class OepExerciseComponent implements OnInit {
   @Input() exercise: any;
   @Input() exerciseIndex: number;
 

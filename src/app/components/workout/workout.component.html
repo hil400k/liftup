@@ -1,13 +1,26 @@
 <h3 [textContent]="exerciseName"></h3>
 <ul class="list-group">
-  <exercise
-    *ngFor="let exercise of exercises; let i = index"
-    (onSetDone)="setDone($event)"
-    (onRemoveExercise)="removeExercise($event)"
-    [exercise]="exercise"
-    [exerciseIndex]="i">
+  <ng-container *ngIf="type === '' then defaultExercise; else oepExercise"></ng-container>
+  <ng-template #defaultExercise>
+    <exercise
+      *ngFor="let exercise of exercises; let i = index"
+      (onSetDone)="setDone($event)"
+      (onRemoveExercise)="removeExercise($event)"
+      [exercise]="exercise"
+      [exerciseIndex]="i">
 
-  </exercise>
+    </exercise>
+  </ng-template>
+  <ng-template #oepExercise>
+    <oep-exercise
+      *ngFor="let exercise of exercises; let i = index"
+      (onSetDone)="setDone($event)"
+      (onRemoveExercise)="removeExercise($event)"
+      [exercise]="exercise"
+      [exerciseIndex]="i">
+
+    </oep-exercise>
+  </ng-template>
 </ul>
 <div class="input-group mb-3">
   <input type="text" class="form-control"

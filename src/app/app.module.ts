@@ -23,6 +23,7 @@ import { RequestsUtilService } from './services/requests-util.service';
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { LoaderIconComponent } from './components/loader-icon/loader-icon.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
+import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
     SvgIconComponent,
     SvgDefinitionsComponent,
     LoaderIconComponent,
-    ExerciseComponent
+    ExerciseComponent,
+    OepExerciseComponent
   ],
   imports: [
     BrowserModule,
