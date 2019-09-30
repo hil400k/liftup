@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(data.email, data.password).subscribe(resp => {
       console.info(resp, '...');
     }, error => {
-      console.info(error);
+      this.serverErr = this.getErrorMessage(error);
     });
   }
 
@@ -42,5 +42,19 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  getErrorMessage(err) {
+    const defMessage = 'Something was wrong';
+
+    if (err) {
+      switch (err.status) {
+        case 400:
+          return 'Email or password is wrong';
+        default:
+          return defMessage;
+      }
+    }
+    return defMessage;
   }
 }

@@ -46,15 +46,6 @@ export class CustomPlanService {
     return this.requestsUtil.deleteRequest(`customplans/${plan.id}`);
   }
 
-  getCustomPlan(name) {
-    // return this.auth.user$.pipe(
-    //   switchMap((user) => {
-    //     return this.db.list(`/custom-plans/${user.uid}`,
-    //         ref => ref.orderByChild('name').equalTo(name)).valueChanges();
-    //   })
-    // );
-  }
-
   getAllCustomPlans() {
     return this.auth.currentUser$.pipe(
       switchMap((resp) => {
