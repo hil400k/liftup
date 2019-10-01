@@ -1,15 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CustomPlanService } from '../../services/custom-plan.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { PlanService } from '../../services/plan.service';
 
 @Component({
-  selector: 'app-custom-plan',
-  templateUrl: './custom-plan.component.html',
-  styleUrls: ['./custom-plan.component.scss']
+  selector: 'plans',
+  templateUrl: './plans.component.html',
+  styleUrls: ['./plans.component.scss']
 })
-export class CustomPlanComponent implements OnInit, OnDestroy {
+export class PlansComponent implements OnInit, OnDestroy {
   error: string;
   plans;
   username;
@@ -17,7 +17,7 @@ export class CustomPlanComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
 
   constructor(
-    private customPlanService: CustomPlanService,
+    private planService: PlanService,
     private router: Router,
     private auth: AuthService
   ) { }
@@ -33,10 +33,10 @@ export class CustomPlanComponent implements OnInit, OnDestroy {
 
   getPlans() {
     this.userSubscription = this.auth.currentUser$.subscribe(resp => {
-      this.customPlanSubscription = this.customPlanService.getAllCustomPlans()
+      this.customPlanSubscription = this.planService.getPlans()
         .subscribe(plans => {
           this.plans = plans;
-          this.username = this.customPlanService.username;
+          this.username = this.planService.username;
         });
     });
   }
@@ -46,16 +46,16 @@ export class CustomPlanComponent implements OnInit, OnDestroy {
   }
 
   createPlan(values) {
-    this.customPlanService.createCustomPlan(values)
+    this.planService.createPlan(values)
       .subscribe((resp: any) => {
-        this.router.navigate(['custom-plan', resp.customPlan ? resp.customPlan.id : resp.id]);
+        this.router.navigate(['plans', resp.customPlan ? resp.customPlan.id : resp.id]);
       }, error => {
         this.error = error;
       });
   }
 
   removePlan(plan) {
-    this.customPlanService.removeCustomPlan(plan).subscribe(() => {
+    this.planService.removePlan(plan).subscribe(() => {
       this.getPlans();
     });
   }

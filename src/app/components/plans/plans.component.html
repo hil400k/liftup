@@ -37,7 +37,7 @@
 <div class="list-group">
   <div *ngFor="let plan of plans" class="list-group-item list-group-item-action">
     <a
-      [routerLink]="['/custom-plan', plan.id]"
+      [routerLink]="['/plans', plan.id]"
       [textContent]="plan.name">
     </a>
     <button class="btn btn-danger btn-sm float-right" (click)="removePlan(plan)">

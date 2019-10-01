@@ -9,11 +9,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PlanSheikoComponent } from './components/plan-sheiko/plan-sheiko.component';
-import { CustomPlanComponent } from './components/custom-plan/custom-plan.component';
+import { PlansComponent } from './components/plans/plans.component';
 import { CustomPlanItemComponent } from './components/custom-plan-item/custom-plan-item.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { WorkoutService } from './services/workout.service';
-import { CustomPlanService } from './services/custom-plan.service';
+import { PlanService } from './services/plan.service';
 import { WorkoutComponent } from './components/workout/workout.component';
 import { ExerciseService } from './services/exercise.service';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
@@ -32,7 +32,7 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
     HomeComponent,
     LoginComponent,
     PlanSheikoComponent,
-    CustomPlanComponent,
+    PlansComponent,
     CustomPlanItemComponent,
     WorkoutComponent,
     SvgIconComponent,
@@ -49,8 +49,8 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'plan-sheiko', component: PlanSheikoComponent },
-      { path: 'custom-plan/:planId', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
-      { path: 'custom-plan', component: CustomPlanComponent, canActivate: [AuthGuard] },
+      { path: 'plans/:planId', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
+      { path: 'plans', component: PlansComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
     ]),
     FormsModule,
@@ -61,7 +61,7 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
     AuthService,
     AuthGuard,
     WorkoutService,
-    CustomPlanService,
+    PlanService,
     ExerciseService,
     RequestsUtilService,
     PlanSheikoService

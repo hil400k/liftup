@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { map, switchMap } from 'rxjs/operators';
 import { RequestsUtilService } from './requests-util.service';
-import { WorkoutService } from './workout.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomPlanService {
+export class PlanService {
   username;
   plans;
 
@@ -18,7 +17,7 @@ export class CustomPlanService {
 
   }
 
-  createCustomPlan(values) {
+  createPlan(values) {
     const workouts = values.planType ? [
       {
         id: `${new Date().getTime()}`,
@@ -38,11 +37,11 @@ export class CustomPlanService {
     return this.requestsUtil.postRequest('someplans', planParams);
   }
 
-  removeCustomPlan(plan) {
+  removePlan(plan) {
     return this.requestsUtil.deleteRequest(`someplans/${plan.id}`);
   }
 
-  getAllCustomPlans() {
+  getPlans() {
     return this.auth.currentUser$.pipe(
       switchMap((resp) => {
         return this.requestsUtil.getRequest(`someplans?user=${resp.user._id}`).pipe(
