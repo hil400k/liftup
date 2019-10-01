@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { RequestsUtilService } from './requests-util.service';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { WorkoutService } from './workout.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,31 +13,69 @@ export class ExerciseService {
 
   constructor(
     private auth: AuthService,
-    private requestsUtil: RequestsUtilService
+    private requestsUtil: RequestsUtilService,
+    private workoutService: WorkoutService
   ) { }
 
   addExercise(exercise) {
-    return this.requestsUtil.postRequest(`exercises`, {
+    const planWorkouts = this.workoutService.plan.workouts;
+
+    const workoutIndex = planWorkouts.findIndex(i => i.id === exercise.workoutId);
+    const exercises = planWorkouts[workoutIndex].exercises;
+
+    exercises.push({
+      id: `${workoutIndex}${new Date().getTime()}`,
       name: exercise.name,
       sets: exercise.sets,
-      workout: exercise.workoutId
     });
+
+    return this.updateCustomPlanRequest( {
+      workouts: planWorkouts
+    }).pipe(
+      switchMap(() => {
+        this.exercises = exercises;
+        return of(this.exercises);
+      })
+    );
   }
 
-  updateExercise(exercise) {
-    return this.requestsUtil.putRequest(`exercises/${exercise.id}`,
-      { isDone: exercise.isDone });
+  updateExercise(exercise, workoutId) {
+    const planWorkouts = this.workoutService.plan.workouts;
+    const workoutIndex = planWorkouts.findIndex(i => i.id === workoutId);
+    const exercises = planWorkouts[workoutIndex].exercises;
+    const exerciseId = exercises.findIndex(i => i.id === exercise.id);
+
+    exercises[exerciseId] = {
+      ...exercises[exerciseId],
+      isDone: exercise.isDone
+    };
+
+    return this.updateCustomPlanRequest( {
+      workouts: planWorkouts
+    }).pipe(
+      switchMap(() => {
+        this.exercises = exercises;
+        return of(this.exercises);
+      })
+    );
   }
 
-  getExercises(workoutId) {
-    return this.requestsUtil.getRequest(`exercises?workout=${workoutId}`)
-      .pipe(
-        map(es => { this.exercises = es; this.exercises.super = 'puper'; return this.exercises; })
-      );
-  }
+  removeExercise(exId, workoutId) {
+    const planWorkouts = this.workoutService.plan.workouts;
+    const workoutIndex = planWorkouts.findIndex(i => i.id === workoutId);
+    const exercises = planWorkouts[workoutIndex].exercises;
+    const exerciseId = exercises.findIndex(i => i.id === exId);
 
-  removeExercise(id) {
-    return this.requestsUtil.deleteRequest(`exercises/${id}`);
+    exercises.splice(exerciseId, 1);
+
+    return this.updateCustomPlanRequest( {
+      workouts: planWorkouts
+    }).pipe(
+      switchMap(() => {
+        this.exercises = exercises;
+        return of(this.exercises);
+      })
+    );
   }
 
   parseWeightSets(sets) {
@@ -105,7 +144,7 @@ export class ExerciseService {
     });
   }
 
-  private  getRequestString(user, exercise) {
-    return `/custom-plans/${user.uid}/${exercise.planName}/workouts/${exercise.workoutName}/exercises`;
+  updateCustomPlanRequest(payload) {
+    return this.requestsUtil.putRequest(`someplans/${this.workoutService.plan.id}`, payload);
   }
 }

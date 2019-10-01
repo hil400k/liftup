@@ -34,13 +34,6 @@ export class WorkoutComponent implements OnInit {
     this.exercises = this.exerciseService.parse(this.exercises);
   }
 
-  getExercises() {
-    this.exerciseService.getExercises(this.workoutId)
-      .subscribe(exercises => {
-        this.exercises = this.exerciseService.parse(exercises);
-      });
-  }
-
   exerciseButtonHandler() {
     if (this.type === 'oneExercisePlan') {
       this.addExercise();
@@ -69,15 +62,15 @@ export class WorkoutComponent implements OnInit {
     this.exerciseService.addExercise({
       ...this.exerciseToCreate,
       workoutId: this.workoutId
-    }).subscribe(() => {
+    }).subscribe((exercises) => {
       this.resetExerciseToCreate();
-      this.getExercises();
+      this.exercises = this.exerciseService.parse(exercises);
     });
   }
 
   removeExercise(id) {
-    this.exerciseService.removeExercise(id).subscribe(() => {
-      this.getExercises();
+    this.exerciseService.removeExercise(id, this.workoutId).subscribe((exercises) => {
+      this.exercises = this.exerciseService.parse(exercises);
     });
   }
 
@@ -90,6 +83,6 @@ export class WorkoutComponent implements OnInit {
   }
 
   setDone(exercise) {
-    this.exerciseService.updateExercise(exercise).subscribe();
+    this.exerciseService.updateExercise(exercise, this.workoutId).subscribe();
   }
 }
