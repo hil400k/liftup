@@ -44,13 +44,13 @@ export class WorkoutService {
     );
   }
 
-  updateWorkout(params) {
+  updateWorkout(params, targetWorkoutId) {
     const planWorkouts = this.plan.workouts;
-    const workoutId = planWorkouts.findIndex(i => i.id === params.workoutId);
+    const workoutId = planWorkouts.findIndex(i => i.id === targetWorkoutId);
 
     planWorkouts[workoutId] = {
       ...planWorkouts[workoutId],
-      ...params.data
+      ...params
     };
 
     return this.updateCustomPlanRequest( {

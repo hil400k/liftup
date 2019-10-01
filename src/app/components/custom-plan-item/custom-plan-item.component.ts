@@ -74,12 +74,9 @@ export class CustomPlanItemComponent implements OnInit {
     item.isOpen = !item.isOpen;
 
     const params = {
-      workoutId: item.id,
-      data: {
-        isOpen: item.isOpen
-      }
+      isOpen: item.isOpen
     };
 
-    this.workoutService.updateWorkout(params).subscribe();
+    this.workoutService.updateWorkout(params, item.id).subscribe();
   }
 }
