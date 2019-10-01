@@ -1,11 +1,37 @@
 <div>
+
+  <h3>
+    Конвертор
+  </h3>
+
+  <div class="weight-converter">
+    <form>
+      <div class="form-row">
+        <div class="col">
+          <input type="text"
+                 [ngModel]="kgs"
+                 (ngModelChange)="kgsChange($event)"
+                 name="kgs"
+                 class="form-control"
+                 placeholder="Кілограми">
+        </div>
+        <div class="col">
+          <input type="text"
+                 [ngModel]="pounds"
+                 (ngModelChange)="poundsChange($event)"
+                 name="pounds" class="form-control"
+                 placeholder="Фунти">
+        </div>
+      </div>
+    </form>
+  </div>
+
   <h3>Новини<loader-icon *ngIf="!news"></loader-icon></h3>
 
   <div *ngFor="let newsItem of news" class="card text-white bg-dark mb-3">
     <div class="card-header">{{newsItem.title}}</div>
     <div class="card-body">
-      <p class="card-text">
-        {{newsItem.description}}
+      <p class="card-text" [textContent]="newsItem.description">
       </p>
     </div>
   </div>
