@@ -60,9 +60,8 @@ export class WorkoutComponent implements OnInit {
     this.inputValue = '';
 
     this.exerciseService.addExercise({
-      ...this.exerciseToCreate,
-      workoutId: this.workoutId
-    }).subscribe((exercises) => {
+      ...this.exerciseToCreate
+    }, this.workoutId).subscribe((exercises) => {
       this.resetExerciseToCreate();
       this.exercises = this.exerciseService.parse(exercises);
     });

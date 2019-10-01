@@ -17,16 +17,14 @@ export class ExerciseService {
     private workoutService: WorkoutService
   ) { }
 
-  addExercise(exercise) {
+  addExercise(exercise, workoutId) {
     const planWorkouts = this.workoutService.plan.workouts;
-
-    const workoutIndex = planWorkouts.findIndex(i => i.id === exercise.workoutId);
+    const workoutIndex = planWorkouts.findIndex(i => i.id === workoutId);
     const exercises = planWorkouts[workoutIndex].exercises;
 
     exercises.push({
-      id: `${exercise.workoutId}${new Date().getTime()}`,
-      name: exercise.name,
-      sets: exercise.sets,
+      id: `${workoutId}${new Date().getTime()}`,
+      ...exercise
     });
 
     return this.updateCustomPlanRequest( {
