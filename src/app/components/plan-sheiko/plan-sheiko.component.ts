@@ -15,14 +15,14 @@ export class PlanSheikoComponent implements OnInit {
   planId: string;
 
   constructor(
-    private planService: PlanSheikoService,
+    private planSheikoService: PlanSheikoService,
     private auth: AuthService
   ) {
 
   }
 
   ngOnInit() {
-    this.planService.getPlan()
+    this.planSheikoService.getPlan()
       .subscribe((plan: any) => {
         if (plan) {
           this.planId = plan.id;
@@ -37,10 +37,10 @@ export class PlanSheikoComponent implements OnInit {
 
   update(values) {
     if (this.planId) {
-      this.planService.updateScores(values)
+      this.planSheikoService.updateScores(values)
         .subscribe();
     } else {
-      this.planService.createScores(values)
+      this.planSheikoService.createScores(values)
         .subscribe();
     }
   }

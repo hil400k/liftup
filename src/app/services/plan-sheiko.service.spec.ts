@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { PlanSheikoService } from './plan-sheiko.service';
 
-describe('PlanService', () => {
+describe('PlanSheikoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [PlanSheikoService]
