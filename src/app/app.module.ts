@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { PlanComponent } from './components/plan/plan.component';
+import { PlanSheikoComponent } from './components/plan-sheiko/plan-sheiko.component';
 import { CustomPlanComponent } from './components/custom-plan/custom-plan.component';
 import { CustomPlanItemComponent } from './components/custom-plan-item/custom-plan-item.component';
 import { AuthGuard } from './services/auth-guard.service';
@@ -24,13 +24,14 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { LoaderIconComponent } from './components/loader-icon/loader-icon.component';
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.component';
+import { PlanSheikoService } from './services/plan-sheiko.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    PlanComponent,
+    PlanSheikoComponent,
     CustomPlanComponent,
     CustomPlanItemComponent,
     WorkoutComponent,
@@ -47,7 +48,7 @@ import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.com
       { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'plan-sheiko', component: PlanComponent },
+      { path: 'plan-sheiko', component: PlanSheikoComponent },
       { path: 'custom-plan/:planId', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
       { path: 'custom-plan', component: CustomPlanComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
@@ -63,6 +64,7 @@ import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.com
     CustomPlanService,
     ExerciseService,
     RequestsUtilService,
+    PlanSheikoService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { PlanService } from '../../services/plan.service';
+import { PlanSheikoService } from '../../services/plan-sheiko.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-plan',
-  templateUrl: './plan.component.html',
-  styleUrls: ['./plan.component.scss']
+  selector: 'plan-sheiko',
+  templateUrl: './plan-sheiko.component.html',
+  styleUrls: ['./plan-sheiko.component.scss']
 })
-export class PlanComponent implements OnInit {
+export class PlanSheikoComponent implements OnInit {
   press = 0;
   squats = 0;
   deadlift = 0;
@@ -15,7 +15,7 @@ export class PlanComponent implements OnInit {
   planId: string;
 
   constructor(
-    private planService: PlanService,
+    private planService: PlanSheikoService,
     private auth: AuthService
   ) {
 

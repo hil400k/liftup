@@ -7,7 +7,7 @@ import { RequestsUtilService } from './requests-util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PlanService {
+export class PlanSheikoService {
   planId: string;
 
   constructor(
