@@ -18,7 +18,7 @@ export class WorkoutService {
     const planWorkouts = this.plan.workouts;
 
     planWorkouts.push({
-      id: `${this.plan.id}${planWorkouts.length + 1}`,
+      id: `${this.plan.id}${new Date().getTime()}`,
       date: new Date().getTime(),
       isOpen: true,
       exercises: [],

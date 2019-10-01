@@ -31,12 +31,7 @@ export class ExerciseService {
 
     return this.updateCustomPlanRequest( {
       workouts: planWorkouts
-    }).pipe(
-      switchMap(() => {
-        this.exercises = exercises;
-        return of(this.exercises);
-      })
-    );
+    }, exercises);
   }
 
   updateExercise(exercise, workoutId) {
@@ -52,12 +47,7 @@ export class ExerciseService {
 
     return this.updateCustomPlanRequest( {
       workouts: planWorkouts
-    }).pipe(
-      switchMap(() => {
-        this.exercises = exercises;
-        return of(this.exercises);
-      })
-    );
+    }, exercises);
   }
 
   removeExercise(exId, workoutId) {
@@ -70,12 +60,7 @@ export class ExerciseService {
 
     return this.updateCustomPlanRequest( {
       workouts: planWorkouts
-    }).pipe(
-      switchMap(() => {
-        this.exercises = exercises;
-        return of(this.exercises);
-      })
-    );
+    }, exercises);
   }
 
   parseWeightSets(sets) {
@@ -144,7 +129,11 @@ export class ExerciseService {
     });
   }
 
-  updateCustomPlanRequest(payload) {
-    return this.requestsUtil.putRequest(`someplans/${this.workoutService.plan.id}`, payload);
+  updateCustomPlanRequest(payload, exercises) {
+    return this.requestsUtil.putRequest(`someplans/${this.workoutService.plan.id}`, payload)
+      .pipe(switchMap(() => {
+        this.exercises = exercises;
+        return of(this.exercises);
+      }));
   }
 }
