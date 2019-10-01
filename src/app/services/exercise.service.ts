@@ -24,7 +24,7 @@ export class ExerciseService {
     const exercises = planWorkouts[workoutIndex].exercises;
 
     exercises.push({
-      id: `${workoutIndex}${new Date().getTime()}`,
+      id: `${exercise.workoutId}${new Date().getTime()}`,
       name: exercise.name,
       sets: exercise.sets,
     });
