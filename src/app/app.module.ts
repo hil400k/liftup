@@ -10,7 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PlanSheikoComponent } from './components/plan-sheiko/plan-sheiko.component';
 import { PlansComponent } from './components/plans/plans.component';
-import { CustomPlanItemComponent } from './components/custom-plan-item/custom-plan-item.component';
+import { PlanComponent } from './components/plan/plan.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { WorkoutService } from './services/workout.service';
 import { PlanService } from './services/plan.service';
@@ -33,7 +33,7 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
     LoginComponent,
     PlanSheikoComponent,
     PlansComponent,
-    CustomPlanItemComponent,
+    PlanComponent,
     WorkoutComponent,
     SvgIconComponent,
     SvgDefinitionsComponent,
@@ -49,7 +49,7 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'plan-sheiko', component: PlanSheikoComponent },
-      { path: 'plans/:planId', component: CustomPlanItemComponent, canActivate: [AuthGuard] },
+      { path: 'plans/:planId', component: PlanComponent, canActivate: [AuthGuard] },
       { path: 'plans', component: PlansComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
     ]),

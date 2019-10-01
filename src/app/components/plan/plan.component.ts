@@ -3,11 +3,11 @@ import { WorkoutService } from '../../services/workout.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-custom-plan-item',
-  templateUrl: './custom-plan-item.component.html',
-  styleUrls: ['./custom-plan-item.component.scss']
+  selector: 'plan',
+  templateUrl: './plan.component.html',
+  styleUrls: ['./plan.component.scss']
 })
-export class CustomPlanItemComponent implements OnInit {
+export class PlanComponent implements OnInit {
   @ViewChild('workoutNameEl') workoutNameEl: ElementRef;
   nextWorkoutName = '';
   workouts;
