@@ -35,6 +35,7 @@ export class CustomPlanItemComponent implements OnInit {
 
         if (this.type) {
           this.oneExercisePlanData = this.workouts[0];
+          this.oneExercisePlanData.planName = resp.name;
         }
       });
   }

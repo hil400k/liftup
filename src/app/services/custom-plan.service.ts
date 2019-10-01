@@ -14,17 +14,25 @@ export class CustomPlanService {
   constructor(
     private auth: AuthService,
     private requestsUtil: RequestsUtilService,
-    private workoutService: WorkoutService
   ) {
 
   }
 
   createCustomPlan(values) {
+    const workouts = values.planType ? [
+      {
+        id: `${new Date().getTime()}`,
+        date: new Date().getTime(),
+        isOpen: true,
+        exercises: [],
+        name: 'oneExercisePlan-workoutName'
+      }
+    ] : [];
     const planParams = {
       name: values.planName,
       type: values.planType,
       user: this.auth.currentUserValue._id,
-      workouts: []
+      workouts: workouts
     };
 
     return this.requestsUtil.postRequest('someplans', planParams);
