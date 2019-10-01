@@ -29,9 +29,9 @@ export class CustomPlanItemComponent implements OnInit {
 
   getWorkouts(planId) {
     this.workoutService.getWorkouts({ planId })
-      .subscribe(items => {
-        this.workouts = items;
-        this.type = (items[0] && items[0].customPlan.type) || '';
+      .subscribe(resp => {
+        this.workouts = resp.workouts;
+        this.type = resp.type || '';
 
         if (this.type) {
           this.oneExercisePlanData = this.workouts[0];
@@ -42,7 +42,6 @@ export class CustomPlanItemComponent implements OnInit {
   addWorkout(textInput, val) {
     this.workoutService.createWorkout({
       name: val || this.nextWorkoutName,
-      customPlan: this.planId
     }).subscribe((resp) => {
       this.nextWorkoutName = '';
       this.workoutNameEl.nativeElement.blur();
@@ -74,7 +73,7 @@ export class CustomPlanItemComponent implements OnInit {
     item.isOpen = !item.isOpen;
 
     const params = {
-      id: item.id,
+      workoutId: item.id,
       data: {
         isOpen: item.isOpen
       }

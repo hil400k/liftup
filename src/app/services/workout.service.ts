@@ -7,6 +7,7 @@ import { RequestsUtilService } from './requests-util.service';
   providedIn: 'root'
 })
 export class WorkoutService {
+  plan;
 
   constructor(
     private auth: AuthService,
@@ -14,28 +15,61 @@ export class WorkoutService {
   ) { }
 
   createWorkout(params) {
-    return this.requestsUtil.postRequest(`workouts`, {
+    const planWorkouts = this.plan.workouts;
+
+    planWorkouts.push({
+      id: `${this.plan.id}${planWorkouts.length + 1}`,
       date: new Date().getTime(),
       isOpen: true,
+      exercises: [],
       ...params
+    });
+
+    return this.updateCustomPlanRequest( {
+      workouts: planWorkouts
     });
   }
 
   getWorkouts(params) {
-    return this.requestsUtil.getRequest(`workouts?customPlan=${params.planId}`).pipe(
-      map((workouts: any) => {
-        return workouts.sort(function (a, b) {
+    return this.requestsUtil.getRequest(`someplans/${params.planId}`).pipe(
+      map((resp: any) => {
+        resp.workouts = resp.workouts.sort(function (a, b) {
           return a.date - b.date;
         });
+
+        this.plan = resp;
+
+        return this.plan;
       })
     );
   }
 
   updateWorkout(params) {
-    return this.requestsUtil.putRequest(`workouts/${params.id}`, params.data);
+    const planWorkouts = this.plan.workouts;
+    const workoutId = planWorkouts.findIndex(i => i.id === params.workoutId);
+
+    planWorkouts[workoutId] = {
+      ...planWorkouts[workoutId],
+      ...params.data
+    };
+
+    return this.updateCustomPlanRequest( {
+      workouts: planWorkouts
+    });
   }
 
   removeWorkout(id) {
-    return this.requestsUtil.deleteRequest(`workouts/${id}`);
+    const planWorkouts = this.plan.workouts;
+    const workoutId = planWorkouts.findIndex(i => i.id === id);
+
+    planWorkouts.splice(workoutId, 1);
+
+    return this.updateCustomPlanRequest({
+      workouts: planWorkouts
+    });
+  }
+
+  updateCustomPlanRequest(payload) {
+    return this.requestsUtil.putRequest(`someplans/${this.plan.id}`, payload);
   }
 }

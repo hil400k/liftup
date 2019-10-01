@@ -23,37 +23,25 @@ export class CustomPlanService {
     const planParams = {
       name: values.planName,
       type: values.planType,
-      creator: this.auth.currentUserValue._id
+      user: this.auth.currentUserValue._id,
+      workouts: []
     };
 
-    if (values.planType) {
-      return this.requestsUtil.postRequest('customplans', planParams)
-        .pipe(
-          switchMap((plan: any) => {
-            const workoutParams = {
-              name: 'oneExercisePlan-workoutName',
-              customPlan: plan.id
-            };
-            return this.workoutService.createWorkout(workoutParams);
-          })
-        );
-    } else {
-      return this.requestsUtil.postRequest('customplans', planParams);
-    }
+    return this.requestsUtil.postRequest('someplans', planParams);
   }
 
   removeCustomPlan(plan) {
-    return this.requestsUtil.deleteRequest(`customplans/${plan.id}`);
+    return this.requestsUtil.deleteRequest(`someplans/${plan.id}`);
   }
 
   getAllCustomPlans() {
     return this.auth.currentUser$.pipe(
       switchMap((resp) => {
-        return this.requestsUtil.getRequest(`customplans?creator=${resp.user._id}`).pipe(
+        return this.requestsUtil.getRequest(`someplans?user=${resp.user._id}`).pipe(
           map(plans => {
             this.plans = plans;
 
-            return plans;
+            return this.plans;
           })
         );
       })
