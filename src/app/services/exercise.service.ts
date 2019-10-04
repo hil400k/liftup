@@ -128,7 +128,7 @@ export class ExerciseService {
   }
 
   updateCustomPlanRequest(payload, exercises) {
-    return this.requestsUtil.putRequest(`someplans/${this.workoutService.plan.id}`, payload)
+    return this.requestsUtil.putRequest(`plans/${this.workoutService.plan.id}`, payload)
       .pipe(switchMap(() => {
         this.exercises = exercises;
         return of(this.exercises);

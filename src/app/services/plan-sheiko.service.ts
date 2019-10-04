@@ -21,7 +21,8 @@ export class PlanSheikoService {
     return this.auth.currentUser$.pipe(
       switchMap(userResp => {
         if (userResp && userResp.user._id) {
-          return this.requestsUtil.getRequest(`plans?creator=${userResp.user._id}`).pipe(
+          console.info(userResp);
+          return this.requestsUtil.getRequest(`plansheikos?user=${userResp.user._id}`).pipe(
             map((resp: any) => {
               this.planId = resp && resp[0] && resp[0].id;
 
@@ -41,15 +42,15 @@ export class PlanSheikoService {
   }
 
   updateScores(scores) {
-    return this.requestsUtil.putRequest(`plans/${this.planId}`, scores);
+    return this.requestsUtil.putRequest(`plansheikos/${this.planId}`, scores);
   }
 
   createScores(scores) {
     const creator = this.auth.currentUserValue && this.auth.currentUserValue._id;
-    const payload = { ...scores, creator };
+    const payload = { ...scores, user: creator };
 
     if (payload) {
-      return this.requestsUtil.postRequest(`plans`, payload).pipe(
+      return this.requestsUtil.postRequest(`plansheikos`, payload).pipe(
         map((plan: any) => {
           this.planId = plan.id;
 

@@ -31,7 +31,7 @@ export class WorkoutService {
   }
 
   getWorkouts(params) {
-    return this.requestsUtil.getRequest(`someplans/${params.planId}`).pipe(
+    return this.requestsUtil.getRequest(`plans/${params.planId}`).pipe(
       map((resp: any) => {
         resp.workouts = resp.workouts.sort(function (a, b) {
           return a.date - b.date;
@@ -70,6 +70,6 @@ export class WorkoutService {
   }
 
   updateCustomPlanRequest(payload) {
-    return this.requestsUtil.putRequest(`someplans/${this.plan.id}`, payload);
+    return this.requestsUtil.putRequest(`plans/${this.plan.id}`, payload);
   }
 }

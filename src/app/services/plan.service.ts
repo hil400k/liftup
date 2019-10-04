@@ -34,17 +34,17 @@ export class PlanService {
       workouts: workouts
     };
 
-    return this.requestsUtil.postRequest('someplans', planParams);
+    return this.requestsUtil.postRequest('plans', planParams);
   }
 
   removePlan(plan) {
-    return this.requestsUtil.deleteRequest(`someplans/${plan.id}`);
+    return this.requestsUtil.deleteRequest(`plans/${plan.id}`);
   }
 
   getPlans() {
     return this.auth.currentUser$.pipe(
       switchMap((resp) => {
-        return this.requestsUtil.getRequest(`someplans?user=${resp.user._id}`).pipe(
+        return this.requestsUtil.getRequest(`plans?user=${resp.user._id}`).pipe(
           map(plans => {
             this.plans = plans;
 
