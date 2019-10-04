@@ -21,7 +21,6 @@ export class PlanSheikoService {
     return this.auth.currentUser$.pipe(
       switchMap(userResp => {
         if (userResp && userResp.user._id) {
-          console.info(userResp);
           return this.requestsUtil.getRequest(`plansheikos?user=${userResp.user._id}`).pipe(
             map((resp: any) => {
               this.planId = resp && resp[0] && resp[0].id;
