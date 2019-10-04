@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RequestsUtilService } from '../../services/requests-util.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
   kgs;
 
   constructor(
-    private requestsUtil: RequestsUtilService
+    private requestsUtil: RequestsUtilService,
+    private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -38,5 +40,9 @@ export class HomeComponent implements OnInit {
     } else {
       this.pounds = (Number(value) * 2.2046).toFixed(2);
     }
+  }
+
+  getSanitized(code) {
+    return this._sanitizer.bypassSecurityTrustHtml(code);
   }
 }

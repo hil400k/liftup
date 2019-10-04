@@ -31,7 +31,7 @@
   <div *ngFor="let newsItem of news" class="card text-white bg-dark mb-3">
     <div class="card-header">{{newsItem.title}}</div>
     <div class="card-body">
-      <p class="card-text" [textContent]="newsItem.description">
+      <p class="card-text" [innerHTML]="getSanitized(newsItem.description)">
       </p>
     </div>
   </div>
