@@ -44,5 +44,8 @@
       <svg-icon name="close" class="close-icon"></svg-icon>
     </button>
   </div>
+  <p *ngIf="plans && !plans.length">
+    У вас ще немає жодної програми
+  </p>
 </div>
 
