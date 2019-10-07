@@ -52,7 +52,7 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
       { path: 'plans/:planId', component: PlanComponent, canActivate: [AuthGuard] },
       { path: 'plans', component: PlansComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
-    ]),
+    ], { useHash: true }),
     FormsModule,
     HttpClientModule
   ],
