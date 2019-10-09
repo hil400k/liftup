@@ -1,0 +1,13 @@
+.search-tags {
+  .badge {
+    cursor: pointer;
+    &:hover {
+      color: #000;
+    }
+    font-size: 14px;
+    margin-right: 10px;
+  }
+}
+.name-button {
+  width: 100%;
+}

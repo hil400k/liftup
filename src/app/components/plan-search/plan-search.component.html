@@ -1,0 +1,46 @@
+<div>
+  <h4 class="text-center">Пошук програми</h4>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Назва програми" aria-label="Назва програми" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search({})">Пошук</button>
+    </div>
+  </div>
+  <p class="text-center"> Пошукові теги </p>
+  <div class="text-center search-tags mb-3">
+    <span class="badge badge-primary" (click)="search({ tag: 'strength' })">Сила</span>
+    <span class="badge badge-secondary" (click)="search({ tag: 'endurance' })">Витривалість</span>
+    <span class="badge badge-success" (click)="search({ tag: 'muscleDefinition' })">Рельєф</span>
+  </div>
+  <p class="text-center"> Результати пошуку </p>
+
+<!-- Plans array -->
+
+
+
+  <div>
+    <div class="plan" *ngFor="let plan of plans">
+      <p>
+        <button type="button"
+                class="btn btn-outline-primary name-button"
+                (click)="plan.opened = !plan.opened"
+                [attr.aria-expanded]="!plan.opened"
+                [textContent]="getPlanName(plan)"
+                [attr.aria-controls]="plan.id">
+
+        </button>
+      </p>
+      <div [attr.id]="plan.id" [ngbCollapse]="!plan.opened">
+        <div class="card">
+          <div class="card-body">
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

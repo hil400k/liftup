@@ -21,6 +21,7 @@
             <a class="nav-link" (click)="collapseNav()" routerLink="/plan-sheiko" routerLinkActive="active">Програма Шейко</a>
             <ng-container *ngIf="auth.currentUserValue">
               <a class="nav-link" (click)="collapseNav()" routerLink="/plans" routerLinkActive="active">Мої програми</a>
+              <a class="nav-link" (click)="collapseNav()" routerLink="/plan-search" routerLinkActive="active">Пошук програми</a>
             </ng-container>
             <a class="nav-link" (click)="collapseNav()" routerLink="/login" routerLinkActive="active">Логін</a>
           </nav>
@@ -35,6 +36,7 @@
         <a class="nav-link" routerLink="/plan-sheiko" routerLinkActive="active">Програма Шейко</a>
         <ng-container *ngIf="auth.currentUserValue">
           <a class="nav-link" routerLink="/plans" routerLinkActive="active">Мої програми</a>
+          <a class="nav-link" routerLink="/plan-search" routerLinkActive="active">Пошук програми</a>
         </ng-container>
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Логін</a>
       </nav>

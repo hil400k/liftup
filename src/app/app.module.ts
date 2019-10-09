@@ -25,6 +25,7 @@ import { LoaderIconComponent } from './components/loader-icon/loader-icon.compon
 import { ExerciseComponent } from './components/exercise/exercise.component';
 import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.component';
 import { PlanSheikoService } from './services/plan-sheiko.service';
+import { PlanSearchComponent } from './components/plan-search/plan-search.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
     SvgDefinitionsComponent,
     LoaderIconComponent,
     ExerciseComponent,
-    OepExerciseComponent
+    OepExerciseComponent,
+    PlanSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { PlanSheikoService } from './services/plan-sheiko.service';
       { path: 'plan-sheiko', component: PlanSheikoComponent },
       { path: 'plans/:planId', component: PlanComponent, canActivate: [AuthGuard] },
       { path: 'plans', component: PlansComponent, canActivate: [AuthGuard] },
+      { path: 'plan-search', component: PlanSearchComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
     ]),
     FormsModule,
