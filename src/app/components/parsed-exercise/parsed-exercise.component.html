@@ -1,0 +1,20 @@
+<div>
+  <ng-container *ngIf="exercise.parseType === 'WEIGHT_SETS'; then weightSets; else sets;">
+  </ng-container>
+  <ng-template #weightSets>
+      <span *ngFor="let set of exercise.parsedSets; let i = index">
+        <span class="badge badge-primary badge-pill">
+          <span>
+            {{set.numb}} -
+          </span>
+          {{set.weight}} kg
+        </span>
+        <span class="badge badge-dark badge-pill">{{set.reps}}</span>
+      </span>
+  </ng-template>
+  <ng-template #sets>
+      <span *ngFor="let set of exercise.parsedSets">
+        <span class="badge badge-info badge-pill">{{set}}</span>
+      </span>
+  </ng-template>
+</div>

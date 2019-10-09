@@ -26,6 +26,7 @@ import { ExerciseComponent } from './components/exercise/exercise.component';
 import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.component';
 import { PlanSheikoService } from './services/plan-sheiko.service';
 import { PlanSearchComponent } from './components/plan-search/plan-search.component';
+import { ParsedExerciseComponent } from './components/parsed-exercise/parsed-exercise.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PlanSearchComponent } from './components/plan-search/plan-search.compon
     LoaderIconComponent,
     ExerciseComponent,
     OepExerciseComponent,
-    PlanSearchComponent
+    PlanSearchComponent,
+    ParsedExerciseComponent
   ],
   imports: [
     BrowserModule,

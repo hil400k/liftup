@@ -11,19 +11,14 @@ export class PlanSearchComponent implements OnInit {
   plans: any[];
 
   constructor(
-    private planSearchService: PlanSearchService
+    private planSearchService: PlanSearchService,
   ) { }
-
-  ngOnInit() {
-  }
 
   search(param) {
     if (param.tag) {
       this.planSearchService.searchByTag(param)
         .subscribe(plans => {
           this.plans = plans;
-
-          console.info(this.plans);
         });
     } else {
 

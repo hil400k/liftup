@@ -16,11 +16,9 @@
 
 <!-- Plans array -->
 
-
-
   <div>
     <div class="plan" *ngFor="let plan of plans">
-      <p>
+      <p class="mb-2 mt-2">
         <button type="button"
                 class="btn btn-outline-primary name-button"
                 (click)="plan.opened = !plan.opened"
@@ -34,7 +32,34 @@
         <div class="card">
           <div class="card-body">
 
+            <p class="additional-tags">
+              <span class="badge badge-light"
+                    *ngFor="let tag of plan.tags.split(',')"
+                    [textContent]="tag">
 
+              </span>
+            </p>
+
+            <ng-container *ngIf="plan.type === ''; then defaultPlan; else oneExercisePlan">
+            </ng-container>
+
+            <ng-template #defaultPlan>
+              <div *ngFor="let workout of plan.workouts">
+                <p [textContent]="workout.name"></p>
+                <ol class="exercises-list">
+                  <li *ngFor="let exercise of workout.exercises">
+                    <parsed-exercise [exercise]="exercise"></parsed-exercise>
+                  </li>
+                </ol>
+              </div>
+            </ng-template>
+            <ng-template #oneExercisePlan>
+              <ol class="exercises-list">
+                <li *ngFor="let exercise of plan.workouts[0].exercises">
+                  <parsed-exercise [exercise]="exercise"></parsed-exercise>
+                </li>
+              </ol>
+            </ng-template>
 
           </div>
         </div>
