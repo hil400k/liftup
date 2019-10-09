@@ -17,19 +17,28 @@ export class PlanSearchService {
   searchByTag(param) {
     return this.requestsUtil.getRequest(`plans?isPublic=true&tags_contains=${param.tag}`)
       .pipe(
-        map(resp => {
-          this.plans = resp.map(i => {
-            i.opened = false;
-            return i;
-          });
-
-          this.plans.forEach(p => {
-            p.workouts.forEach(w => {
-              w.exercises = this.exerciseService.parse(w.exercises);
-            });
-          });
-          return this.plans;
-        })
+        map(resp => this.prepareData(resp))
       );
   }
+
+  searchByName(name) {
+    return this.requestsUtil.getRequest(`plans?isPublic=true&name=${name}`)
+      .pipe(
+        map(resp => this.prepareData(resp))
+      );
+  }
+
+  prepareData(resp) {
+      this.plans = resp.map(i => {
+        i.opened = false;
+        return i;
+      });
+
+      this.plans.forEach(p => {
+        p.workouts.forEach(w => {
+          w.exercises = this.exerciseService.parse(w.exercises);
+        });
+      });
+      return this.plans;
+    }
 }

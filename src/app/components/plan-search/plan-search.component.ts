@@ -21,7 +21,10 @@ export class PlanSearchComponent implements OnInit {
           this.plans = plans;
         });
     } else {
-
+      this.planSearchService.searchByName(param)
+        .subscribe(plans => {
+          this.plans = plans;
+        });
     }
   }
 

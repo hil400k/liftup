@@ -1,9 +1,14 @@
 <div>
   <h4 class="text-center">Пошук програми</h4>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Назва програми" aria-label="Назва програми" aria-describedby="button-addon2">
+    <input type="text"
+           #searchInput
+           class="form-control"
+           placeholder="Назва програми"
+           aria-label="Назва програми"
+           aria-describedby="button-addon2">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search({})">Пошук</button>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search(searchInput.value)">Пошук</button>
     </div>
   </div>
   <p class="text-center"> Пошукові теги </p>
