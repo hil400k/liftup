@@ -3,6 +3,7 @@
   <div class="input-group mb-3">
     <input type="text"
            #searchInput
+           (keyup.enter)="search(searchInput.value)"
            class="form-control"
            placeholder="Назва програми"
            aria-label="Назва програми"
@@ -17,11 +18,11 @@
     <span class="badge badge-secondary" (click)="search({ tag: 'endurance' })">Витривалість</span>
     <span class="badge badge-success" (click)="search({ tag: 'muscleDefinition' })">Рельєф</span>
   </div>
-  <p class="text-center"> Результати пошуку </p>
 
 <!-- Plans array -->
 
-  <div>
+  <div *ngIf="plans" class="search-results">
+    <p class="text-center"> Результати пошуку </p>
     <div class="plan" *ngFor="let plan of plans">
       <p class="mb-2 mt-2">
         <button type="button"
@@ -40,7 +41,7 @@
             <p class="additional-tags">
               <span class="badge badge-light"
                     *ngFor="let tag of plan.tags.split(',')"
-                    [textContent]="tag">
+                    [textContent]="tags[tag]">
 
               </span>
             </p>
@@ -71,6 +72,7 @@
       </div>
     </div>
   </div>
+  <loader-icon *ngIf="showLoader"></loader-icon>
 </div>
 
 
