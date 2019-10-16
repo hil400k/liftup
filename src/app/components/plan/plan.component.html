@@ -2,6 +2,18 @@
 </ng-container>
 
 <ng-template #defaultPlan>
+
+  <div>
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="is-public">
+      <label class="custom-control-label" for="is-public">Публічність
+        <span style="font-size: 12px">
+          (доступна в пошуку для інших користувачів)
+        </span>
+      </label>
+    </div>
+  </div>
+
   <div class="input-group mb-3">
     <input type="text"
            name="workoutName"
