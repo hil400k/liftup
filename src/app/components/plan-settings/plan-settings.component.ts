@@ -22,5 +22,4 @@ export class PlanSettingsComponent implements OnInit {
   updateIsPublic() {
     this.planService.updatePlan(this.plan.id, { isPublic: this.plan.isPublic }).subscribe();
   }
-
 }

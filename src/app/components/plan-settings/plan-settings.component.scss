@@ -1,0 +1,15 @@
+.edit-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+}
+
+/deep/ svg {
+  width: 15px;
+  height: 15px;
+  fill: #fff;
+  &:hover {
+    fill: #007bff;
+  }
+}
