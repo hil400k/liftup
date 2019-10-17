@@ -27,6 +27,7 @@ import { OepExerciseComponent } from './components/oep-exercise/oep-exercise.com
 import { PlanSheikoService } from './services/plan-sheiko.service';
 import { PlanSearchComponent } from './components/plan-search/plan-search.component';
 import { ParsedExerciseComponent } from './components/parsed-exercise/parsed-exercise.component';
+import { PlanSettingsComponent } from './components/plan-settings/plan-settings.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ParsedExerciseComponent } from './components/parsed-exercise/parsed-exe
     ExerciseComponent,
     OepExerciseComponent,
     PlanSearchComponent,
-    ParsedExerciseComponent
+    ParsedExerciseComponent,
+    PlanSettingsComponent
   ],
   imports: [
     BrowserModule,

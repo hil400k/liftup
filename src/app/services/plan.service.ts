@@ -17,6 +17,10 @@ export class PlanService {
 
   }
 
+  updatePlan(planId, payload) {
+    return this.requestsUtil.putRequest(`plans/${planId}`, payload);
+  }
+
   createPlan(values) {
     const workouts = values.planType ? [
       {

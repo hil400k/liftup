@@ -1,0 +1,23 @@
+<div class="mb-2">
+  <div class="custom-control custom-switch">
+    <input type="checkbox"
+           [(ngModel)]="plan.isPublic"
+           (change)="updateIsPublic()"
+           class="custom-control-input"
+           id="is-public">
+    <label class="custom-control-label" for="is-public">Публічність
+      <span style="font-size: 12px">
+          (доступна в пошуку для інших користувачів)
+        </span>
+    </label>
+  </div>
+</div>
+
+<div class="tags mb-4">
+  <span>Теги: </span>
+  <span class="badge badge-light"
+        *ngFor="let tag of plan.tags.split(',')"
+        [textContent]="tags[tag]">
+
+              </span>
+</div>

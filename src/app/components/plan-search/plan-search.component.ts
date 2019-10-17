@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
-import tags from './tags';
+import tags from '../../constants/tags';
 
 @Component({
   selector: 'plan-search',

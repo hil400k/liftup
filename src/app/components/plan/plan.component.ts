@@ -14,6 +14,7 @@ export class PlanComponent implements OnInit {
   planId;
   type: string;
   oneExercisePlanData;
+  plan: any;
 
   constructor(
     private workoutService: WorkoutService,
@@ -30,6 +31,7 @@ export class PlanComponent implements OnInit {
   getWorkouts(planId) {
     this.workoutService.getWorkouts({ planId })
       .subscribe(resp => {
+        this.plan = resp;
         this.workouts = resp.workouts;
         this.type = resp.type || '';
 
