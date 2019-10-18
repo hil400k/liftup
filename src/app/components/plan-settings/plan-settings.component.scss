@@ -24,6 +24,15 @@ svg-icon {
 
 .tags-edit-input {
   width: auto;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  outline: none;
+  color: #fff;
+  &:focus {
+    box-shadow: none;
+  }
 }
 .badge {
   margin-right: 5px;

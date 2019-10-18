@@ -27,8 +27,9 @@
   </ng-template>
   <ng-template #defaultTemplate>
     <input [(ngModel)]="updatedTags"
+           placeholder="strength,endurance ..."
            type="text"
-           class="form-control d-inline-block tags-edit-input">
+           class="form-control d-inline-block tags-edit-input ml-2">
   </ng-template>
 
   <button class="edit-btn" (click)="edit()">
