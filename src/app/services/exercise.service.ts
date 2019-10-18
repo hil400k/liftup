@@ -38,9 +38,14 @@ export class ExerciseService {
     const exercises = planWorkouts[workoutIndex].exercises;
     const exerciseId = exercises.findIndex(i => i.id === exercise.id);
 
+    const ex = exercises[exerciseId];
+
     exercises[exerciseId] = {
-      ...exercises[exerciseId],
-      isDone: exercise.isDone
+      id: ex.id,
+      isDone: ex.isDone,
+      name: ex.name,
+      parseType: ex.parseType,
+      sets: ex.sets
     };
 
     return this.updateCustomPlanRequest( {
