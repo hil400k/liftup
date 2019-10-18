@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
-import tags from '../../constants/tags';
 
 @Component({
   selector: 'plan-search',
@@ -10,7 +9,6 @@ import tags from '../../constants/tags';
 export class PlanSearchComponent implements OnInit {
   isOpen: boolean;
   plans: any[];
-  tags: any = tags;
   showLoader: boolean = false;
 
   constructor(

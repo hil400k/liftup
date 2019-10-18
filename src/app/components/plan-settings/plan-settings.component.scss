@@ -5,11 +5,26 @@
   margin-left: 10px;
 }
 
-/deep/ svg {
-  width: 15px;
-  height: 15px;
-  fill: #fff;
-  &:hover {
-    fill: #007bff;
+svg-icon {
+  &[name="done"] {
+    /deep/ svg {
+      width: 25px;
+      height: 25px;
+    }
   }
+  /deep/ svg {
+    width: 15px;
+    height: 15px;
+    fill: #fff;
+    &:hover {
+      fill: #007bff;
+    }
+  }
+}
+
+.tags-edit-input {
+  width: auto;
+}
+.badge {
+  margin-right: 5px;
 }

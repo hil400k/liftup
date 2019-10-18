@@ -15,10 +15,24 @@
 
 <div class="tags mb-4">
   <span>Теги: </span>
-  <span class="badge badge-light"
-        *ngFor="let tag of plan.tags.split(',')"
-        [textContent]="tags[tag]">
+  <ng-container *ngIf="editingState; then defaultTemplate; else editingStateTemplate">
+  </ng-container>
+
+  <ng-template #editingStateTemplate>
+    <span class="badge badge-light"
+          *ngFor="let tag of plan.tags.split(',')"
+          [textContent]="tag">
 
               </span>
-  <button class="edit-btn"><svg-icon name="pencil"></svg-icon></button>
+  </ng-template>
+  <ng-template #defaultTemplate>
+    <input [(ngModel)]="updatedTags"
+           type="text"
+           class="form-control d-inline-block tags-edit-input">
+  </ng-template>
+
+  <button class="edit-btn" (click)="edit()">
+    <svg-icon *ngIf="!editingState" name="pencil"></svg-icon>
+    <svg-icon *ngIf="editingState" name="done"></svg-icon>
+  </button>
 </div>

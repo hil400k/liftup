@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import tags from '../../constants/tags';
 import { PlanService } from '../../services/plan.service';
 
 @Component({
@@ -9,17 +8,30 @@ import { PlanService } from '../../services/plan.service';
 })
 export class PlanSettingsComponent implements OnInit {
   @Input() plan: any;
-
-  tags: any[] = tags;
+  editingState: boolean = false;
+  updatedTags: string;
 
   constructor(
     private planService: PlanService,
   ) { }
 
   ngOnInit() {
+    this.updatedTags = this.plan.tags;
   }
 
   updateIsPublic() {
     this.planService.updatePlan(this.plan.id, { isPublic: this.plan.isPublic }).subscribe();
+  }
+
+  edit() {
+    this.editingState = !this.editingState;
+
+    if (this.updatedTags !== this.plan.tags) {
+      this.updatedTags = this.updatedTags.replace(/\s/g, '');
+      this.planService.updatePlan(this.plan.id, { tags: this.updatedTags })
+        .subscribe(resp => {
+          this.plan.tags = resp.tags;
+        });
+    }
   }
 }

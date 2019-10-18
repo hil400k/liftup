@@ -59,6 +59,8 @@
 </ng-template>
 
 <ng-template #oneExercisePlan>
+  <plan-settings *ngIf="plan" [plan]="plan"></plan-settings>
+
   <workout *ngIf="oneExercisePlanData"
            type="oneExercisePlan"
            [exerciseName]="oneExercisePlanData.planName"

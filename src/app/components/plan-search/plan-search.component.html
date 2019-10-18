@@ -14,9 +14,9 @@
   </div>
   <p class="text-center"> Пошукові теги </p>
   <div class="text-center search-tags mb-3">
-    <span class="badge badge-primary" (click)="search({ tag: 'strength' })">Сила</span>
-    <span class="badge badge-secondary" (click)="search({ tag: 'endurance' })">Витривалість</span>
-    <span class="badge badge-success" (click)="search({ tag: 'muscleDefinition' })">Рельєф</span>
+    <span class="badge badge-primary" (click)="search({ tag: 'strength' })">Strength</span>
+    <span class="badge badge-secondary" (click)="search({ tag: 'endurance' })">Endurance</span>
+    <span class="badge badge-success" (click)="search({ tag: 'muscleDefinition' })">Muscle Definition</span>
   </div>
 
 <!-- Plans array -->
@@ -41,7 +41,7 @@
             <p class="additional-tags">
               <span class="badge badge-light"
                     *ngFor="let tag of plan.tags.split(',')"
-                    [textContent]="tags[tag]">
+                    [textContent]="tag">
 
               </span>
             </p>
