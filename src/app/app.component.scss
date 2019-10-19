@@ -1,17 +1,23 @@
 .nav {
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 .mobi-nav {
   border-bottom: 5px solid rgba(0,0,0,0.2);
   margin-bottom: 20px;
+
+  .masthead-brand {
+    display: inline-block;
+  }
+  svg-icon[name="logo"] {
+    float: left;
+    margin-right: 5px;
+  }
+
   .nav-link {
     &.active {
       background: rgba(0,0,0,0.1);
     }
-  }
-
-  .masthead-brand {
-    border-bottom: 5px solid rgba(0,0,0,0.2);
   }
 
   .nav-button {
@@ -19,5 +25,14 @@
     background: #343a40;
     outline: none;
   }
+}
+
+svg-icon[name="logo"] {
+  float: left;
+  margin-right: 5px;
+}
+
+.masthead-brand {
+  font-weight: 800;
 }
 

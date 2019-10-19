@@ -12,7 +12,10 @@
                 [attr.aria-expanded]="!isCollapsed">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <h3 class="masthead-brand">Liftup</h3>
+        <div>
+          <svg-icon width="28px" height="28px" name="logo"></svg-icon>
+          <h3 class="masthead-brand">Liftup</h3>
+        </div>
       </nav>
       <div class="collapse" id="navbarToggleExternalContent" [ngbCollapse]="isCollapsed">
         <div class="bg-dark p-16">
@@ -30,7 +33,10 @@
     </div>
 
     <div class="inner d-none d-md-block">
-      <h3 class="masthead-brand text-uppercase">Liftup</h3>
+      <svg-icon width="28px" height="28px" name="logo"></svg-icon>
+      <h3 class="masthead-brand">
+        Liftup
+      </h3>
       <nav class="nav nav-masthead">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Головна</a>
         <a class="nav-link" routerLink="/plan-sheiko" routerLinkActive="active">Програма Шейко</a>

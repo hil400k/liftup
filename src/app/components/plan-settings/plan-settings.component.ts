@@ -30,7 +30,7 @@ export class PlanSettingsComponent implements OnInit {
       this.updatedTags = this.updatedTags.replace(/\s/g, '');
       this.planService.updatePlan(this.plan.id, { tags: this.updatedTags })
         .subscribe(resp => {
-          this.plan.tags = resp.tags;
+          this.plan.tags = (resp as any).tags;
         });
     }
   }
