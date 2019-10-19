@@ -1,0 +1,33 @@
+<div [ngClass]="location === 'oepExercise' ? 'oep-instructions-container' : 'instructions-container'">
+  <div class="title">
+    <span class="badge badge-danger"> <strong>Підказка !!!</strong></span>
+  </div>
+  <div class="instructions">
+    <p>
+    <span class="example1">
+    50-4-70-3-70-3
+    </span>
+      <span class="text">результат:</span>
+      <span class="result">
+      <span class="result-item">
+        1-50кг 4
+      </span>
+      <span class="result-item">
+        1-70кг 3
+      </span>
+      <span class="result-item">
+        2-70кг 3
+      </span>
+    </span>
+    </p>
+    <p>
+    <span class="example1">
+    10/10/10
+    </span>
+      <span class="text">результат:</span>
+      <span class="result">
+      <span *ngFor="let i of [10,10,10]" class="result-item" [textContent]="i"> </span>
+    </span>
+    </p>
+  </div>
+</div>

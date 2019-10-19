@@ -12,6 +12,7 @@
     </exercise>
   </ng-template>
   <ng-template #oepExercise>
+    <instructions-add-exercise [location]="'oepExercise'"></instructions-add-exercise>
     <oep-exercise
       *ngFor="let exercise of exercises; let i = index"
       (onSetDone)="setDone($event)"
@@ -22,6 +23,9 @@
     </oep-exercise>
   </ng-template>
 </ul>
+
+<instructions-add-exercise *ngIf="addExerciseState"></instructions-add-exercise>
+
 <div class="input-group mb-3">
   <input type="text" class="form-control"
          placeholder="{{inputCaption}}"

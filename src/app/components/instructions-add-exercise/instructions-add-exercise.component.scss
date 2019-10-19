@@ -1,0 +1,36 @@
+.instructions-container, .oep-instructions-container {
+  display: flex;
+  color: #000;
+  margin-bottom: 10px;
+  align-items: center;
+
+  .badge {
+    padding-right: 20px;
+    font-size: 100%;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+  span {
+    margin-right: 5px;
+  }
+  .example1 {
+    background: #969696d4;
+    padding: 4px;
+    border-radius: 4px;
+  }
+  .result-item {
+    background: #969696d4;
+    padding: 4px;
+    border-radius: 4px;
+  }
+}
+
+.oep-instructions-container {
+  flex-direction: column;
+  align-items: flex-start;
+  .badge {
+    margin-bottom: 10px;
+  }
+}
