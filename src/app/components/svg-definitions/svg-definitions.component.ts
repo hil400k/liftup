@@ -12,4 +12,8 @@ export class SvgDefinitionsComponent implements OnInit {
   ngOnInit() {
   }
 
+  getLocation() {
+    return window.location;
+  }
+
 }
