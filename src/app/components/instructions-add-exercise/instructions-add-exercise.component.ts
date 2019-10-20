@@ -7,10 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InstructionsAddExerciseComponent implements OnInit {
   @Input() location: string;
+  showHint: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeShowHint() {
+    this.showHint = !this.showHint;
   }
 
 }
