@@ -8,10 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class InstructionsAddExerciseComponent implements OnInit {
   @Input() location: string;
   showHint: boolean = false;
+  isOEP: boolean;
+  isDefaultP: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.isDefaultP = !this.location;
+    this.isOEP = this.location === 'oepExercise';
   }
 
   changeShowHint() {

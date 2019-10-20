@@ -1,11 +1,15 @@
-<div [ngClass]="location === 'oepExercise' ? 'oep-instructions-container' : 'instructions-container'">
+<div [ngClass]="isOEP ? 'oep-instructions-container' : 'instructions-container'">
   <div class="title">
-    <span (click)="changeShowHint()" class="badge badge-danger">
-      <strong *ngIf="!location">Підказка !!!</strong>
-      <strong *ngIf="location">Показати підказку</strong>
+    <span *ngIf="isOEP" (click)="changeShowHint()" class="badge badge-danger">
+      <strong *ngIf="!showHint">Показати підказку</strong>
+      <strong *ngIf="showHint">Сховати підказку</strong>
+    </span>
+
+    <span *ngIf="isDefaultP" class="badge badge-danger">
+      <strong >Підказка !!!</strong>
     </span>
   </div>
-  <div *ngIf="(showHint && location === 'oepExercise') || !location" class="instructions">
+  <div *ngIf="(showHint && isOEP) || isDefaultP" class="instructions">
     <p>
     <span class="example1">
     50-4-70-3-70-3

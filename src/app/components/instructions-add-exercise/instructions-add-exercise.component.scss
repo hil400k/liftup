@@ -1,8 +1,6 @@
 .instructions-container, .oep-instructions-container {
-  display: flex;
   color: #000;
   margin-bottom: 10px;
-  align-items: center;
 
   .badge {
     padding-right: 20px;
@@ -25,6 +23,11 @@
     padding: 4px;
     border-radius: 4px;
   }
+}
+
+.instructions-container {
+  display: flex;
+  align-items: center;
 }
 
 .oep-instructions-container {
