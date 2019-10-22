@@ -118,7 +118,13 @@ export class ExerciseService {
 
   parse(exercises) {
     return exercises.map(item => {
-      const weightSets = item.sets.split('-');
+      let weightSets;
+      if (item.sets.includes('-')) {
+        weightSets = item.sets.split('-');
+      } else {
+        weightSets = item.sets.trim().split(/\s+/);
+      }
+
       const sets = item.sets.split('/');
       if (weightSets.length > 1) {
         item.parseType = 'WEIGHT_SETS';
