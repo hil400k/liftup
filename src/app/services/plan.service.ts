@@ -32,6 +32,7 @@ export class PlanService {
       }
     ] : [];
     const planParams = {
+      isOriginal: true,
       name: values.planName,
       type: values.planType,
       user: this.auth.currentUserValue._id,
