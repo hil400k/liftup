@@ -24,6 +24,7 @@
   <div *ngIf="plans" class="search-results">
     <p class="text-center"> Результати пошуку </p>
     <p *ngIf="!plans.length" class="text-center">За вашим запитом нічого не знайдено = (</p>
+
     <div class="plan" *ngFor="let plan of plans">
       <p class="mb-2 mt-2">
         <button type="button"
@@ -79,6 +80,18 @@
         </div>
       </div>
     </div>
+
+    <div
+      *ngIf="showLoadNext()"
+      class="text-center mt-4">
+      <button
+        (click)="loadNext()"
+        class="btn btn-outline-primary">
+        Завантажити ще
+      </button>
+    </div>
+
+
   </div>
   <loader-icon *ngIf="showLoader"></loader-icon>
 </div>

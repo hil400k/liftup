@@ -8,6 +8,7 @@ import { ExerciseService } from './exercise.service';
 })
 export class PlanSearchService {
   plans: any[];
+  searchStep: number = 8;
 
   constructor(
     private requestsUtil: RequestsUtilService,
@@ -18,18 +19,26 @@ export class PlanSearchService {
     return this.requestsUtil.postRequest('plans', data);
   }
 
-  searchByTag(param) {
-    return this.requestsUtil.getRequest(`plans?isPublic=true&tags_contains=${param.tag}&isOriginal=true`)
+  searchByTag(param, stepParams?) {
+    const requestStr = `plans?isPublic=true&tags_contains=${param.tag}&isOriginal=true&${this.getStep(stepParams)}`;
+
+    return this.requestsUtil.getRequest(requestStr)
       .pipe(
         map(resp => this.prepareData(resp))
       );
   }
 
-  searchByName(name) {
-    return this.requestsUtil.getRequest(`plans?isPublic=true&name=${name}&isOriginal=true`)
+  searchByName(name, stepParams?) {
+    const requestStr = `plans?isPublic=true&name=${name}&isOriginal=true&${this.getStep(stepParams)}`;
+
+    return this.requestsUtil.getRequest(requestStr)
       .pipe(
         map(resp => this.prepareData(resp))
       );
+  }
+
+  getStep(stepParams) {
+    return `_start=${stepParams ? stepParams.start : 0}&_limit=${stepParams ? stepParams.end : this.searchStep}`;
   }
 
   prepareData(resp) {

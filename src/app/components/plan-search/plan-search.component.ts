@@ -12,6 +12,8 @@ export class PlanSearchComponent implements OnInit {
   plans: any[];
   showLoader: boolean = false;
   currentUserName: string = this.auth.currentUserValue.username;
+  step: number = this.planSearchService.searchStep;
+  loadParam: any;
 
   constructor(
     private planSearchService: PlanSearchService,
@@ -22,8 +24,21 @@ export class PlanSearchComponent implements OnInit {
     // console.info(tags);
   }
 
+  loadNext() {
+    const pLength = this.plans.length;
+    const loadMethod = typeof this.loadParam === 'object' ? 'searchByTag' : 'searchByName';
+    const stepParams = {
+      start: this.plans.length,
+      end: this.plans.length + this.step
+    };
+
+    this.planSearchService[loadMethod](this.loadParam, stepParams)
+      .subscribe(resp => {
+        this.plans = this.plans.concat(resp);
+      });
+  }
+
   addPlan(plan) {
-    console.info(plan);
     const copy: any = (({ name, tags, type, workouts }) => ({ name, tags, type, workouts }))(plan);
 
     copy.opened = false;
@@ -34,6 +49,7 @@ export class PlanSearchComponent implements OnInit {
   }
 
   search(param) {
+    this.loadParam = param;
     this.showLoader = true;
     if (param.tag) {
       this.planSearchService.searchByTag(param)
@@ -48,6 +64,10 @@ export class PlanSearchComponent implements OnInit {
           this.showLoader = false;
         });
     }
+  }
+
+  showLoadNext() {
+    return (this.plans.length % this.step === 0) && (this.plans.length);
   }
 
   getPlanName(plan) {
