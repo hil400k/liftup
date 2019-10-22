@@ -8,7 +8,7 @@ import { ExerciseService } from './exercise.service';
 })
 export class PlanSearchService {
   plans: any[];
-  searchStep: number = 1;
+  searchStep: number = 8;
 
   constructor(
     private requestsUtil: RequestsUtilService,
