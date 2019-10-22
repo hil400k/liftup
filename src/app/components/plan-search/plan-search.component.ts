@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
 import { AuthService } from '../../services/auth.service';
 
-import tags from './tags';
+import TAGS from './tags';
 
 @Component({
   selector: 'plan-search',
@@ -16,7 +16,9 @@ export class PlanSearchComponent implements OnInit {
   currentUserName: string = this.auth.currentUserValue.username;
   step: number = this.planSearchService.searchStep;
   loadParam: any;
-  tags: any[] = tags;
+  tags: any[] = TAGS;
+  searchType: boolean = true;
+  showLoadNext: boolean = false;
 
   constructor(
     private planSearchService: PlanSearchService,
@@ -38,6 +40,9 @@ export class PlanSearchComponent implements OnInit {
     this.planSearchService[loadMethod](this.loadParam, stepParams)
       .subscribe(resp => {
         this.plans = this.plans.concat(resp);
+        if (!resp.length) {
+          this.showLoadNext = false;
+        }
       });
   }
 
@@ -52,25 +57,21 @@ export class PlanSearchComponent implements OnInit {
   }
 
   search(param) {
-    this.loadParam = param;
+    this.loadParam = param.tag ? param : (this.searchType ? { tag: param } : param);
     this.showLoader = true;
-    if (param.tag) {
-      this.planSearchService.searchByTag(param)
-        .subscribe(plans => {
-          this.plans = plans;
-          this.showLoader = false;
-        });
+    if (param.tag || this.searchType) {
+      this.planSearchService.searchByTag(this.loadParam)
+        .subscribe((plans) => this.searchResponseHandler(plans));
     } else {
       this.planSearchService.searchByName(param)
-        .subscribe(plans => {
-          this.plans = plans;
-          this.showLoader = false;
-        });
+        .subscribe((plans) => this.searchResponseHandler(plans));
     }
   }
 
-  showLoadNext() {
-    return (this.plans.length % this.step === 0) && (this.plans.length);
+  searchResponseHandler(plans) {
+    this.plans = plans;
+    this.showLoader = false;
+    this.showLoadNext = Boolean((this.plans.length % this.step === 0) && (this.plans.length));
   }
 
   getPlanName(plan) {

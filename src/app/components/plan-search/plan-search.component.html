@@ -1,15 +1,29 @@
 <div>
   <h4 class="text-center">Пошук програми</h4>
+  <div class="text-center custom-control custom-switch mb-2 mt-2">
+    <input
+      [(ngModel)]="searchType"
+      type="checkbox"
+      class="custom-control-input"
+      id="searchType">
+    <label class="custom-control-label" for="searchType">
+      <span *ngIf="searchType">За тегом</span>
+      <span *ngIf="!searchType">За нозвою</span>
+    </label>
+  </div>
   <div class="input-group mb-3">
     <input type="text"
            #searchInput
            (keyup.enter)="search(searchInput.value)"
            class="form-control"
-           placeholder="Назва програми"
-           aria-label="Назва програми"
-           aria-describedby="button-addon2">
+           [attr.placeholder]="searchType ? 'Назва тега' : 'Назва програми'">
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search(searchInput.value)">Пошук</button>
+      <button
+        class="btn btn-outline-secondary"
+        type="button" id="button-addon2"
+        (click)="search(searchInput.value)">
+        Пошук
+      </button>
     </div>
   </div>
   <p class="text-center"> Пошукові теги </p>
@@ -85,7 +99,7 @@
     </div>
 
     <div
-      *ngIf="showLoadNext()"
+      *ngIf="showLoadNext"
       class="text-center mt-4">
       <button
         (click)="loadNext()"

@@ -1,4 +1,4 @@
-const tags = [
+const TAGS = [
   'сила',
   'витривалість',
   'рельєф',
@@ -10,4 +10,4 @@ const tags = [
   'станова тяга',
 ];
 
-export default tags;
+export default TAGS;
