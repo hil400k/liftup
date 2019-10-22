@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private requestsUtil: RequestsUtilService,
     private _sanitizer: DomSanitizer,
-    private auth: AuthService
+    public auth: AuthService
   ) { }
 
   ngOnInit() {
