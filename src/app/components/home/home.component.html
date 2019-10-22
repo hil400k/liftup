@@ -8,7 +8,7 @@
     <br>
     <a
       class="register-link"
-      *ngIf="auth.currentUserValue"
+      *ngIf="!auth.currentUserValue"
       routerLink="/login"
       routerLinkActive="active">Зареєструватись</a>
   </div>
