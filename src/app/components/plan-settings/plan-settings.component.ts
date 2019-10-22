@@ -27,7 +27,7 @@ export class PlanSettingsComponent implements OnInit {
     this.editingState = !this.editingState;
 
     if (this.updatedTags !== this.plan.tags) {
-      this.updatedTags = this.updatedTags.replace(/\s/g, '');
+      this.updatedTags = this.updatedTags.replace(/\s/g, ' ');
       this.planService.updatePlan(this.plan.id, { tags: this.updatedTags })
         .subscribe(resp => {
           this.plan.tags = (resp as any).tags;

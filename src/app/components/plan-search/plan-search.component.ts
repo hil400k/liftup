@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
 import { AuthService } from '../../services/auth.service';
 
+import tags from './tags';
+
 @Component({
   selector: 'plan-search',
   templateUrl: './plan-search.component.html',
@@ -14,6 +16,7 @@ export class PlanSearchComponent implements OnInit {
   currentUserName: string = this.auth.currentUserValue.username;
   step: number = this.planSearchService.searchStep;
   loadParam: any;
+  tags: any[] = tags;
 
   constructor(
     private planSearchService: PlanSearchService,
