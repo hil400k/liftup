@@ -28,11 +28,24 @@
 .instructions-container {
   display: flex;
   align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 10px 4px 4px 10px;
+  border-radius: 4px;
+  .info-icon {
+    margin-right: 10px;
+  }
 }
 
 .oep-instructions-container {
   flex-direction: column;
   align-items: flex-start;
+
+  .instructions {
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 10px 4px 4px 10px;
+    border-radius: 4px;
+  }
+
   .badge {
     margin-bottom: 10px;
     animation: hint-animation 2s infinite;

@@ -5,9 +5,10 @@
       <strong *ngIf="showHint">Сховати підказку</strong>
     </span>
 
-    <span *ngIf="isDefaultP" class="badge badge-danger">
-      <strong >Підказка !!!</strong>
-    </span>
+    <svg-icon *ngIf="isDefaultP"
+              class="info-icon"
+              width="24px"
+              height="24px" name="info"></svg-icon>
   </div>
   <div *ngIf="(showHint && isOEP) || isDefaultP" class="instructions">
     <p>
