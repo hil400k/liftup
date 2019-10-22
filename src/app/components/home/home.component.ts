@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.requestsUtil.getRequest('news')
+    this.requestsUtil.getRequest('news?_sort=createdAt:desc')
       .subscribe(data => {
         this.news = data;
       });
