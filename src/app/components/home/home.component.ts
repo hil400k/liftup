@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RequestsUtilService } from '../../services/requests-util.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private requestsUtil: RequestsUtilService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
