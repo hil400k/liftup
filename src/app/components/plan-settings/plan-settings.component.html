@@ -1,4 +1,6 @@
-<div class="mb-2">
+<div
+  *ngIf="plan.isOriginal"
+  class="mb-2">
   <div class="custom-control custom-switch">
     <input type="checkbox"
            [(ngModel)]="plan.isPublic"
@@ -24,6 +26,11 @@
           [textContent]="tag">
 
               </span>
+    <span
+      *ngIf="!plan.isOriginal"
+      class="badge badge-warning">
+      програма додана з каталогу
+    </span>
   </ng-template>
   <ng-template #defaultTemplate>
     <input [(ngModel)]="updatedTags"
@@ -32,7 +39,10 @@
            class="form-control d-inline-block tags-edit-input ml-2">
   </ng-template>
 
-  <button class="edit-btn" (click)="edit()">
+  <button
+    *ngIf="plan.isOriginal"
+    class="edit-btn"
+    (click)="edit()">
     <svg-icon *ngIf="!editingState" name="pencil"></svg-icon>
     <svg-icon *ngIf="editingState" name="done"></svg-icon>
   </button>

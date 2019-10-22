@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'plan-search',
@@ -10,13 +11,26 @@ export class PlanSearchComponent implements OnInit {
   isOpen: boolean;
   plans: any[];
   showLoader: boolean = false;
+  currentUserName: string = this.auth.currentUserValue.username;
 
   constructor(
     private planSearchService: PlanSearchService,
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
     // console.info(tags);
+  }
+
+  addPlan(plan) {
+    console.info(plan);
+    const copy: any = (({ name, tags, type, workouts }) => ({ name, tags, type, workouts }))(plan);
+
+    copy.opened = false;
+    copy.isOriginal = false;
+    copy.user = this.auth.currentUserValue._id;
+
+    this.planSearchService.addPlan(copy).subscribe();
   }
 
   search(param) {

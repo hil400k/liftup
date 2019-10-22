@@ -14,31 +14,35 @@ export class PlanSearchService {
     private exerciseService: ExerciseService,
   ) { }
 
+  addPlan(data) {
+    return this.requestsUtil.postRequest('plans', data);
+  }
+
   searchByTag(param) {
-    return this.requestsUtil.getRequest(`plans?isPublic=true&tags_contains=${param.tag}`)
+    return this.requestsUtil.getRequest(`plans?isPublic=true&tags_contains=${param.tag}&isOriginal=true`)
       .pipe(
         map(resp => this.prepareData(resp))
       );
   }
 
   searchByName(name) {
-    return this.requestsUtil.getRequest(`plans?isPublic=true&name=${name}`)
+    return this.requestsUtil.getRequest(`plans?isPublic=true&name=${name}&isOriginal=true`)
       .pipe(
         map(resp => this.prepareData(resp))
       );
   }
 
   prepareData(resp) {
-      this.plans = resp.map(i => {
-        i.opened = false;
-        return i;
-      });
+    this.plans = resp.map(i => {
+      i.opened = false;
+      return i;
+    });
 
-      this.plans.forEach(p => {
-        p.workouts.forEach(w => {
-          w.exercises = this.exerciseService.parse(w.exercises);
-        });
+    this.plans.forEach(p => {
+      p.workouts.forEach(w => {
+        w.exercises = this.exerciseService.parse(w.exercises);
       });
-      return this.plans;
-    }
+    });
+    return this.plans;
+  }
 }
