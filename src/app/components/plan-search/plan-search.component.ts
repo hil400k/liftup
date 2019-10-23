@@ -3,6 +3,7 @@ import { PlanSearchService } from '../../services/plan-search.service';
 import { AuthService } from '../../services/auth.service';
 
 import TAGS from './tags';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'plan-search',
@@ -22,7 +23,8 @@ export class PlanSearchComponent implements OnInit {
 
   constructor(
     private planSearchService: PlanSearchService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -78,4 +80,12 @@ export class PlanSearchComponent implements OnInit {
     return `${plan.name} @${plan.user.username}`;
   }
 
+  shareLink(payload: string) {
+    console.info(`'${payload}' has been copied to clipboard`);
+  }
+
+  getPlanLink(plan) {
+    const host = window.location.host;
+    return `${host}/plan-search/plan/${plan._id}`;
+  }
 }

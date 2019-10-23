@@ -64,6 +64,13 @@
               Додати
             </button>
 
+            <button
+              [copyClipboard]="getPlanLink(plan)"
+              (copied)="shareLink($event)"
+              class="btn btn-outline-primary btn-share">
+              Поділитись
+            </button>
+
             <p class="additional-tags">
               <span class="badge badge-light"
                     *ngFor="let tag of plan.tags.split(',')"
