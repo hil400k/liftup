@@ -22,7 +22,14 @@ export class PlanSearchService {
   searchById(id) {
     const requestStr = `plans/${id}?isPublic=true&isOriginal=true`;
 
-    return this.requestsUtil.getRequest(requestStr);
+    return this.requestsUtil.getRequest(requestStr).pipe(
+      map((resp: any) => {
+        resp.workouts.forEach(w => {
+          w.exercises = this.exerciseService.parse(w.exercises);
+        });
+        return resp;
+      })
+    );
   }
 
   searchByTag(param, stepParams?) {
