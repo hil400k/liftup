@@ -18,3 +18,13 @@
 .link-copied-msg {
   font-size: 12px;
 }
+.not-registered {
+  font-size: 12px;
+  svg-icon {
+    display: block;
+    margin-bottom: 10px;
+    /deep/ svg {
+      fill: #fff;
+    }
+  }
+}

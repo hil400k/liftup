@@ -64,7 +64,7 @@ import { PlanPreviewComponent } from './components/plan-preview/plan-preview.com
       { path: 'plans/:planId', component: PlanComponent, canActivate: [AuthGuard] },
       { path: 'plans', component: PlansComponent, canActivate: [AuthGuard] },
       { path: 'plan-search', component: PlanSearchComponent, canActivate: [AuthGuard] },
-      { path: 'plan-search/plan/:planId', component: PlanPreviewComponent, canActivate: [AuthGuard] },
+      { path: 'plan-search/plan/:planId', component: PlanPreviewComponent },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
     ]),
     FormsModule,
