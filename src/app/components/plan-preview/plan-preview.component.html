@@ -6,7 +6,7 @@
     Додати
   </button>
 
-  <div class="not-registered">
+  <div class="not-registered" *ngIf="!currentUserName">
     <svg-icon width="36px" height="36px" name="info"></svg-icon>
     <p>
       Зареєструйтесь або увійдіть, щоб додати програму собі
