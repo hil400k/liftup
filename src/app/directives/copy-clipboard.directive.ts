@@ -17,6 +17,10 @@ export class CopyClipboardDirective {
     if (!this.copyClipboard)
       return;
 
+    const range = document.createRange();
+    range.selectNodeContents(document.body);
+    document.getSelection().addRange(range);
+
     const listener: any = (e: ClipboardEvent) => {
       const clipboard: any = e.clipboardData || window['clipboardData'];
       clipboard.setData('text', this.copyClipboard.toString());
@@ -25,8 +29,10 @@ export class CopyClipboardDirective {
       this.copied.emit(this.copyClipboard);
     };
 
-    document.addEventListener('copy', listener, false)
+    document.addEventListener('copy', listener, false);
     document.execCommand('copy');
     document.removeEventListener('copy', listener, false);
+
+    document.getSelection().removeAllRanges();
   }
 }
