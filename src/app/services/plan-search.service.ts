@@ -19,6 +19,12 @@ export class PlanSearchService {
     return this.requestsUtil.postRequest('plans', data);
   }
 
+  searchById(id) {
+    const requestStr = `plans/${id}?isPublic=true&isOriginal=true`;
+
+    return this.requestsUtil.getRequest(requestStr);
+  }
+
   searchByTag(param, stepParams?) {
     const requestStr = `plans?isPublic=true&tags_contains=${param.tag}&isOriginal=true&${this.getStep(stepParams)}`;
 

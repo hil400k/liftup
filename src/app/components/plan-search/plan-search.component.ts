@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
-import { AuthService } from '../../services/auth.service';
 
 import TAGS from './tags';
 import { Router } from '@angular/router';
@@ -11,10 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./plan-search.component.scss']
 })
 export class PlanSearchComponent implements OnInit {
-  isOpen: boolean;
   plans: any[];
   showLoader: boolean = false;
-  currentUserName: string = this.auth.currentUserValue.username;
   step: number = this.planSearchService.searchStep;
   loadParam: any;
   tags: any[] = TAGS;
@@ -23,7 +20,6 @@ export class PlanSearchComponent implements OnInit {
 
   constructor(
     private planSearchService: PlanSearchService,
-    private auth: AuthService,
     private router: Router
   ) { }
 
@@ -48,16 +44,6 @@ export class PlanSearchComponent implements OnInit {
       });
   }
 
-  addPlan(plan) {
-    const copy: any = (({ name, tags, type, workouts }) => ({ name, tags, type, workouts }))(plan);
-
-    copy.opened = false;
-    copy.isOriginal = false;
-    copy.user = this.auth.currentUserValue._id;
-
-    this.planSearchService.addPlan(copy).subscribe();
-  }
-
   search(param) {
     this.loadParam = param.tag ? param : (this.searchType ? { tag: param } : param);
     this.showLoader = true;
@@ -78,14 +64,5 @@ export class PlanSearchComponent implements OnInit {
 
   getPlanName(plan) {
     return `${plan.name} @${plan.user.username}`;
-  }
-
-  shareLink(payload: string) {
-    console.info(`'${payload}' has been copied to clipboard`);
-  }
-
-  getPlanLink(plan) {
-    const host = window.location.host;
-    return `${host}/plan-search/plan/${plan._id}`;
   }
 }

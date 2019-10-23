@@ -57,48 +57,9 @@
         <div class="card">
           <div class="card-body">
 
-            <button
-              *ngIf="plan.user.username !== currentUserName"
-              (click)="addPlan(plan)"
-              class="btn btn-outline-primary btn-add-plan">
-              Додати
-            </button>
+            <plan-preview [plan]="plan">
 
-            <button
-              [copyClipboard]="getPlanLink(plan)"
-              (copied)="shareLink($event)"
-              class="btn btn-outline-primary btn-share">
-              Поділитись
-            </button>
-
-            <p class="additional-tags">
-              <span class="badge badge-light"
-                    *ngFor="let tag of plan.tags.split(',')"
-                    [textContent]="tag">
-
-              </span>
-            </p>
-
-            <ng-container *ngIf="plan.type === ''; then defaultPlan; else oneExercisePlan">
-            </ng-container>
-
-            <ng-template #defaultPlan>
-              <div *ngFor="let workout of plan.workouts">
-                <p [textContent]="workout.name"></p>
-                <ol class="exercises-list">
-                  <li *ngFor="let exercise of workout.exercises">
-                    <parsed-exercise [exercise]="exercise"></parsed-exercise>
-                  </li>
-                </ol>
-              </div>
-            </ng-template>
-            <ng-template #oneExercisePlan>
-              <ol class="exercises-list">
-                <li *ngFor="let exercise of plan.workouts[0].exercises">
-                  <parsed-exercise [exercise]="exercise"></parsed-exercise>
-                </li>
-              </ol>
-            </ng-template>
+            </plan-preview>
 
           </div>
         </div>

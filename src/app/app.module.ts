@@ -30,6 +30,7 @@ import { ParsedExerciseComponent } from './components/parsed-exercise/parsed-exe
 import { PlanSettingsComponent } from './components/plan-settings/plan-settings.component';
 import { InstructionsAddExerciseComponent } from './components/instructions-add-exercise/instructions-add-exercise.component';
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
+import { PlanPreviewComponent } from './components/plan-preview/plan-preview.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
     ParsedExerciseComponent,
     PlanSettingsComponent,
     InstructionsAddExerciseComponent,
-    CopyClipboardDirective
+    CopyClipboardDirective,
+    PlanPreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,7 @@ import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
       { path: 'plans/:planId', component: PlanComponent, canActivate: [AuthGuard] },
       { path: 'plans', component: PlansComponent, canActivate: [AuthGuard] },
       { path: 'plan-search', component: PlanSearchComponent, canActivate: [AuthGuard] },
-      { path: 'plan-search/plan/:planId', component: PlanSearchComponent, canActivate: [AuthGuard] },
+      { path: 'plan-search/plan/:planId', component: PlanPreviewComponent, canActivate: [AuthGuard] },
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
     ]),
     FormsModule,
