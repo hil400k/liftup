@@ -5,11 +5,11 @@
   vertical-align: text-top;
 }
 svg-icon {
+  line-height: 2.4;
   fill: #dc3545;
   float: right;
   /deep/ svg {
     width: 15px;
     height: 15px;
-    vertical-align: top;
   }
 }
