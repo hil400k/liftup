@@ -1,0 +1,58 @@
+.show-more, .show-less {
+  display: inline-block;
+  border-radius: 8px;
+  border: 1px solid #495057;
+  padding: 0px 8px;
+  margin: 0 5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.edit-btn, .done-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.edit-btn {
+  margin-left: 10px;
+}
+
+.done-btn {
+  position: absolute;
+  top: -30px;
+  right: 0px;
+}
+
+svg-icon {
+  &[name="done"] {
+    /deep/ svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  /deep/ svg {
+    width: 15px;
+    height: 15px;
+    fill: #fff;
+    &:hover {
+      fill: #007bff;
+    }
+  }
+}
+
+.description-edit-area {
+  background-color: transparent;
+  border-color: #ffffff0f;
+  color: #fff;
+  margin-bottom: 10px;
+
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.editing-state {
+  position: relative;
+}

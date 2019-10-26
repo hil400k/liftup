@@ -1,0 +1,63 @@
+<div class="plan-description">
+  <div>
+    <div
+      class="editing-state"
+      *ngIf="editingState">
+      <textarea
+        #newPlanDesc
+        [ngModel]="plan.description"
+        (keyup.enter)="edit(newPlanDesc.value)"
+        class="form-control description-edit-area"
+        id="exampleFormControlTextarea1"
+        rows="3">
+
+      </textarea>
+      <button
+        *ngIf="plan.isOriginal && editingState"
+        class="done-btn"
+        (click)="edit(newPlanDesc.value)">
+        <svg-icon name="done"></svg-icon>
+      </button>
+    </div>
+    <span *ngIf="!editingState">
+      <span
+        *ngIf="!plan.description">
+        Додайте опис
+      </span>
+      <ng-container
+        *ngIf="plan.description">
+
+        <span
+          *ngIf="!showFull"
+          [textContent]="miniDesc">
+        </span>
+        <span
+          *ngIf="showFull"
+          [textContent]="plan.description">
+        </span>
+
+        <span
+          (click)="changeState(true)"
+          *ngIf="!showFull"
+          class="show-more">
+          Показати все
+        </span>
+        <span
+          (click)="changeState()"
+          *ngIf="showFull"
+          class="show-less">
+          Показати менше
+        </span>
+
+      </ng-container>
+
+    </span>
+
+    <button
+      *ngIf="plan.isOriginal && !editingState"
+      class="edit-btn"
+      (click)="edit()">
+      <svg-icon name="pencil"></svg-icon>
+    </button>
+  </div>
+</div>

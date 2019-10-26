@@ -32,6 +32,7 @@ import { InstructionsAddExerciseComponent } from './components/instructions-add-
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
 import { PlanPreviewComponent } from './components/plan-preview/plan-preview.component';
 import { AccordionComponent } from './components/ui/accordion/accordion.component';
+import { PlanDescriptionComponent } from './components/plan-description/plan-description.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AccordionComponent } from './components/ui/accordion/accordion.componen
     InstructionsAddExerciseComponent,
     CopyClipboardDirective,
     PlanPreviewComponent,
-    AccordionComponent
+    AccordionComponent,
+    PlanDescriptionComponent
   ],
   imports: [
     BrowserModule,

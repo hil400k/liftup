@@ -15,6 +15,8 @@ export class PlanComponent implements OnInit {
   type: string;
   oneExercisePlanData;
   plan: any;
+  desc: string;
+  showFullDesc: boolean = false;
 
   constructor(
     private workoutService: WorkoutService,
