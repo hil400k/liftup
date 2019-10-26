@@ -1,6 +1,5 @@
 .instructions-container, .oep-instructions-container {
   color: #000;
-  margin-bottom: 10px;
 
   .badge {
     padding-right: 20px;
@@ -26,6 +25,7 @@
 }
 
 .instructions-container {
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   border: 1px solid rgba(0, 0, 0, 0.125);

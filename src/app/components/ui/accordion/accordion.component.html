@@ -1,0 +1,13 @@
+<div>
+  <button
+    [textContent]="title"
+    class="btn btn-outline-secondary"
+    type="button"
+    (click)="changeState()">
+  </button>
+  <div
+    class="content"
+    *ngIf="state">
+    <ng-content></ng-content>
+  </div>
+</div>

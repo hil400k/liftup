@@ -10,7 +10,6 @@ export class WorkoutComponent implements OnInit {
   @Input() workoutId: string;
   @Input() exercises: any[];
   @Input() type: string;
-  @Input() exerciseName: string;
 
   addExerciseState = false;
   inputCaption = '';

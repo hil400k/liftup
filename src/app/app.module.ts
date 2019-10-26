@@ -31,6 +31,7 @@ import { PlanSettingsComponent } from './components/plan-settings/plan-settings.
 import { InstructionsAddExerciseComponent } from './components/instructions-add-exercise/instructions-add-exercise.component';
 import { CopyClipboardDirective } from './directives/copy-clipboard.directive';
 import { PlanPreviewComponent } from './components/plan-preview/plan-preview.component';
+import { AccordionComponent } from './components/ui/accordion/accordion.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { PlanPreviewComponent } from './components/plan-preview/plan-preview.com
     PlanSettingsComponent,
     InstructionsAddExerciseComponent,
     CopyClipboardDirective,
-    PlanPreviewComponent
+    PlanPreviewComponent,
+    AccordionComponent
   ],
   imports: [
     BrowserModule,

@@ -61,11 +61,12 @@
 </ng-template>
 
 <ng-template #oneExercisePlan>
+  <h3 *ngIf="oneExercisePlanData" [textContent]="oneExercisePlanData.planName"></h3>
+
   <plan-settings *ngIf="plan" [plan]="plan"></plan-settings>
 
   <workout *ngIf="oneExercisePlanData"
            type="oneExercisePlan"
-           [exerciseName]="oneExercisePlanData.planName"
            [workoutId]="oneExercisePlanData.id"
            [exercises]="oneExercisePlanData.exercises">
 
