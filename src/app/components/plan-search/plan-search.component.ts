@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PlanSearchService } from '../../services/plan-search.service';
 
 import TAGS from './tags';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'plan-search',
   templateUrl: './plan-search.component.html',
   styleUrls: ['./plan-search.component.scss']
 })
-export class PlanSearchComponent implements OnInit {
+export class PlanSearchComponent implements OnInit, OnDestroy {
   plans: any[];
   showLoader: boolean = false;
   step: number = this.planSearchService.searchStep;
@@ -20,11 +19,14 @@ export class PlanSearchComponent implements OnInit {
 
   constructor(
     private planSearchService: PlanSearchService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
     // console.info(tags);
+  }
+
+  ngOnDestroy(): void {
+
   }
 
   loadNext() {

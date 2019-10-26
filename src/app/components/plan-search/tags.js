@@ -8,6 +8,7 @@ const TAGS = [
   'руки',
   'присяд',
   'станова тяга',
+  'ноги',
 ];
 
 export default TAGS;

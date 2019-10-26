@@ -8,6 +8,7 @@ import { PlanService } from '../../services/plan.service';
 })
 export class PlanSettingsComponent implements OnInit {
   @Input() plan: any;
+
   editingState: boolean = false;
   updatedTags: string;
 

@@ -17,10 +17,10 @@
 
 <div class="tags mb-4">
   <span>Теги: </span>
-  <ng-container *ngIf="editingState; then defaultTemplate; else editingStateTemplate">
+  <ng-container *ngIf="editingState; then editingStateTemplate; else defaultTemplate">
   </ng-container>
 
-  <ng-template #editingStateTemplate>
+  <ng-template #defaultTemplate >
     <span class="badge badge-light"
           *ngFor="let tag of plan.tags.split(',')"
           [textContent]="tag">
@@ -32,8 +32,9 @@
       програма додана з каталогу
     </span>
   </ng-template>
-  <ng-template #defaultTemplate>
+  <ng-template #editingStateTemplate>
     <input [(ngModel)]="updatedTags"
+           (keyup.enter)="edit()"
            placeholder="сила,витривалість ..."
            type="text"
            class="form-control d-inline-block tags-edit-input ml-2">

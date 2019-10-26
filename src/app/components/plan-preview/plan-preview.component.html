@@ -6,6 +6,12 @@
     Додати
   </button>
 
+  <span
+    class="link-copied-msg"
+    *ngIf="showAddingSuccess">
+    Програму додано!
+  </span>
+
   <div class="not-registered" *ngIf="!currentUserName">
     <svg-icon width="36px" height="36px" name="info"></svg-icon>
     <p>

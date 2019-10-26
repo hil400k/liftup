@@ -42,7 +42,7 @@ export class PlanSearchService {
   }
 
   searchByName(name, stepParams?) {
-    const requestStr = `plans?isPublic=true&name=${name}&isOriginal=true&${this.getStep(stepParams)}`;
+    const requestStr = `plans?isPublic=true&name_contains=${name}&isOriginal=true&${this.getStep(stepParams)}`;
 
     return this.requestsUtil.getRequest(requestStr)
       .pipe(

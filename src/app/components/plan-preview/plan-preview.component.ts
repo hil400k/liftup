@@ -14,6 +14,7 @@ export class PlanPreviewComponent implements OnInit {
   planId: string;
   isSeparatePage: boolean;
   showSharingSuccess: boolean = false;
+  showAddingSuccess: boolean = false;
 
   currentUserName: string = this.auth.currentUserValue && this.auth.currentUserValue.username;
 
@@ -43,7 +44,13 @@ export class PlanPreviewComponent implements OnInit {
     copy.isOriginal = false;
     copy.user = this.auth.currentUserValue._id;
 
-    this.planSearchService.addPlan(copy).subscribe();
+    this.planSearchService.addPlan(copy).subscribe(() => {
+      this.showAddingSuccess = true;
+
+      setTimeout(() => {
+        this.showAddingSuccess = false;
+      }, 2000);
+    });
   }
 
   shareLink(payload: string) {
