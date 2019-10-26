@@ -13,15 +13,16 @@
 
       </textarea>
       <button
-        *ngIf="plan.isOriginal && editingState"
+        *ngIf="!isReadOnlyMode && editingState"
         class="done-btn"
         (click)="edit(newPlanDesc.value)">
         <svg-icon name="done"></svg-icon>
       </button>
     </div>
     <span *ngIf="!editingState">
+
       <span
-        *ngIf="!plan.description">
+        *ngIf="!plan.description && !isReadOnlyMode">
         Додайте опис
       </span>
       <ng-container
@@ -38,7 +39,7 @@
 
         <span
           (click)="changeState(true)"
-          *ngIf="!showFull"
+          *ngIf="!showFull && !isDescriptionShort"
           class="show-more">
           Показати все
         </span>
@@ -54,10 +55,11 @@
     </span>
 
     <button
-      *ngIf="plan.isOriginal && !editingState"
+      *ngIf="!isReadOnlyMode && !editingState"
       class="edit-btn"
-      (click)="edit()">
+      (click)="changeEditingState()">
       <svg-icon name="pencil"></svg-icon>
     </button>
+
   </div>
 </div>

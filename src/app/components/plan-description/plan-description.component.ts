@@ -8,29 +8,41 @@ import { PlanService } from '../../services/plan.service';
 })
 export class PlanDescriptionComponent implements OnInit {
   @Input() plan: any;
+  @Input() readOnly: boolean;
 
-  showFull: boolean;
+  showFull: boolean = false;
   editingState: boolean = false;
 
   get miniDesc(): string {
-    return this.plan.description.slice(0,150) + ' ...';
+    return this.isDescriptionShort ? this.plan.description : this.plan.description.slice(0, 150) + ' ...';
   }
 
+  get isDescriptionShort() {
+    return this.plan.description.length < 150;
+  }
+
+  get isReadOnlyMode() {
+    return (!this.plan.isOriginal) || (this.readOnly);
+  }
 
   constructor(
     private planService: PlanService
   ) { }
 
   ngOnInit() {
-    this.changeState();
+
   }
 
   changeState(full?: boolean) {
     this.showFull = full;
   }
 
-  edit(newPlanDesc: string) {
+  changeEditingState() {
     this.editingState = !this.editingState;
+  }
+
+  edit(newPlanDesc: string) {
+    this.changeEditingState();
 
     this.planService.updatePlan(this.plan._id, {
       description: newPlanDesc

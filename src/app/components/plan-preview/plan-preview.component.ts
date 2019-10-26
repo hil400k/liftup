@@ -38,7 +38,8 @@ export class PlanPreviewComponent implements OnInit {
   }
 
   addPlan(plan) {
-    const copy: any = (({ name, tags, type, workouts }) => ({ name, tags, type, workouts }))(plan);
+    const copy: any = (({ name, tags, type, description, workouts }) =>
+      ({ name, tags, type, description, workouts }))(plan);
 
     copy.opened = false;
     copy.isOriginal = false;

@@ -32,6 +32,13 @@
     Посилання скопійовано!
   </span>
 
+  <plan-description
+    *ngIf="plan"
+    [plan]="plan"
+    [readOnly]="true">
+
+  </plan-description>
+
   <p class="additional-tags">
               <span class="mr-2">Теги: </span>
               <span class="badge badge-light"
