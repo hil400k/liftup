@@ -43,6 +43,13 @@
     <button class="btn btn-danger btn-sm float-right" (click)="removePlan(plan)">
       <svg-icon name="close" class="close-icon"></svg-icon>
     </button>
+    <div class="is-public-badge-wrap">
+      <span
+        *ngIf="plan.isPublic"
+        class="badge badge-primary">
+      Публічна
+    </span>
+    </div>
   </div>
   <p *ngIf="plans && !plans.length">
     У вас ще немає жодної програми
