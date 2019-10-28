@@ -30,11 +30,11 @@
 
         <span
           *ngIf="!showFull"
-          [textContent]="miniDesc">
+          [innerHTML]="miniDesc">
         </span>
         <span
           *ngIf="showFull"
-          [textContent]="plan.description">
+          [innerHTML]="sanitizedDesc">
         </span>
 
         <span

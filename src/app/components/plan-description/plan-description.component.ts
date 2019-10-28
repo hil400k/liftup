@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlanService } from '../../services/plan.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'plan-description',
@@ -10,11 +11,13 @@ export class PlanDescriptionComponent implements OnInit {
   @Input() plan: any;
   @Input() readOnly: boolean;
 
+  sanitizedDesc: any;
+
   showFull: boolean = false;
   editingState: boolean = false;
 
   get miniDesc(): string {
-    return this.isDescriptionShort ? this.plan.description : this.plan.description.slice(0, 150) + ' ...';
+    return this.isDescriptionShort ? this.sanitizedDesc : this.plan.description.slice(0, 150) + ' ...';
   }
 
   get isDescriptionShort() {
@@ -26,11 +29,12 @@ export class PlanDescriptionComponent implements OnInit {
   }
 
   constructor(
-    private planService: PlanService
+    private planService: PlanService,
+    private _sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
-
+    this.sanitizedDesc = this.getSanitized(this.plan.description);
   }
 
   changeState(full?: boolean) {
@@ -48,7 +52,12 @@ export class PlanDescriptionComponent implements OnInit {
       description: newPlanDesc
     }).subscribe((plan: any) => {
       this.plan.description = plan.description;
+      this.sanitizedDesc = this.getSanitized(this.plan.description);
     });
+  }
+
+  getSanitized(code) {
+    return this._sanitizer.bypassSecurityTrustHtml(code);
   }
 
 }
