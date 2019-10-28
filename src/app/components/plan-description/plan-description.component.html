@@ -7,6 +7,8 @@
         #newPlanDesc
         [ngModel]="plan.description"
         (keyup.enter)="edit(newPlanDesc.value)"
+        (keyup)="textAreaAdjust(newPlanDesc)"
+        (focus)="textAreaAdjust(newPlanDesc)"
         class="form-control description-edit-area"
         id="exampleFormControlTextarea1"
         rows="3">

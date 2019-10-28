@@ -52,4 +52,9 @@ export class PlanDescriptionComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(code);
   }
 
+  textAreaAdjust(e) {
+    e.style.height = '1px';
+    e.style.height = (24 + e.scrollHeight) + 'px';
+  }
+
 }
