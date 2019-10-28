@@ -7,7 +7,6 @@
   border-radius: 8px;
   border: 1px solid #495057;
   padding: 0px 8px;
-  margin: 0 5px;
   cursor: pointer;
   user-select: none;
 }
@@ -59,4 +58,9 @@ svg-icon {
 
 .editing-state {
   position: relative;
+}
+
+.description-content {
+  margin-right: 10px;
+  display: inline !important;
 }

@@ -16,14 +16,6 @@ export class PlanDescriptionComponent implements OnInit {
   showFull: boolean = false;
   editingState: boolean = false;
 
-  get miniDesc(): string {
-    return this.isDescriptionShort ? this.sanitizedDesc : this.plan.description.slice(0, 150) + ' ...';
-  }
-
-  get isDescriptionShort() {
-    return this.plan.description.length < 150;
-  }
-
   get isReadOnlyMode() {
     return (!this.plan.isOriginal) || (this.readOnly);
   }

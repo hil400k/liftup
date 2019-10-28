@@ -29,25 +29,22 @@
         *ngIf="plan.description">
 
         <span
-          *ngIf="!showFull"
-          [innerHTML]="miniDesc">
-        </span>
-        <span
+          class="description-content"
           *ngIf="showFull"
           [innerHTML]="sanitizedDesc">
         </span>
 
         <span
           (click)="changeState(true)"
-          *ngIf="!showFull && !isDescriptionShort"
+          *ngIf="!showFull"
           class="show-more">
-          Показати все
+          Читати опис
         </span>
         <span
           (click)="changeState()"
           *ngIf="showFull"
           class="show-less">
-          Показати менше
+          Схвати опис
         </span>
 
       </ng-container>
