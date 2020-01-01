@@ -1,6 +1,6 @@
 .close-icon {
   fill: #fff;
-  /deep/ svg {
+  ::ng-deep svg {
     width: 10px;
     height: 10px;
   }

@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit {
-  @ViewChild('workoutNameEl') workoutNameEl: ElementRef;
+  @ViewChild('workoutNameEl', { static: false }) workoutNameEl: ElementRef;
   nextWorkoutName = '';
   workouts;
   planId;

@@ -23,7 +23,7 @@
   svg-icon {
     display: block;
     margin-bottom: 10px;
-    /deep/ svg {
+    ::ng-deep svg {
       fill: #fff;
     }
   }

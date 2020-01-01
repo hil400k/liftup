@@ -21,7 +21,7 @@
 }
 svg-icon {
   fill: #dc3545;
-  /deep/ svg {
+  ::ng-deep svg {
     width: 15px;
     height: 15px;
   }

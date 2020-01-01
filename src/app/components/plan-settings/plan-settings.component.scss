@@ -7,12 +7,12 @@
 
 svg-icon {
   &[name="done"] {
-    /deep/ svg {
+    ::ng-deep svg {
       width: 25px;
       height: 25px;
     }
   }
-  /deep/ svg {
+  ::ng-deep svg {
     width: 15px;
     height: 15px;
     fill: #fff;
