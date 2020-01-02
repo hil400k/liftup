@@ -1,5 +1,6 @@
 .plan-description {
   margin-bottom: 10px;
+  position: relative;
 }
 
 .show-more, .show-less {
@@ -19,6 +20,9 @@
 
 .edit-btn {
   margin-left: 10px;
+  position: absolute;
+  right: -24px;
+  top: -30px;
 }
 
 .done-btn {
@@ -64,4 +68,12 @@ svg-icon {
 .description-content {
   margin-right: 10px;
   display: inline !important;
+}
+
+::ng-deep {
+  .quill-view {
+    .ql-editor {
+      padding: 0;
+    }
+  }
 }

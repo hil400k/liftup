@@ -11,6 +11,7 @@ export class PlanDescriptionComponent implements OnInit {
   @Input() plan: any;
   @Input() readOnly: boolean;
 
+  content: any;
   sanitizedDesc: any;
 
   showFull: boolean = false;
@@ -37,11 +38,16 @@ export class PlanDescriptionComponent implements OnInit {
     this.editingState = !this.editingState;
   }
 
-  edit(newPlanDesc: string) {
-    this.changeEditingState();
+  contentChanged(e: any) {
+    this.content = e.html;
+  }
 
+  edit(newPlanDesc?: any) {
+    const desc = newPlanDesc ? newPlanDesc : this.content;
+
+    this.changeEditingState();
     this.planService.updatePlan(this.plan._id, {
-      description: newPlanDesc
+      description: desc
     }).subscribe((plan: any) => {
       this.plan.description = plan.description;
       this.sanitizedDesc = this.getSanitized(this.plan.description);
@@ -51,10 +57,4 @@ export class PlanDescriptionComponent implements OnInit {
   getSanitized(code) {
     return this._sanitizer.bypassSecurityTrustHtml(code);
   }
-
-  textAreaAdjust(e) {
-    e.style.height = '1px';
-    e.style.height = (24 + e.scrollHeight) + 'px';
-  }
-
 }

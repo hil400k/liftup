@@ -3,21 +3,16 @@
     <div
       class="editing-state"
       *ngIf="editingState">
-      <textarea
-        #newPlanDesc
+      <quill-editor
         [ngModel]="plan.description"
-        (keyup.enter)="edit(newPlanDesc.value)"
-        (keyup)="textAreaAdjust(newPlanDesc)"
-        (focus)="textAreaAdjust(newPlanDesc)"
-        class="form-control description-edit-area"
-        id="exampleFormControlTextarea1"
-        rows="3">
-
-      </textarea>
+        (keyup.enter)="edit()"
+        (onContentChanged)="contentChanged($event)"
+        theme="snow">
+      </quill-editor>
       <button
         *ngIf="!isReadOnlyMode && editingState"
         class="done-btn"
-        (click)="edit(newPlanDesc.value)">
+        (click)="edit()">
         <svg-icon name="done"></svg-icon>
       </button>
     </div>
@@ -30,24 +25,10 @@
       <ng-container
         *ngIf="plan.description">
 
-        <span
-          class="description-content"
-          *ngIf="showFull"
-          [innerHTML]="sanitizedDesc">
-        </span>
-
-        <span
-          (click)="changeState(true)"
-          *ngIf="!showFull"
-          class="show-more">
-          Читати опис
-        </span>
-        <span
-          (click)="changeState()"
-          *ngIf="showFull"
-          class="show-less">
-          Схвати опис
-        </span>
+        <quill-view-html
+          class="quill-view"
+          [content]="plan.description"
+          theme="snow"></quill-view-html>
 
       </ng-container>
 

@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { QuillModule } from 'ngx-quill';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -72,7 +73,16 @@ import { PlanDescriptionComponent } from './components/plan-description/plan-des
       { path: '**', redirectTo: '/home', pathMatch: 'full' }
     ]),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          ['blockquote'],
+          [{ 'list': 'ordered'}]
+        ]
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
