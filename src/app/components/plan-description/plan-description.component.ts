@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { PlanService } from '../../services/plan.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'plan-description',
@@ -11,6 +12,26 @@ export class PlanDescriptionComponent implements OnInit {
   @Input() plan: any;
   @Input() readOnly: boolean;
 
+  super: boolean = false;
+
+  modules: any = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      ['blockquote'],
+      [{ 'list': 'ordered'}]
+    ],
+    keyboard: {
+      bindings: {
+        custom: {
+          key: 'enter',
+          shiftKey: true,
+          handler: () => {
+            this.edit();
+          }
+        }
+      }
+    }
+  };
   content: any;
   sanitizedDesc: any;
 
@@ -24,10 +45,11 @@ export class PlanDescriptionComponent implements OnInit {
   constructor(
     private planService: PlanService,
     private _sanitizer: DomSanitizer,
+    private ref: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
-    this.sanitizedDesc = this.getSanitized(this.plan.description);
+
   }
 
   changeState(full?: boolean) {
@@ -50,11 +72,7 @@ export class PlanDescriptionComponent implements OnInit {
       description: desc
     }).subscribe((plan: any) => {
       this.plan.description = plan.description;
-      this.sanitizedDesc = this.getSanitized(this.plan.description);
+      this.ref.detectChanges();
     });
-  }
-
-  getSanitized(code) {
-    return this._sanitizer.bypassSecurityTrustHtml(code);
   }
 }

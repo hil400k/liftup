@@ -1,11 +1,12 @@
 <div class="plan-description">
+  -{{this.editingState}}-
   <div>
     <div
       class="editing-state"
       *ngIf="editingState">
       <quill-editor
+        [modules]="modules"
         [ngModel]="plan.description"
-        (keyup.enter)="edit()"
         (onContentChanged)="contentChanged($event)"
         theme="snow">
       </quill-editor>

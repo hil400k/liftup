@@ -74,15 +74,7 @@ import { PlanDescriptionComponent } from './components/plan-description/plan-des
     ]),
     FormsModule,
     HttpClientModule,
-    QuillModule.forRoot({
-      modules: {
-        toolbar: [
-          ['bold', 'italic', 'underline'],
-          ['blockquote'],
-          [{ 'list': 'ordered'}]
-        ]
-      }
-    })
+    QuillModule.forRoot({})
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
