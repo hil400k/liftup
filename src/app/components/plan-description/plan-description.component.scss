@@ -31,6 +31,12 @@
   right: 0px;
 }
 
+.save-hint {
+  position: absolute;
+  top: -30px;
+  right: 50px;
+}
+
 svg-icon {
   &[name="done"] {
     ::ng-deep svg {

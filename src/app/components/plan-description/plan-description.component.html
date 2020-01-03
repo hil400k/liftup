@@ -1,5 +1,4 @@
 <div class="plan-description">
-  -{{this.editingState}}-
   <div>
     <div
       class="editing-state"
@@ -10,6 +9,7 @@
         (onContentChanged)="contentChanged($event)"
         theme="snow">
       </quill-editor>
+      <span class="save-hint">shift + enter to save</span>
       <button
         *ngIf="!isReadOnlyMode && editingState"
         class="done-btn"
@@ -18,7 +18,6 @@
       </button>
     </div>
     <span *ngIf="!editingState">
-
       <span
         *ngIf="!plan.description && !isReadOnlyMode">
         Додайте опис
@@ -32,7 +31,6 @@
           theme="snow"></quill-view-html>
 
       </ng-container>
-
     </span>
 
     <button

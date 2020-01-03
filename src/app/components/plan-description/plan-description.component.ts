@@ -1,7 +1,6 @@
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { PlanService } from '../../services/plan.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'plan-description',
@@ -26,7 +25,9 @@ export class PlanDescriptionComponent implements OnInit {
           key: 'enter',
           shiftKey: true,
           handler: () => {
-            this.edit();
+            this.zone.run(() => {
+              this.edit();
+            });
           }
         }
       }
@@ -45,7 +46,7 @@ export class PlanDescriptionComponent implements OnInit {
   constructor(
     private planService: PlanService,
     private _sanitizer: DomSanitizer,
-    private ref: ChangeDetectorRef,
+    private zone: NgZone
   ) { }
 
   ngOnInit() {
@@ -72,7 +73,6 @@ export class PlanDescriptionComponent implements OnInit {
       description: desc
     }).subscribe((plan: any) => {
       this.plan.description = plan.description;
-      this.ref.detectChanges();
     });
   }
 }
