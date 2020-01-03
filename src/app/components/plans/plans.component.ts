@@ -12,6 +12,8 @@ import { PlanService } from '../../services/plan.service';
 export class PlansComponent implements OnInit, OnDestroy {
   error: string;
   plans;
+  publicPlans;
+  privatePlans;
   username;
   customPlanSubscription: Subscription;
   userSubscription: Subscription;
@@ -36,6 +38,8 @@ export class PlansComponent implements OnInit, OnDestroy {
       this.customPlanSubscription = this.planService.getPlans()
         .subscribe(plans => {
           this.plans = plans;
+          this.publicPlans = this.plans.filter(p => p.isPublic);
+          this.privatePlans = this.plans.filter(p => p.isPublic === false);
           this.username = this.planService.username;
         });
     });

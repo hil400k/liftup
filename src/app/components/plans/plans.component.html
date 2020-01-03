@@ -35,7 +35,19 @@
 
 <h5>Список програм <loader-icon *ngIf="!plans"></loader-icon></h5>
 <div class="list-group">
-  <div *ngFor="let plan of plans" class="list-group-item list-group-item-action">
+  <div *ngFor="let plan of privatePlans" class="list-group-item list-group-item-action">
+    <a
+      [routerLink]="['/plans', plan.id]"
+      [textContent]="plan.name">
+    </a>
+    <button class="btn btn-danger btn-sm float-right" (click)="removePlan(plan)">
+      <svg-icon name="close" class="close-icon"></svg-icon>
+    </button>
+  </div>
+</div>
+
+<div class="list-group">
+  <div *ngFor="let plan of publicPlans" class="list-group-item list-group-item-action">
     <a
       [routerLink]="['/plans', plan.id]"
       [textContent]="plan.name">
@@ -51,8 +63,9 @@
     </span>
     </div>
   </div>
-  <p *ngIf="plans && !plans.length">
-    У вас ще немає жодної програми
-  </p>
 </div>
+
+<p *ngIf="plans && !plans.length">
+  У вас ще немає жодної програми
+</p>
 
